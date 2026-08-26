@@ -1,0 +1,155 @@
+
+.tocContainer {
+  background: $white;
+  border: 1px solid #EAECF0;
+  border-radius: $radius-lg;
+  width: 100%;
+  max-width: 280px;
+  padding: 24px 0;
+  box-shadow: $shadow-sm;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  position: sticky;
+  top: 120px;
+  align-self: start;
+  z-index: 10;
+  @media (max-width:576px) {
+    display: none;
+  }
+}
+// ....
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+  margin-bottom: 20px;
+
+  .headerIcon {
+    color: #344054;
+  }
+
+  .headerTitle {
+    color: #101828;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.divider {
+  height: 1px;
+  background-color: #F2F4F7;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  padding: 0 12px;
+}
+
+.itemGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: $radius-md;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: $transition-base;
+  color: #475467;
+  font-size: 15px;
+  font-weight: 500;
+
+  &:hover:not(.active) {
+    background-color: #F9FAFB;
+    color: #101828;
+  }
+
+  &.active {
+    background-color: #1E293B; // Dark background for active item
+    color: $white;
+
+    .chevron {
+      color: $white;
+    }
+    
+    .title {
+      color: $white;
+    }
+  }
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #98A2B3;
+  transition: $transition-base;
+}
+
+.title {
+  flex: 1;
+}
+
+.subItems {
+  display: flex;
+  flex-direction: column;
+  padding-left: 12px;
+  margin-top: 2px;
+}
+
+.subNavItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: $radius-md;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: $transition-base;
+  color: #475467;
+  font-size: 15px;
+  font-weight: 500;
+
+  &:hover {
+    background-color: #F9FAFB;
+    color: #101828;
+  }
+
+  .chevron {
+    color: #98A2B3;
+  }
+}
+
+.footerDivider {
+  height: 1px;
+  background-color: #F2F4F7;
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 20px;
+}
+
+.footer {
+  padding: 0 24px;
+  
+  .readingTime {
+    color: #667085;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}

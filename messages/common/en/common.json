@@ -1,0 +1,14 @@
+{
+    "register":"Register",
+    "details":"Details",
+    "search":"Search",
+    "searchPlacesholder":"Search in specific course...",
+    "allSpecial":"All Specializations",
+    "allCities":"All Cities",
+    "dateAvailable":" more dates available",
+    "showMore":"Show More",
+    "viewAllCourses":"View All Courses",
+    "weeks":"weeks",
+    "filters":"Filters",
+    "noCoursesFound":"No courses available at the moment."
+}

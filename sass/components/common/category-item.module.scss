@@ -1,0 +1,108 @@
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.categoryItem {
+    display: flex;
+    flex-direction: column;
+    color: #364153;
+    cursor: pointer;
+    transition: $transition-base;
+    border-bottom: 1px solid #F3F4F6;
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover > .categoryRow,
+    &.active > .categoryRow {
+        color: $blue-900;
+        font-weight: 600;
+    }
+
+    .categoryRow {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 15px;
+        padding: 11.77px 18.3px;
+        transition: $transition-base;
+
+        .categoryName {
+            flex: 1;
+        }
+
+        .badgeWrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .badge {
+                font-size: 11px;
+                background: #F3F4F6;
+                padding: 3px 8px;
+                border-radius: 12px;
+                color: #6B7280;
+                white-space: nowrap;
+            }
+
+            .chevronIcon {
+                color: #9CA3AF;
+                transition: transform 0.25s ease;
+                flex-shrink: 0;
+
+                &.chevronOpen {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    .specializationList {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background: #FAFAFA;
+        border-top: 1px solid #F0F1F3;
+        animation: slideDown 0.2s ease;
+
+        .specializationItem {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #5A6474;
+            padding: 9px 24px 9px 32px;
+            cursor: pointer;
+            transition: $transition-base;
+            border-bottom: 1px solid #F0F1F3;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            &:hover,
+            &.activeSpec {
+                color: $blue-900;
+                background: #EFF6FF;
+                font-weight: 500;
+            }
+
+            .specBadge {
+                font-size: 11px;
+                background: #E5E7EB;
+                padding: 2px 7px;
+                border-radius: 10px;
+                color: #6B7280;
+                flex-shrink: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+     "Navbar": {
+    "home": "الرئيسية",
+    "trainingPrograms": "البرامج التدريبية",
+    "consulting": "الاستشارات",
+    "blog": "المدونة",
+    "contactUs": "اتصل بنا",
+    "signIn": "دخول",
+    "signUp": "تسجيل",
+    "programs": {
+      "master": "الماجستير",
+      "diploma": "الدبلوم",
+      "trainingCourses": "الدورات التدريبية"
+    },
+    "cities":"المدن"
+  }
+}

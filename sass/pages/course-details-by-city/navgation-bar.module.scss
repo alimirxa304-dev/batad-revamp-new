@@ -1,0 +1,105 @@
+.navgationBar {
+    height: 68.14px;
+    background-color: $white;
+    border-bottom: 1.29px solid #E5E7EB;
+    padding: 20.57px 0px;
+
+    @media (max-width: 768px) {
+        height: auto;
+        min-height: 48px;
+        padding: 12px 0px;
+    }
+
+    .wrapper {
+        display: flex;
+        gap: 10.29px;
+        align-items: center;
+        flex-wrap: nowrap;
+        overflow: hidden;
+
+        @media (max-width: 768px) {
+            gap: 6px;
+        }
+
+        @media (max-width: 480px) {
+            gap: 4px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            gap: 5.4px;
+            align-items: center;
+            flex-shrink: 0;
+
+            @media (max-width: 768px) {
+                gap: 2px;
+            }
+
+            span,
+            a {
+                color: #2F327D;
+                font-weight: 500;
+                font-size: 18px;
+                white-space: nowrap;
+
+                @media (max-width: 768px) {
+                    font-size: 13px;
+                }
+
+                @media (max-width: 480px) {
+                    font-size: 12px;
+                }
+            }
+        }
+
+        
+        a {
+            font-size: 18px;
+            color: #4A5565 !important;
+            font-weight: 400;
+            white-space: nowrap;
+
+            @media (max-width: 768px) {
+                font-size: 13px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 12px;
+            }
+
+            // &:nth-child(5) {
+            //     color: #4A5565;
+            // }
+
+            &:nth-child(7) {
+                color: #2F327D;
+                font-weight: 500;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+                @media (max-width: 768px) {
+                    max-width: 120px;
+                }
+
+                @media (max-width: 480px) {
+                    max-width: 80px;
+                }
+            }
+        }
+
+        svg {
+            flex-shrink: 0;
+
+            @media (max-width: 768px) {
+                width: 14px;
+                height: 14px;
+            }
+
+            @media (max-width: 480px) {
+                width: 12px;
+                height: 12px;
+            }
+        }
+    }
+}

@@ -1,0 +1,610 @@
+// ==========================================
+// EDIT PROFILE PAGE
+// ==========================================
+
+.editProfilePage {
+    background: $home_color;
+    padding: 36px 0 80px;
+
+    @media (max-width: $tablet) {
+        padding: 24px 0 60px;
+    }
+
+    @media (max-width: $mobile) {
+        padding: 16px 0 48px;
+    }
+}
+
+// ==========================================
+// PAGE HEADER
+// ==========================================
+
+.pageHeader {
+    margin-bottom: 24px;
+
+    @media (max-width: $mobile) {
+        margin-bottom: 20px;
+    }
+}
+
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: $gray-600;
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: $blue-900;
+    }
+}
+
+.headerTop {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+
+    @media (max-width: $tablet) {
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+.headerTitles {
+    h1 {
+        font-size: 26px;
+        font-weight: 700;
+        color: $text-blue;
+        margin-bottom: 6px;
+
+        @media (max-width: $mobile) {
+            font-size: 22px;
+        }
+    }
+
+    p {
+        font-size: 13.5px;
+        color: $gray-600;
+    }
+}
+
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+
+    @media (max-width: $tablet) {
+        width: 100%;
+
+        button {
+            flex: 1;
+            justify-content: center;
+        }
+    }
+}
+
+.btnCancel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: $white;
+    color: $gray-600;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: $radius-md;
+    border: 1.5px solid $gray-300;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+
+    &:hover {
+        border-color: $blue-900;
+        color: $text-blue;
+        background: $gray-50;
+    }
+}
+
+.btnSave {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: $blue-900;
+    color: $white;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: $radius-md;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        background: lighten($blue-900, 8%);
+        transform: translateY(-1px);
+        box-shadow: $shadow-blue;
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+// ==========================================
+// LAYOUT
+// ==========================================
+
+.editLayout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+    align-items: start;
+
+    @media (max-width: $small-desktop) {
+        grid-template-columns: 260px 1fr;
+    }
+
+    @media (max-width: $tablet) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.leftPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.rightPanel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+// ==========================================
+// CARDS (shared)
+// ==========================================
+
+.card {
+    background: $white;
+    border-radius: $radius-xl;
+    border: 1px solid $gray-100;
+    box-shadow: $shadow-sm;
+    padding: 24px;
+
+    @media (max-width: $mobile) {
+        padding: 20px;
+    }
+}
+
+.cardTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    color: $text-blue;
+    margin-bottom: 20px;
+
+    svg {
+        color: $gray-400;
+        flex-shrink: 0;
+    }
+}
+
+// ==========================================
+// PROFILE PICTURE CARD
+// ==========================================
+
+.avatarArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.avatarWrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid $gray-100;
+    background: $blue-900;
+    @include flex-center;
+    font-size: 28px;
+    font-weight: 700;
+    color: $white;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}
+
+.cameraBtn {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: $blue-900;
+    border: 2px solid $white;
+    @include flex-center;
+    cursor: pointer;
+    color: $white;
+    transition: background 0.2s ease;
+
+    &:hover {
+        background: lighten($blue-900, 10%);
+    }
+}
+
+.avatarHint {
+    text-align: center;
+
+    p {
+        font-size: 12px;
+        color: $gray-400;
+        line-height: 1.5;
+
+        &:first-child {
+            font-weight: 500;
+            color: $gray-600;
+        }
+    }
+}
+
+.uploadBtn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: $white;
+    color: $text-blue;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: $radius-md;
+    border: 1.5px solid $gray-300;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        border-color: $blue-900;
+        color: $blue-900;
+        background: rgba($blue-900, 0.03);
+    }
+}
+
+// ==========================================
+// ACCOUNT STATUS CARD (dark)
+// ==========================================
+
+.accountStatusCard {
+    background: $blue-900;
+    border-radius: $radius-xl;
+    border: 1px solid rgba($white, 0.08);
+    box-shadow: $shadow-sm;
+    padding: 24px;
+
+    @media (max-width: $mobile) {
+        padding: 20px;
+    }
+}
+
+.statusHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.statusIconWrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba($white, 0.1);
+    @include flex-center;
+    flex-shrink: 0;
+
+    svg {
+        color: rgba($white, 0.85);
+    }
+}
+
+.statusTitles {
+    h3 {
+        font-size: 14.5px;
+        font-weight: 700;
+        color: $white;
+        margin-bottom: 2px;
+    }
+
+    span {
+        font-size: 12px;
+        color: rgba($white, 0.55);
+    }
+}
+
+.statusDivider {
+    height: 1px;
+    background: rgba($white, 0.1);
+    margin-bottom: 16px;
+}
+
+.statusList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.statusItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    span:first-child {
+        font-size: 12.5px;
+        color: rgba($white, 0.6);
+    }
+
+    span:last-child {
+        font-size: 12.5px;
+        font-weight: 600;
+        color: $white;
+    }
+}
+
+// ==========================================
+// SECTION TITLE (inside cards)
+// ==========================================
+
+.sectionTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: $text-blue;
+    margin-bottom: 20px;
+
+    svg {
+        color: $gray-400;
+        flex-shrink: 0;
+    }
+}
+
+// ==========================================
+// PERSONAL INFORMATION FORM
+// ==========================================
+
+.fieldsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 20px;
+
+    @media (max-width: $tablet) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.fullWidth {
+    grid-column: 1 / -1;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.fieldLabel {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: $gray-600;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    .required {
+        color: $error;
+        font-size: 13px;
+    }
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .inputIcon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $gray-400;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    input {
+        width: 100%;
+        padding: 11px 14px 11px 40px;
+        font-size: 13.5px;
+        color: $text-blue;
+        background: $white;
+        border: 1.5px solid $gray-300;
+        border-radius: $radius-md;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        font-family: inherit;
+
+        &::placeholder {
+            color: $gray-400;
+        }
+
+        &:focus {
+            @include input-focus-ring($blue-900);
+        }
+    }
+}
+
+// ==========================================
+// CHANGE PASSWORD FORM
+// ==========================================
+
+.sectionSubtitle {
+    font-size: 12.5px;
+    color: $gray-400;
+    margin-top: -14px;
+    margin-bottom: 20px;
+}
+
+.passwordGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 20px;
+
+    @media (max-width: $tablet) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.inputWrapperPassword {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .inputIcon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $gray-400;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .eyeBtn {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        padding: 4px;
+        cursor: pointer;
+        color: $gray-400;
+        display: flex;
+        align-items: center;
+        transition: color 0.2s ease;
+
+        &:hover {
+            color: $blue-900;
+        }
+    }
+
+    input {
+        width: 100%;
+        padding: 11px 40px 11px 40px;
+        font-size: 13.5px;
+        color: $text-blue;
+        background: $white;
+        border: 1.5px solid $gray-300;
+        border-radius: $radius-md;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        font-family: inherit;
+
+        &::placeholder {
+            color: $gray-400;
+        }
+
+        &:focus {
+            @include input-focus-ring($blue-900);
+        }
+    }
+}
+
+// ==========================================
+// PASSWORD REQUIREMENTS
+// ==========================================
+
+.passwordRequirements {
+    grid-column: 1 / -1;
+    margin-top: 4px;
+}
+
+.reqTitle {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: $blue-900;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.reqGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 20px;
+
+    @media (max-width: $mobile) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.reqItem {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: $gray-600;
+
+    .reqIcon {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: rgba($blue-900, 0.1);
+        @include flex-center;
+        flex-shrink: 0;
+
+        svg {
+            color: $blue-900;
+        }
+    }
+
+    &.met {
+        color: #059669;
+
+        .reqIcon {
+            background: rgba(#10b981, 0.12);
+
+            svg {
+                color: #059669;
+            }
+        }
+    }
+}

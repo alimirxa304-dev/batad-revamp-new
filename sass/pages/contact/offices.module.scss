@@ -1,0 +1,89 @@
+.officesCard {
+    background: $white;
+    border-radius: $radius-xl;
+    border: 1px solid $gray-100;
+    box-shadow: $shadow-md;
+    padding: 32px;
+    height: fit-content;
+
+    @media (max-width: $mobile) {
+        padding: 20px 16px;
+    }
+}
+
+.officesHeader {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid $gray-100;
+
+    h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: $text-blue;
+    }
+}
+
+.iconBox {
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-md;
+    background: $blue-900;
+    @include flex-center;
+    flex-shrink: 0;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid $gray-100;
+
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    &:first-child {
+        padding-top: 0;
+    }
+}
+
+.itemIcon {
+    width: 38px;
+    height: 38px;
+    border-radius: $radius-sm;
+    background: $gray-50;
+    border: 1px solid $gray-100;
+    @include flex-center;
+    color: $blue-900;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.itemContent {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: $text-blue;
+        margin-bottom: 4px;
+    }
+
+    p {
+        font-size: 13.5px;
+        font-weight: 400;
+        color: $gray-600;
+        line-height: 1.55;
+    }
+}

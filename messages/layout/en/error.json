@@ -1,0 +1,8 @@
+{
+  "Error": {
+    "title": "Something went wrong",
+    "description": "We're sorry — an unexpected error occurred on our site. Our team has been notified. Please try again or return to the homepage.",
+    "retry": "Try again",
+    "home": "Back to home"
+  }
+}

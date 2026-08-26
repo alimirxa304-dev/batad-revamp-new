@@ -1,0 +1,35 @@
+.couresByCities{
+    display: flex;
+    flex-direction: column;
+    gap:12px;
+   
+    .couresByCities__image{
+         background-color: #FFFFFF;
+    border-radius: 12px;
+    padding:  0px;
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 259px;
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+    }
+    .couresByCities__content{
+        .couresByCities__content__title{
+            font-size: 16px;
+            font-weight: 400;
+            color:$blue-900;
+            text-align: center;
+            @media (max-width: 768px) {
+                font-size: 14px;
+                text-align: center;
+            }
+        }
+    }
+ 
+}

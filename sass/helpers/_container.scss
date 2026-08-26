@@ -1,0 +1,20 @@
+@use './breakpoints' as bp;
+
+$container-max-width: 1440px;
+$container-padding: 101px;
+$container-padding-tablet: 40px;
+$container-padding-mobile: 16px;
+
+@mixin container {
+  width: 100%;
+  padding-inline: $container-padding;
+  @include bp.respond('small-desktop') {
+    padding-inline: $container-padding-tablet;
+  }
+ @media (min-width:1021px) and (max-width:1440px){
+    padding: 0px 60px;
+    }
+  @include bp.respond('tablet') {
+    padding-inline: $container-padding-mobile;
+  }
+}

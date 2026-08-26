@@ -1,0 +1,232 @@
+// ─── What Is British Academy — navy brand panel ─────────────────────
+.whatIs {
+    width: 100%;
+}
+
+.panel {
+    position: relative;
+    background: $blue-900;
+    border-radius: clamp(20px, 2.5vw, 32px);
+    padding: clamp(28px, 4vw, 56px);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.panelGlow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(ellipse 50% 60% at 90% 10%, rgba($blue-600, 0.22), transparent 65%),
+        radial-gradient(ellipse 45% 55% at 5% 100%, rgba($red, 0.16), transparent 60%);
+}
+
+.panelGrid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+// ─── Intro column ────────────────────────────────────────────────
+.intro {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(18px, 2.5vw, 26px);
+}
+
+.heading {
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 800;
+    color: $white;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+
+    span {
+        color: #e85d6a;
+    }
+}
+
+.desc {
+    font-size: clamp(14px, 1.2vw, 16px);
+    line-height: 1.75;
+    color: rgba($white, 0.78);
+    max-width: 52ch;
+}
+
+.stats {
+    display: flex;
+    gap: clamp(16px, 2.5vw, 36px);
+    flex-wrap: wrap;
+}
+
+.statBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    strong {
+        font-size: clamp(22px, 2.2vw, 30px);
+        font-weight: 800;
+        color: $white;
+    }
+
+    span {
+        font-size: 12.5px;
+        color: rgba($white, 0.65);
+    }
+}
+
+// ─── Annual plan promo card ──────────────────────────────────────
+.planCard {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 170px;
+    margin-top: auto;
+    border: 1px solid rgba($white, 0.12);
+}
+
+.planImage {
+    object-fit: cover;
+    z-index: 0;
+}
+
+.planOverlay {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    min-height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 18px;
+    background: linear-gradient(180deg, rgba($blue-900, 0.15) 0%, rgba($blue-900, 0.9) 85%);
+}
+
+.planText {
+    strong {
+        display: block;
+        font-size: 17px;
+        font-weight: 700;
+        color: $white;
+    }
+
+    p {
+        font-size: 13px;
+        color: rgba($white, 0.75);
+    }
+}
+
+.planBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    background: $red;
+    color: $white;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: $transition-base;
+
+    &:hover {
+        background: darken($red, 8%);
+    }
+}
+
+// ─── Feature cards ───────────────────────────────────────────────
+.features {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(12px, 1.5vw, 18px);
+
+    // Odd count: let the last card span the full row.
+    > :last-child {
+        grid-column: 1 / -1;
+    }
+
+    @media (max-width: 576px) {
+        grid-template-columns: minmax(0, 1fr);
+
+        > :last-child {
+            grid-column: auto;
+        }
+    }
+}
+
+.featureCard {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: rgba($white, 0.05);
+    border: 1px solid rgba($white, 0.1);
+    border-radius: 16px;
+    padding: clamp(16px, 1.8vw, 22px);
+    transition: background 0.25s ease-out, border-color 0.25s ease-out, transform 0.25s ease-out;
+
+    &:hover {
+        background: rgba($white, 0.09);
+        border-color: rgba($white, 0.22);
+        transform: translateY(-3px);
+    }
+}
+
+.featureIcon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    background: $white;
+    @include flex-center;
+
+    img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+    }
+}
+
+.featureBody {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+
+    h3 {
+        font-size: 15.5px;
+        font-weight: 700;
+        color: $white;
+    }
+
+    p {
+        font-size: 13px;
+        line-height: 1.6;
+        color: rgba($white, 0.7);
+    }
+}
+
+.featureLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #e85d6a;
+    transition: $transition-base;
+
+    &:hover {
+        gap: 10px;
+        color: $white;
+    }
+}

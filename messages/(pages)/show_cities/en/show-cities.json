@@ -1,0 +1,19 @@
+{
+  "ShowCities": {
+    "explore": "EXPLORE OUR GLOBAL LOCATIONS",
+    "title": "Find Your Perfect",
+    "titleLine2": "Training Destination",
+    "subtitle": "World-class training programs across {count} cities worldwide",
+    "allSpecializations": "All Specializations",
+    "allCities": "All Cities",
+    "globalCities": "Global Cities",
+    "trainingPrograms": "Training Programs",
+    "happyStudents": "Happy Students",
+    "coursesByCity": "Courses by City",
+    "citySubtitle": "Explore our training centers in the world's most iconic destinations",
+    "viewMore": "View More",
+    "coursesAvailable": "Courses Available",
+    "totalStudents": "Total Students",
+    "exploreCourses": "Explore Courses"
+  }
+}

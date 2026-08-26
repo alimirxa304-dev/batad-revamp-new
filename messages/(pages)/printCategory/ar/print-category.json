@@ -1,0 +1,19 @@
+{
+  "PrintCategory": {
+    "headerTitle": "الخطط السنوية -",
+    "seats": "مقعد",
+    "date": "الموعد",
+    "duration": "المدة",
+    "location": "الموقع",
+    "pricingOptions": "خيارات الأسعار",
+    "details": "التفاصيل",
+    "register": "التسجيل",
+    "allLocations": "جميع المواقع",
+    "searchPlaceholder": "ابحث عن الدورات أو الموضوعات أو التصنيفات...",
+    "print": "طباعة",
+    "exportExcel": "تصدير",
+    "showing": "عرض",
+    "courses": "دورة",
+    "backToYearPlan": "العودة إلى الخطة السنوية"
+  }
+}

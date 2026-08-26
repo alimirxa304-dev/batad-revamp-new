@@ -1,0 +1,24 @@
+{
+  "CourseDetails": {
+    "backToCourses": "العودة إلى الدورات",
+    "courses": "الدورات",
+    "courseDetails": "تفاصيل الدورة",
+    "allDetailsFor": "جميع تفاصيل الدورة",
+    "filters": "الفلاتر",
+    "share": "مشاركة:",
+    "oneTimePayment": "دفعة واحدة",
+    "enrollNow": "سجّل الآن",
+    "rating": "التقييم",
+    "students": "متدرب",
+    "duration": "المدة",
+    "selectCourseDate": "اختر تاريخ الدورة",
+    "registerNow": "التسجيل في الدورة",
+    "requestInternal": "طلب دورة داخلية",
+    "quickInquiry": "استفسار سريع",
+    "reviews": "تقييم",
+    "similarCourses": "دورات مشابهة",
+    "seeAll": "عرض الكل",
+    "courseVideo": "فيديو الدورة",
+    "videoPreview": "استعرض ما ستتعلمه في هذا البرنامج التدريبي الشامل"
+  }
+}

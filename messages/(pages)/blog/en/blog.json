@@ -1,0 +1,27 @@
+{
+  "Blog": {
+    "filters": "Filters",
+    "sortBy": "Sort by",
+    "allCategories": "All Categories",
+    "blogPosts": "Blog Posts",
+    "latestPosts": "Latest Posts",
+    "follow": "Follow @batadacademy",
+    "featuredArticle": "Featured Article",
+    "trending": "Trending",
+    "featured": "Featured",
+    "author": "Author",
+    "readArticle": "Read Article",
+    "latestArticles": "Latest Articles",
+    "viewMore": "View More",
+    "readMore": "Read More",
+    "backToBlog": "Back to Blog",
+    "minRead": "min read",
+    "views": "views",
+    "likes": "likes",
+    "similarBlog": "Similar Articles",
+    "noSimilarPosts": "No similar articles found",
+    "inThisArticle": "In This Article",
+    "minRead": "min read",
+    "noHeadings": "No headings in this article"
+  }
+}

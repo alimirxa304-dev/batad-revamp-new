@@ -1,0 +1,355 @@
+.blogDetailsPage {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 100px;
+
+    @media (max-width: 1024px) {
+        gap: 0px;
+        padding-bottom: 0px;
+    }
+}
+
+.header {
+    .container {
+        padding: 0px 101px;
+
+        @media(min-width:1021px) and (max-width:1440px) {
+            padding: 0px 60px;
+        }
+
+    }
+
+    @media (max-width: 1024px) {
+        .container {
+            padding: 0px;
+        }
+    }
+
+    .content {
+        padding: 32px 56px;
+        background-color: $blue-900;
+        display: flex;
+        flex-direction: column;
+        gap: 64px;
+
+        @media(min-width:1021px) and (max-width:1440px) {
+            gap: 16px;
+            padding: 16px 60px;
+        }
+
+        .back {
+
+            a {
+                color: #FFFFFFCC;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 400;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+        }
+
+        .contentItem {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+
+            @media (max-width: 1024px) {
+
+                gap: 16px;
+            }
+
+            .type {
+                display: flex;
+                gap: 12px;
+
+                span {
+                    color: #FFFFFF;
+                    font-size: 14px;
+                    font-weight: 400;
+                    border-radius: 10px;
+                    background: #FFFFFF33;
+                    font-weight: 400;
+                    padding: 8px 16px;
+                    width: fit-content;
+                    text-align: center;
+                }
+
+                .featured {
+                    background: #B12E33;
+                    display: flex;
+                    gap: 4px;
+                    align-items: center;
+                    width: fit-content;
+                    padding: 8px clamp(16px, 2vw, 32px);
+                    justify-content: center;
+
+
+                }
+            }
+
+            h2 {
+                color: $white;
+                font-size: 24px;
+                font-weight: 600;
+                line-height: 27px;
+
+                @media (max-width: 1024px) {
+                    font-size: 16px;
+                    font-weight: 400;
+                }
+            }
+
+            .media {
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 16px;
+                justify-content: space-between;
+                align-items: center;
+
+                @media(max-width:1024px) {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 16px;
+                }
+
+                .reactions {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 24px;
+
+                    @media (max-width: 1024px) {
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                        gap: 8px;
+                    }
+
+                    .reaction {
+                        color: #FFFFFFE5;
+                        display: flex;
+                        gap: 8px;
+                        align-items: center;
+                        font-size: 16px;
+                        font-weight: 400;
+
+                    }
+
+                    .reaction:last-of-type {
+                        @media(max-width:1024px) {
+                            margin-right: 20px;
+                        }
+                    }
+                }
+
+                .social {
+                    display: flex;
+                    gap: 8.58px;
+
+                    @media(max-width:1024px) {
+                        width: 100%;
+                        gap: 8px;
+                        justify-content: flex-start;
+                    }
+
+                    a {
+                        width: 38.62px;
+                        height: 38.62px;
+                        background-color: #FFFFFF1A;
+                        border-radius: 10.73px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 4px;
+                        cursor: pointer;
+
+                        span {
+                            color: #FFFFFF;
+                            font-size: 14px;
+                            font-weight: 400;
+                        }
+                    }
+                }
+            }
+
+            .author {
+                border-top: 1px solid #FFFFFF33;
+                padding-top: 33px;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+
+                .avatar {
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 16777200px;
+                    overflow: hidden;
+                    box-shadow: 0px 0px 0px 4px #FFFFFF4D;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    img {
+                        border-radius: 16777200px;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .authorInfo {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+
+                    h3 {
+                        color: #FFFFFF;
+                        font-size: 16px;
+                        font-weight: 400;
+                    }
+
+                    p {
+                        color: #FFFFFFB2;
+                        font-size: 14px;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: clamp(24px, 5vw, 78px);
+    padding: 50px 0px;
+    align-items: start;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr 2fr;
+        padding: 25px 0px;
+    }
+
+    @media (max-width: 576px) {
+        grid-template-columns: 1fr;
+        padding: 16px 0px;
+    }
+
+
+}
+
+
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    gap: 54px;
+    position: relative;
+
+    @media (max-width: 1024px) {
+        gap: 30px;
+    }
+
+    .content {
+        display: block;
+        box-shadow: 0px 5.7px 8.56px -5.7px #0000001A;
+        padding: 32px;
+        box-shadow: 0px 14.26px 21.39px -4.28px #0000001A;
+        border: 1.43px solid #F3F4F6;
+        border-radius: 22.82px;
+
+        // The site-wide `* { margin: 0; padding: 0 }` reset strips all default
+        // spacing from the CMS-authored article body, so it has to be restored
+        // explicitly here to match the shape the author sees in the editor.
+        p {
+            margin: 0 0 16px;
+            line-height: 1.8;
+            color: #364153;
+        }
+
+        ul, ol {
+            margin: 0 0 16px;
+            padding-inline-start: 22px;
+
+            li {
+                margin-bottom: 8px;
+                line-height: 1.8;
+                color: #364153;
+            }
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: 24px 0 12px;
+            color: $blue-900;
+            font-weight: 700;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        a {
+            color: $blue-900;
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .relatedArticles {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+
+        .relatedArticlesTitle {
+            color: $text-blue;
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .relatedArticlesContent {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 23.71px;
+
+            @media (max-width: $tablet) {
+                gap: 16px;
+            }
+
+            @media (max-width: 1024px) {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+
+        .viewMore {
+            width: 283px;
+            height: 48px;
+            margin: 28px auto 0px auto;
+            border: 1.24px solid $blue-900;
+            color: $blue-900;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 4px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            @media (max-width: 1024px) {
+                width: 100%;
+                margin: 0px;
+            }
+        }
+    }
+}

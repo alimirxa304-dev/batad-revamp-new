@@ -1,0 +1,389 @@
+// ─── Hero (deep navy, "Love Mondays" layout with brand theme) ─────
+.hero {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    background-color: $blue-900;
+    isolation: isolate;
+}
+
+.bgPattern {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(ellipse 55% 60% at 82% 18%, rgba($blue-600, 0.22), transparent 65%),
+        radial-gradient(ellipse 45% 50% at 8% 95%, rgba($red, 0.14), transparent 60%);
+}
+
+// ─── Content Grid ───────────────────────────────────────────────
+.content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: center;
+    column-gap: clamp(24px, 3vw, 48px);
+    max-width: 1200px;
+    margin-inline: auto;
+    min-height: 74vh;
+    padding: clamp(48px, 8vh, 96px) 0 clamp(48px, 8vh, 96px);
+
+    @media (max-width: 1024px) {
+        // minmax(0, 1fr), not bare 1fr — the nowrap quick-links row must not
+        // blow the column out past the viewport.
+        grid-template-columns: minmax(0, 1fr);
+        align-items: start;
+        min-height: auto;
+        padding: 36px 0 44px;
+    }
+}
+
+.left {
+    position: relative;
+    z-index: 2;
+}
+
+// ─── Headline & tagline ──────────────────────────────────────────
+.title {
+    font-family: var(--font-heading), inherit;
+    font-size: clamp(44px, 6.5vw, 84px);
+    font-weight: 800;
+    color: $white;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin-bottom: clamp(18px, 3vw, 30px);
+    max-width: 12ch;
+
+    span {
+        color: #e85d6a;
+    }
+
+    // Stacked layouts float the photo top-end — cap the heading width so the
+    // two never overlap.
+    @media (max-width: 1024px) {
+        font-size: clamp(34px, 7vw, 52px);
+        max-width: calc(100% - clamp(150px, 28vw, 240px));
+    }
+
+    @media (max-width: $mobile) {
+        font-size: clamp(30px, 9.5vw, 38px);
+    }
+}
+
+.tagline {
+    font-size: clamp(20px, 2.4vw, 30px);
+    font-weight: 700;
+    color: $white;
+    line-height: 1.3;
+    margin-bottom: clamp(24px, 4vw, 40px);
+
+    span {
+        color: #e85d6a;
+    }
+}
+
+// ─── Search panel (darker navy card) ─────────────────────────────
+.searchPanel {
+    position: relative;
+    background: rgba(darken($blue-900, 7%), 0.85);
+    border: 1px solid rgba($white, 0.06);
+    border-radius: $radius-lg;
+    padding: clamp(14px, 2.2vw, 24px);
+    max-width: 760px;
+
+    @media (max-width: 1024px) {
+        max-width: none;
+    }
+}
+
+.searchRow {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+
+    @media (max-width: $mobile) {
+        gap: 8px;
+    }
+}
+
+.searchBar {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: $white;
+    border-radius: $radius-md;
+    height: clamp(48px, 6vw, 56px);
+    padding-inline-start: 14px;
+    padding-inline-end: 8px;
+    transition: $transition-base;
+
+    &:focus-within {
+        outline: 2px solid rgba($blue-600, 0.6);
+        outline-offset: 1px;
+    }
+}
+
+.searchIcon {
+    color: $gray-400;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.searchInput {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: clamp(13px, 1.1vw, 15px);
+    color: #111827;
+    flex: 1;
+    min-width: 0;
+
+    &::placeholder {
+        color: $gray-400;
+    }
+}
+
+.btnSearch {
+    background: $red;
+    color: $white;
+    border: none;
+    border-radius: $radius-md;
+    padding-inline: clamp(18px, 2.5vw, 28px);
+    height: clamp(48px, 6vw, 56px);
+    font-size: clamp(14px, 1.1vw, 16px);
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.1s;
+    @include flex-center;
+
+    &:hover {
+        background: darken($red, 8%);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+.btnSearchIcon {
+    display: none;
+}
+
+@media (max-width: $mobile) {
+    .btnSearchLabel {
+        display: none;
+    }
+
+    .btnSearchIcon {
+        display: block;
+    }
+
+    .btnSearch {
+        padding-inline: 16px;
+    }
+}
+
+// ─── Quick links row ─────────────────────────────────────────────
+.quickLinks {
+    display: flex;
+    align-items: center;
+    margin-top: clamp(12px, 1.8vw, 18px);
+}
+
+.quickLinksTrack {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.quickLink {
+    color: $white;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    padding-inline: clamp(12px, 1.6vw, 18px);
+    border-inline-end: 1px solid rgba($white, 0.25);
+    transition: color 0.2s;
+
+    &:first-child {
+        padding-inline-start: 0;
+    }
+
+    &:last-child {
+        border-inline-end: none;
+    }
+
+    &:hover {
+        color: #e85d6a;
+    }
+}
+
+.quickChevron {
+    background: transparent;
+    border: none;
+    color: $white;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 4px;
+    @include flex-center;
+}
+
+// ─── Right column (person visual) ────────────────────────────────
+.right {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+
+    // On stacked layouts the photo floats at the top end corner behind the
+    // heading, like the reference mobile design.
+    @media (max-width: 1024px) {
+        position: absolute;
+        top: 8px;
+        inset-inline-end: 0;
+        z-index: 0;
+        opacity: 0.95;
+    }
+}
+
+.personWrap {
+    position: relative;
+    width: clamp(300px, 32vw, 440px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid rgba($white, 0.08);
+    box-shadow:
+        0 0 0 1px rgba($white, 0.06),
+        0 0 90px rgba($red, 0.18),
+        0 30px 60px -20px rgba(0, 0, 0, 0.45);
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: radial-gradient(ellipse at 30% 20%, rgba($blue-600, 0.18), transparent 60%);
+        pointer-events: none;
+    }
+
+    @media (max-width: 1024px) {
+        width: clamp(140px, 26vw, 220px);
+        border-width: 4px;
+    }
+}
+
+.personImage {
+    object-fit: cover;
+}
+
+// ─── Stats strip (below hero) ────────────────────────────────────
+.statsStrip {
+    background: $gradient-blue-light;
+    border-bottom: 1px solid $gray-100;
+    padding: clamp(18px, 3vw, 28px) 0;
+}
+
+.statsInner {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    max-width: 1200px;
+    margin-inline: auto;
+}
+
+.statsTrack {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 3vw, 40px);
+    width: 100%;
+    min-width: 0;
+
+    @media (max-width: $tablet) {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+}
+
+.statItem {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    @media (max-width: $tablet) {
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+        justify-content: center;
+    }
+}
+
+.statIcon {
+    color: $blue-900;
+    flex-shrink: 0;
+    @include flex-center;
+
+    svg {
+        width: 38px;
+        height: 38px;
+        stroke-width: 1.6;
+    }
+}
+
+.statContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.statTitle {
+    font-size: clamp(14px, 1.2vw, 16px);
+    font-weight: 700;
+    color: $blue-900;
+    line-height: 1.3;
+}
+
+.statText {
+    font-size: clamp(12px, 1vw, 14px);
+    color: $gray-600;
+    line-height: 1.45;
+}
+
+.statsArrow {
+    display: none;
+    background: transparent;
+    border: none;
+    color: $blue-900;
+    cursor: pointer;
+    padding: 6px;
+    flex-shrink: 0;
+
+    @media (max-width: $tablet) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,229 @@
+.footer {
+  background-color: $blue-900;
+  color: $white;
+  width: 100%;
+  // margin-top: 100px;
+  padding: 38px 0px 49px 0px;
+}
+
+// ─── Top Section ──────────────────────────────────────────────
+.top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 31px;
+
+  @media (max-width: $tablet) {
+    padding: 40px 24px 32px;
+  }
+}
+
+.tagline {
+  font-size: 15.8px;
+  color: #FFFFFFB2;
+  text-align: center;
+  max-width: 530px;
+  line-height: 25.69px;
+  margin: 0px;
+
+  @media (max-width: $tablet) {
+    font-size: 13px;
+    max-width: 300px;
+  }
+}
+
+// ─── Main Grid ────────────────────────────────────────────────
+.main {
+  padding: 44px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: start;
+
+  @media (max-width: $small-desktop) {
+    padding: 40px 40px;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  @media (max-width: $tablet) {
+    padding: 36px 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 20px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 26px;
+  }
+}
+
+// ─── Nav Column ───────────────────────────────────────────────
+.navColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.navTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: $white;
+     @media (max-width: $tablet) {
+    font-size: 16px;
+  }
+ 
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+     @media (max-width: $tablet) {
+    gap: 8px;
+  }
+}
+
+.navLink {
+  font-size: 15.5px;
+  color: #FFFFFFB2;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  line-height: 1.4;
+  font-weight: 400;
+     @media (max-width: $tablet) {
+    font-size: 14px;
+  }
+
+  &:hover {
+    color: $white;
+  }
+}
+
+// ─── Contact Column ───────────────────────────────────────────
+.contactColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 45.66px;
+
+  @media (max-width: $small-desktop) {
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: $tablet) {
+    justify-content: center;
+    align-items: center;
+    grid-column: 1 / -1;
+  }
+}
+
+// ─── Social Row ───────────────────────────────────────────────
+.socials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.socialIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 13.59px;
+  border:  none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #FFFFFF1A;
+  transition: border-color 0.2s ease, background 0.2s ease;
+
+  svg {
+    width: 21px;
+    height: 21px;
+    fill: $white;
+    transition: fill 0.2s ease;
+  }
+
+  &:hover {
+    border-color: $gray-50;
+    background: rgba(255,255,255,0.06);
+
+    svg {
+      fill: $white;
+    }
+  }
+}
+
+// ─── Contact Items ────────────────────────────────────────────
+.contactItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+    @media (max-width: $tablet) {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  color: #FFFFFFB2;
+  text-decoration: none;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.contactIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 17px;
+    height: 17px;
+    fill: #C9302C;
+  }
+}
+
+// ─── Bottom Bar ───────────────────────────────────────────────
+.bottom {
+  border-top: 1px solid #FFFFFF1A;
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: $tablet) {
+    padding: 16px 24px;
+    text-align: center;
+  }
+}
+
+.copyright {
+  font-size: 15.5px;
+  color: #FFFFFFCC;
+  font-weight: 500;
+  margin: 0;
+  text-align: center;
+
+  a {
+    color: #FFB4B0;
+    text-decoration: underline;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+      color: #FFFFFF;
+    }
+  }
+}

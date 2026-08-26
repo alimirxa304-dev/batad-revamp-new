@@ -1,0 +1,19 @@
+{
+  "ShowCities": {
+    "explore": "اكتشف مواقعنا حول العالم",
+    "title": "اعثر على وجهتك المثالية",
+    "titleLine2": "للتدريب الاحترافي",
+    "subtitle": "برامج تدريبية عالمية المستوى في {count} مدينة حول العالم",
+    "allSpecializations": "جميع التخصصات",
+    "allCities": "جميع المدن",
+    "globalCities": "مدينة عالمية",
+    "trainingPrograms": "برنامج تدريبي",
+    "happyStudents": "متدرب سعيد",
+    "coursesByCity": "الدورات حسب المدينة",
+    "citySubtitle": "اكتشف مراكزنا التدريبية في أبرز الوجهات العالمية",
+    "viewMore": "عرض المزيد",
+    "coursesAvailable": "دورة متاحة",
+    "totalStudents": "إجمالي المتدربين",
+    "exploreCourses": "استكشف الدورات"
+  }
+}

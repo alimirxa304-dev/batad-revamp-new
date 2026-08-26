@@ -1,0 +1,60 @@
+{
+  "MyProfile": {
+    "notSpecified": "Not specified",
+    "editProfile": "Edit Profile",
+    "tabs": {
+      "personalInfo": "Personal Information",
+      "myCourses": "My Courses",
+      "certificates": "Certificates",
+      "messages": "Messages"
+    },
+    "courses": {
+      "title": "My Courses",
+      "active": "Active Courses",
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "instructor": "Instructor:",
+      "enrolled": "Enrolled:",
+      "duration": "Duration:",
+      "completedDate": "Completed:",
+      "progress": "Progress",
+      "viewCertificate": "View Certificate",
+      "continueLearning": "Continue Learning",
+      "courseDetails": "Course Details"
+    },
+    "personalInfo": {
+      "fullName": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "mobile": "Mobile Number",
+      "country": "Country",
+      "jobTitle": "Job Title",
+      "company": "Company Name",
+      "address": "Address"
+    },
+    "certificates": {
+      "title": "My Certificates",
+      "earned": "Certificate(s) Earned",
+      "none": "No certificates earned yet",
+      "issued": "Issued:",
+      "download": "Download Certificate"
+    },
+    "messages": {
+      "title": "Messages",
+      "count": "Message(s)",
+      "none": "No messages yet",
+      "date": "Date:",
+      "status": "Status:",
+      "read": "Read",
+      "unread": "Unread",
+      "view": "View Message",
+      "markRead": "Mark as Read"
+    },
+    "modal": {
+      "about": "About this Course",
+      "status": "Status",
+      "category": "Category",
+      "close": "Close"
+    }
+  }
+}

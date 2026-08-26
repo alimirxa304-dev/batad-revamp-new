@@ -1,0 +1,21 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: $home_color;
+  @media (max-width: 1024px) {
+    gap: 60px;
+  }
+  .mainContent {
+    display: flex;
+    padding: 41px 0px;
+    flex-direction: column;
+    gap: 50px;
+   @media (min-width:1021px) and (max-width:1440px){
+    padding: 50px 0px;
+    }
+    @media (max-width: 1024px) {
+      padding: 0px;
+    }
+  }
+}

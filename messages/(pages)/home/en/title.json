@@ -1,0 +1,39 @@
+{
+    "upcoming-course": {
+        "title": "Upcoming",
+        "span": "Courses",
+        "subtitle": "Explore our upcoming courses designed to help you gain new skills and advance your career.Join expert-led learning experiences built for real-world success."
+    },
+    "specialized": {
+        "title": "Courses",
+        "span": "By Specialization",
+        "subtitle": "British-European expertise and specialized cadres for your success"
+    },
+    "request-course": {
+        "title": "Request",
+        "span": " a Course",
+        "subtitle": "You can contact us for a special course"
+    },
+    "what-is": {
+        "title": "What",
+        "span": "is the British Academy?"
+    },
+    "course-city":{
+        "title": "Courses",
+        "span": "By City",
+        "subtitle": "Our favorite cities with attractive tourist attractions"
+    },
+    "last-publish": {
+        "title": "Latest",
+        "span": "Published Courses"
+    },
+    "team": {
+        "title": "Our",
+        "span": "Team",
+        "subtitle": "We have the best trainers with high skills"
+    },
+    "customers": {
+        "title": "Meet our",
+        "span": "Customers"
+    }
+}

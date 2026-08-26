@@ -1,0 +1,17 @@
+{
+     "Navbar": {
+    "home": "Home",
+    "trainingPrograms": "Training Programs",
+    "consulting": "Consulting",
+    "blog": "Blog",
+    "contactUs": "Contact Us",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "programs": {
+      "master": "Master",
+      "diploma": "Diploma",
+      "trainingCourses": "Training Courses"
+    },
+    "cities":"Cities"
+  }
+}

@@ -1,0 +1,31 @@
+// ==========================================
+// BREAKPOINTS
+// ==========================================
+
+$mobile:        480px;
+$tablet:        768px;
+$small-desktop: 1024px;
+$desktop:       1280px;
+$wide:          1536px;
+
+$breakpoints: (
+  'mobile': $mobile,
+  'tablet': $tablet,
+  'small-desktop': $small-desktop,
+  'desktop': $desktop,
+  'wide': $wide
+);
+
+@mixin respond($breakpoint) {
+  $size: map-get($breakpoints, $breakpoint);
+
+  @if $size {
+    @media (max-width: $size) {
+      @content;
+    }
+  } @else {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}
