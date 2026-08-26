@@ -1,0 +1,122 @@
+
+
+.privacyPage {
+    background-color: $gray-50;
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+.header {
+    background-color: $blue-900;
+    padding: 80px 0;
+    text-align: center;
+    color: $white;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -10%;
+        width: 40%;
+        height: 200%;
+        background: rgba($white, 0.03);
+        transform: rotate(30deg);
+        pointer-events: none;
+    }
+
+    h1 {
+        font-size: clamp(32px, 5vw, 48px);
+        font-weight: 700;
+        margin-bottom: 16px;
+        position: relative;
+        z-index: 1;
+    }
+
+    p {
+        font-size: clamp(16px, 2vw, 18px);
+        color: rgba($white, 0.8);
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.contentWrapper {
+    margin: -40px auto 0;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+
+    .card {
+        background: $white;
+        border-radius: $radius-2xl;
+        padding: clamp(32px, 5vw, 64px);
+        box-shadow: $shadow-lg;
+        border: 1px solid $gray-100;
+
+        @media (max-width: $tablet) {
+            padding: 32px 24px;
+        }
+    }
+}
+
+.privacyContent {
+    color: $gray-700;
+    line-height: 1.8;
+
+    h2 {
+        color: $blue-900;
+        font-size: 24px;
+        font-weight: 600;
+        margin: 40px 0 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background: $blue-900;
+            border-radius: 2px;
+        }
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    p {
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+
+    ul, ol {
+        margin-bottom: 24px;
+        padding-left: 20px;
+
+        li {
+            margin-bottom: 12px;
+            position: relative;
+            list-style: disc;
+            
+            &::marker {
+                color: $blue-900;
+            }
+        }
+    }
+
+    .lastUpdated {
+        margin-top: 60px;
+        padding-top: 30px;
+        border-top: 1px solid $gray-100;
+        color: $gray-400;
+        font-size: 14px;
+        font-style: italic;
+        text-align: right;
+    }
+}

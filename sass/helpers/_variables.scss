@@ -1,0 +1,47 @@
+// ==========================================
+// VARIABLES
+// ==========================================
+
+// --- Colors ---
+$blue-900: #162554;
+$blue-800: #1e3a8a;
+$blue-600: #3b82f6;
+$text-blue: #101828;
+
+$home_color:#F8FAFC;
+
+// --- Brand accent (Premium British Red, used across navbar/icons) ---
+$red: #C62839;
+$red-light: rgba(198, 40, 57, 0.08);
+
+$gray-700: #364153;
+$gray-600: #4a5565;
+$gray-400: #99a1af;
+$gray-300: #e5e7eb;
+$gray-100: #f3f4f6;
+$gray-50:  #f9fafb;
+$text-gray:  #6A7282;
+
+$white: #ffffff;
+$error: #e24b4a;
+
+// Gradients
+$gradient-blue-light: linear-gradient(135deg, #eff6ff 0%, #eef2ff 100%);
+
+// --- Shadows ---
+$shadow-sm: 0px 2.15px 4.31px -2.15px rgba(0, 0, 0, 0.1), 0px 4.31px 6.46px -1.08px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0px 25px 50px -12px rgba(0, 0, 0, 0.25);
+$shadow-blue: 0 4px 12px rgba($blue-900, 0.2);
+
+// --- Border Radius ---
+$radius-xs: 4px;
+$radius-sm: 8px;
+$radius-md: 10px;
+$radius-lg: 12px;
+$radius-xl: 20px;
+$radius-2xl: 24px;
+
+// --- Transitions ---
+$transition-base: all 0.2s ease-in-out;
+$transition-slow: all 0.3s ease-in-out;

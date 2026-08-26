@@ -1,0 +1,24 @@
+.contact {
+    background-color: $home_color;
+    min-height: 100vh;
+}
+
+.mainContent {
+    padding: 60px 0 100px;
+
+    @media (max-width: $tablet) {
+        padding: 32px 0 60px;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+
+    @media (max-width: $small-desktop) {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}

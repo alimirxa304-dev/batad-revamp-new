@@ -1,0 +1,27 @@
+{
+  "Blog": {
+    "filters": "الفلاتر",
+    "sortBy": "ترتيب حسب",
+    "allCategories": "جميع التصنيفات",
+    "blogPosts": "مقالات المدونة",
+    "latestPosts": "أحدث المقالات",
+    "follow": "تابعنا @batadacademy",
+    "featuredArticle": "المقال المميز",
+    "trending": "رائج",
+    "featured": "مميز",
+    "author": "الكاتب",
+    "readArticle": "اقرأ المقال",
+    "latestArticles": "أحدث المقالات",
+    "viewMore": "عرض المزيد",
+    "readMore": "اقرأ المزيد",
+    "backToBlog": "العودة إلى المدونة",
+    "minRead": "دقيقة قراءة",
+    "views": "مشاهدة",
+    "likes": "إعجاب",
+    "similarBlog": "مقالات مشابهة",
+    "noSimilarPosts": "لا توجد مقالات مشابهة",
+    "inThisArticle": "محتوى المقال",
+    "minRead": "دقيقة قراءة",
+    "noHeadings": "لا توجد عناوين في هذا المقال"
+  }
+}

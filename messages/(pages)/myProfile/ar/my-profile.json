@@ -1,0 +1,60 @@
+{
+  "MyProfile": {
+    "notSpecified": "غير محدد",
+    "editProfile": "تعديل الملف الشخصي",
+    "tabs": {
+      "personalInfo": "المعلومات الشخصية",
+      "myCourses": "دوراتي",
+      "certificates": "الشهادات",
+      "messages": "الرسائل"
+    },
+    "courses": {
+      "title": "دوراتي",
+      "active": "الدورات النشطة",
+      "completed": "مكتمل",
+      "inProgress": "قيد التنفيذ",
+      "instructor": "المدرب:",
+      "enrolled": "تاريخ التسجيل:",
+      "duration": "المدة:",
+      "completedDate": "تاريخ الاكتمال:",
+      "progress": "التقدم",
+      "viewCertificate": "عرض الشهادة",
+      "continueLearning": "مواصلة التعلم",
+      "courseDetails": "تفاصيل الدورة"
+    },
+    "personalInfo": {
+      "fullName": "الاسم الكامل",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "mobile": "رقم الجوال",
+      "country": "الدولة",
+      "jobTitle": "المسمى الوظيفي",
+      "company": "الشركة",
+      "address": "العنوان"
+    },
+    "certificates": {
+      "title": "شهاداتي",
+      "earned": "شهادة مكتسبة",
+      "none": "لا توجد شهادات بعد",
+      "issued": "تاريخ الإصدار:",
+      "download": "تحميل الشهادة"
+    },
+    "messages": {
+      "title": "الرسائل",
+      "count": "رسالة",
+      "none": "لا توجد رسائل بعد",
+      "date": "التاريخ:",
+      "status": "الحالة:",
+      "read": "مقروءة",
+      "unread": "غير مقروءة",
+      "view": "عرض الرسالة",
+      "markRead": "تحديد كمقروءة"
+    },
+    "modal": {
+      "about": "عن هذه الدورة",
+      "status": "الحالة",
+      "category": "الفئة",
+      "close": "إغلاق"
+    }
+  }
+}

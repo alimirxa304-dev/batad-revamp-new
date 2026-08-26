@@ -1,0 +1,36 @@
+.categoriesBox {
+    border-radius: 11.27px;
+    background-color: #FFFFFF;
+    border: 1.3px solid #F3F4F6;
+    box-shadow: 0px 4.51px 6.76px -4.51px #0000001A;
+    box-shadow: 0px 11.27px 16.9px -3.38px #0000001A;
+    margin-bottom: 24px; /* Space between boxes */
+
+    .top{
+        background-color: $blue-900;
+        padding: 13.52px 18.03px;
+        border-top-left-radius: 11.27px;
+        border-top-right-radius: 11.27px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+
+        .titleText {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    .content{
+        padding: 9px; 
+    }
+}
+    

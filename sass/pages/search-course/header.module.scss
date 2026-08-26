@@ -1,0 +1,140 @@
+.header {
+    padding: 41.8px 0px 82.95px 0px;
+    background: $blue-900;
+
+    @media (max-width: 992px) {
+        padding: 32px 0px 40px;
+    }
+
+    @media (max-width: 768px) {
+        padding: 24px 0px 32px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 20px 0px 24px;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 40.89px;
+
+        @media (max-width: 992px) {
+            gap: 20px;
+        }
+
+        @media (max-width: 480px) {
+            gap: 14px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10.27px;
+            color: #FFFFFFCC;
+            font-size: 20.53px;
+
+            @media (max-width: 992px) {
+                font-size: 15px;
+                gap: 6px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 12px;
+                gap: 4px;
+
+                svg {
+                    width: 14px;
+                    height: 14px;
+                    flex-shrink: 0;
+                }
+            }
+
+            a {
+                color: #FFFFFFCC;
+            }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 20.53px;
+            justify-content: center;
+            align-items: center;
+
+            @media (max-width: 992px) {
+                gap: 16px;
+            }
+
+            @media (max-width: 480px) {
+                gap: 12px;
+            }
+
+            .title {
+                display: flex;
+                flex-direction: column;
+                gap: 15.55px;
+                text-align: center;
+
+                @media (max-width: 992px) {
+                    gap: 8px;
+                }
+
+                @media (max-width: 480px) {
+                    gap: 6px;
+                }
+
+                h1 {
+                    font-size: 20.74px;
+                    font-weight: 400;
+                    color: #fff;
+
+                    @media (max-width: 992px) {
+                        font-size: 17px;
+                    }
+
+                    @media (max-width: 768px) {
+                        font-size: 15px;
+                    }
+
+                    @media (max-width: 480px) {
+                        font-size: 13px;
+                    }
+
+                    span {
+                        font-weight: 600;
+                    }
+                }
+
+                p {
+                    color: $white;
+                    font-size: 23.33px;
+                    font-weight: 400;
+
+                    @media (max-width: 992px) {
+                        font-size: 17px;
+                    }
+
+                    @media (max-width: 768px) {
+                        font-size: 14px;
+                    }
+
+                    @media (max-width: 480px) {
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .search {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                width: 100%;
+
+                @media (max-width: 480px) {
+                    gap: 12px;
+                }
+            }
+        }
+    }
+}

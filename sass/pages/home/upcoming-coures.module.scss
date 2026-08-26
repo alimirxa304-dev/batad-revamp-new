@@ -1,0 +1,56 @@
+.container {
+    @include container;
+}
+
+.courses {
+    margin-top: clamp(40px, 6vw, 60px); // Scalable margin
+}
+
+.loadingRow {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.slide {
+    display: flex;
+    justify-content: center;
+}
+
+.slideCard {
+    max-width: 400px;
+    width: 100%;
+}
+
+// Scoped tablet fix for this section's arrows only. `navId="courses"` (set in
+// UpcomingCourses.jsx) is unique across every home-page GenericSlider instance, so
+// targeting the actual data-prev/data-next attributes lets us reposition just these
+// arrows without touching the shared generic-slider.module.scss used by the other
+// home sliders (CourseByCity, CoursesBySpecial, Customers, TeamWork).
+//
+// Root cause: the shared arrows sit at a fixed -60px offset from the slider track, but
+// the container's side gutter is only 40px between 769-1024px, so they spilled off the
+// viewport / over the cards. Moving them below the track for that range (matching the
+// existing <=768px treatment) avoids depending on that gutter width entirely.
+.sliderScope {
+    @media (min-width: 769px) and (max-width: #{$small-desktop}) {
+        :global(button[data-prev="courses"]),
+        :global(button[data-next="courses"]) {
+            top: auto;
+            bottom: -48px;
+            transform: none;
+            width: 40px;
+            height: 40px;
+        }
+
+        :global(button[data-prev="courses"]) {
+            left: calc(50% - 49px);
+            right: auto;
+        }
+
+        :global(button[data-next="courses"]) {
+            right: calc(50% - 49px);
+            left: auto;
+        }
+    }
+}

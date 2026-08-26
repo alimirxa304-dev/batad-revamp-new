@@ -1,0 +1,118 @@
+.print {
+    background-color: $white;
+    box-shadow: 0px 2px 4px -2px #0000001A;
+    box-shadow: 0px 4px 6px -1px #0000001A;
+    padding: 24px 0px;
+
+    @media (max-width: 576px) {
+        margin: 16px 20px 0px 20px;
+        padding: 16px 0px 0px 0px;
+    }
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .top {
+            display: grid;
+            grid-template-columns: 2fr 2fr 1fr;
+            gap: 16px;
+
+            @media (max-width: 576px) {
+                grid-template-columns:1fr;
+            }
+
+            .dropdownTrigger {
+                width: 100%;
+                height: 48px;
+                padding: 14px 16px;
+                border-radius: 10px;
+                border: 2px solid #E5E7EB;
+            }
+
+            .searchContent {
+                .searchContent__left {
+                    height: 48px;
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    border: 1px solid #E5E7EB;
+                    background: #FFFFFF;
+                    padding: 16px;
+                    border-radius: 10px;
+
+                    .searchContent__left__icon {
+                        width: 24px;
+                        height: 24px;
+
+                        svg {
+                            width: 24px;
+                            height: 24px;
+                        }
+                    }
+
+                    .input {
+                        width: 100%;
+                        border: none;
+                        outline: none;
+                        padding: 0px;
+                        margin: 0px;
+                        font-size: 16px;
+                        font-weight: 400;
+                        line-height: 20px;
+                        color: #101828;
+                    }
+                }
+
+
+            }
+
+.printBtn {
+    padding: 14px 24px;
+    background-color: $blue-900;
+    border-radius: 10px;
+    height: 48px;
+    color: $white;
+    border-color: transparent;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 17.6px;
+display: flex;
+gap: 8px;
+justify-content: center;
+align-items: center;
+}
+
+        }
+
+        .bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h3 {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 24px;
+                color: #4A5565;
+
+                .count {
+                  color: #C9302C;
+                }
+            }
+
+            .back {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 24px;
+                color: $blue-900;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,69 @@
+.latestArticles {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  h2 {
+    color: $text-blue;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .cards {
+    display: grid;
+    gap: 1rem;
+    transition: all 0.2s ease;
+
+    &.grid {
+      grid-template-columns: repeat(3, 1fr);
+
+      @media (max-width: 1439px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &.list {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+
+  .viewMore {
+    width: 283px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color:transparent;
+    color: $blue-900;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 500;
+   border: 1px solid $blue-900;
+    cursor: pointer;
+    transition: $transition-base;
+    margin: auto;
+  
+
+    &:hover {
+      background-color: $blue-900;
+      border: 1px solid $blue-900;
+      color: $white;
+      transform: translateY(-5px);
+
+      svg {
+        color: $white;
+      }
+    }
+
+      svg{
+      color: $blue-900;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "Footer": {
+    "tagline": "The world's most trusted training partner for improving knowledge, skills, and capabilities through innovative learning solutions.",
+    "columns": {
+      "about": {
+        "title": "About",
+        "consultations": "Our Services",
+        "blog": "Academy Vision",
+        "faq": "FAQ",
+        "privacy": "Privacy Policy"
+      },
+      "quickLinks": {
+        "title": "Quick Links",
+        "coursesByCity": "Courses by City",
+        "yearPlans": "Year Plans",
+        "professionalPath": "Professional Path",
+        "jobs": "Jobs",
+        "categories": "Categories",
+        "specialization": "Specializations"
+      },
+      "support": {
+        "title": "Support",
+        "supportCenter": "Support Center",
+        "account": "My Account",
+        "contact": "Contact Us",
+        "feedback": "Feedback"
+      }
+    },
+    "copyright": "© {year} British Academy for Training & Development. All Rights Reserved."
+  }
+}

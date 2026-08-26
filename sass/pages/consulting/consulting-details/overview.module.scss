@@ -1,0 +1,138 @@
+.overview {
+    padding: 38px;
+    border-radius: 16px;
+    box-shadow: 0px 4.62px 6.94px -4.62px #0000001A, 0px 11.56px 17.34px -3.47px #0000001A;
+    background-color: $white;
+    border: 1px solid #F3F4F6;
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+
+    @media (max-width: 768px) {
+        padding: 20px 16px;
+        gap: 18px;
+        border-radius: 12px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 16px;
+        gap: 14px;
+    }
+
+    .top {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+
+        @media (max-width: 768px) {
+            gap: 12px;
+        }
+
+        h3 {
+            font-size: 27px;
+            font-weight: 500;
+            color: #101828;
+
+            @media (max-width: 768px) {
+                font-size: 18px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 16px;
+            }
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: 400;
+            color: #4A5565;
+            line-height: 1.6;
+
+            @media (max-width: 768px) {
+                font-size: 15px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 13px;
+            }
+        }
+    }
+
+    .bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+
+        @media (max-width: 768px) {
+            gap: 12px;
+        }
+
+        h3 {
+            font-size: 23px;
+            font-weight: 400;
+            color: #101828;
+
+            @media (max-width: 768px) {
+                font-size: 16px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 14px;
+            }
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            margin-bottom: 11px;
+
+            @media (max-width: 480px) {
+                gap: 10px;
+            }
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            font-size: 18px;
+            font-weight: 400;
+            color: #364153;
+
+            @media (max-width: 768px) {
+                font-size: 14px;
+                gap: 10px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 13px;
+                gap: 8px;
+            }
+
+            span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 27px;
+                height: 27px;
+                min-width: 27px;
+                background-color: #D0FAE5;
+                border-radius: 38784484px;
+                color: #009966;
+
+                @media (max-width: 480px) {
+                    width: 22px;
+                    height: 22px;
+                    min-width: 22px;
+
+                    svg {
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

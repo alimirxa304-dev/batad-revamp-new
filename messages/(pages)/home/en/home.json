@@ -1,0 +1,221 @@
+{
+  "UpcomingCourses": {
+    "title": "Upcoming",
+    "titleSpan": "Courses",
+    "subtitle": "Immersive learning experiences designed to accelerate your professional growth"
+  },
+  "CoursesBySpecial": {
+    "title": "Courses by",
+    "titleSpan": "Specialization",
+    "subtitle": "Leverage British-European expertise with specialized instructors tailored to your success",
+    "coursesCount": "courses",
+    "viewCourses": "View Courses",
+    "viewAll": "View All Specializations"
+  },
+  "CourseByCity": {
+    "title": "Courses by",
+    "titleSpan": "City",
+    "subtitle": "Explore our training centers in the world's most iconic cities"
+  },
+  "WhatIs": {
+    "title": "What is",
+    "titleSpan": "BRITISH ACADEMY?",
+    "annualPlan": "Annual Training Plan",
+    "annualPlanSub": "Courses & Programs",
+    "goToPlan": "Go to Plan",
+    "description": "The British Academy's annual training plan offers comprehensive learning pathways crafted to elevate your professional development and drive meaningful career growth.",
+    "viewDetails": "View Details",
+    "stats": {
+      "years": "Years of Excellence",
+      "programs": "Training Programs",
+      "professionals": "Professionals Trained"
+    },
+    "items": {
+      "discounted": {
+        "title": "Discounted Courses",
+        "desc": "Access the latest internationally accredited courses at competitive and affordable prices."
+      },
+      "approved": {
+        "title": "Accredited Courses",
+        "desc": "Our accredited programs deliver premium services, verified credentials, and world-class learning."
+      },
+      "featured": {
+        "title": "Featured Courses",
+        "desc": "Continuously updated curricula designed to meet evolving labor market and industry demands."
+      },
+      "specialization": {
+        "title": "Courses by Specialization",
+        "desc": "Over 20 specialized tracks spanning a broad range of professional disciplines."
+      },
+      "city": {
+        "title": "Courses by City",
+        "desc": "Train in globally recognized cities, each offering a unique cultural and professional experience."
+      }
+    }
+  },
+  "LatestPublication": {
+    "title": "Latest",
+    "titleSpan": "Publications",
+    "tabs": {
+      "videos": "Videos",
+      "courses": "Courses",
+      "blogs": "Blogs",
+      "consultancy": "Consultancy",
+      "workWithUs": "Work With Us"
+    },
+    "watchNow": "Watch Now",
+    "readArticle": "Read Article",
+    "registerNow": "Register Now",
+    "learnMore": "Learn More",
+    "applyNow": "Apply Now",
+    "viewAll": "View All",
+    "minRead": "min read",
+    "students": "Students",
+    "lessons": "Lessons",
+    "duration": "Duration",
+    "weeks": "Weeks",
+    "remote": "Remote",
+    "onSite": "On-Site",
+    "fullTime": "Full Time",
+    "partTime": "Part Time",
+    "location": "Location",
+    "postedAgo": "ago",
+    "details":"Details",
+    "published":"published",
+    "requestConsultation": "Request Consultation",
+    "blogs": {
+      "card1": {
+        "category": "Leadership",
+        "title": "10 Essential Leadership Skills for Modern Managers",
+        "excerpt": "Discover the key leadership competencies that drive team performance and organizational success in today's dynamic business landscape.",
+        "author": "Dr. Sarah Mitchell",
+        "date": "Jun 28, 2026",
+        "readTime": "8"
+      },
+      "card2": {
+        "category": "Digital Marketing",
+        "title": "AI-Powered Marketing Strategies for 2026",
+        "excerpt": "How artificial intelligence is transforming digital marketing and what professionals need to know to stay ahead.",
+        "author": "James Crawford",
+        "date": "Jun 25, 2026",
+        "readTime": "6"
+      },
+      "card3": {
+        "category": "Finance",
+        "title": "Understanding ESG Investing Fundamentals",
+        "excerpt": "A comprehensive guide to Environmental, Social, and Governance investing principles for financial professionals.",
+        "author": "Prof. Ahmed Hassan",
+        "date": "Jun 22, 2026",
+        "readTime": "10"
+      }
+    },
+    "courses": {
+      "card1": {
+        "category": "Project Management",
+        "title": "PMP Certification Prep Bootcamp",
+        "price": "1,299",
+        "studentCount": "2.4K",
+        "lessonCount": "48",
+        "durationWeeks": "6"
+      },
+      "card2": {
+        "category": "Data Science",
+        "title": "Advanced Data Analytics & Visualization",
+        "price": "1,599",
+        "studentCount": "1.8K",
+        "lessonCount": "56",
+        "durationWeeks": "8"
+      },
+      "card3": {
+        "category": "Human Resources",
+        "title": "Strategic HR Management Certification",
+        "price": "999",
+        "studentCount": "3.1K",
+        "lessonCount": "36",
+        "durationWeeks": "4"
+      }
+    },
+    "consultancy": {
+      "card1": {
+        "title": "Business Strategy & Transformation",
+        "description": "Expert guidance on organizational restructuring, digital transformation, and strategic planning for sustainable growth.",
+        "features": "Strategic Planning, Change Management, Growth Modeling"
+      },
+      "card2": {
+        "title": "HR & Talent Development",
+        "description": "Optimize your workforce with tailored talent acquisition, performance systems, and leadership development programs.",
+        "features": "Talent Strategy, Performance Systems, Leadership Coaching"
+      },
+      "card3": {
+        "title": "Financial Advisory Services",
+        "description": "Comprehensive financial consulting including risk assessment, investment strategy, and regulatory compliance guidance.",
+        "features": "Risk Assessment, Compliance, Investment Strategy"
+      }
+    },
+    "workWithUs": {
+      "card1": {
+        "role": "Senior Course Instructor",
+        "department": "Academic Division",
+        "type": "Full Time",
+        "location": "London, UK"
+      },
+      "card2": {
+        "role": "Marketing Specialist",
+        "department": "Growth & Outreach",
+        "type": "Full Time",
+        "location": "Dubai, UAE"
+      },
+      "card3": {
+        "role": "UX/UI Designer",
+        "department": "Product & Design",
+        "type": "Remote",
+        "location": "Remote"
+      }
+    }
+  },
+  "RequestCourse": {
+    "title": "Request a",
+    "titleSpan": "Course",
+    "subtitle": "Contact us to tailor a training program that meets your specific needs",
+    "stats": {
+      "students": "Active Students",
+      "graduates": "Certified Graduates",
+      "trainers": "Expert Trainers"
+    },
+    "whatYouGet": "What You Get",
+    "benefits": {
+      "certificates": "Internationally recognized certificates",
+      "instructors": "Expert industry instructors",
+      "curriculum": "Up-to-date, market-aligned curriculum",
+      "support": "Post-training career support"
+    },
+    "popularChoices": "Popular Choices",
+    "form": {
+      "fullName": "Full Name",
+      "emailAddress": "Email Address",
+      "mobileNumber": "Mobile Number",
+      "selectCourse": "Select a Course",
+      "sendRequest": "Send Request",
+      "sending": "Sending...",
+      "errors": {
+        "nameRequired": "Full name is required",
+        "nameMin": "Name must be at least 2 characters",
+        "emailRequired": "Email address is required",
+        "emailInvalid": "Please enter a valid email address",
+        "mobileRequired": "Mobile number is required",
+        "mobileInvalid": "Please enter a valid mobile number",
+        "courseRequired": "Please select a course",
+        "recaptcha": "Please complete the verification"
+      }
+    }
+  },
+  "TeamWork": {
+    "title": "Our",
+    "titleSpan": "Expert Trainers",
+    "subtitle": "A distinguished team of certified trainers with deep industry expertise"
+  },
+  "Customers": {
+    "title": "Our Trusted",
+    "titleSpan": "Partners & Clients"
+  }
+}

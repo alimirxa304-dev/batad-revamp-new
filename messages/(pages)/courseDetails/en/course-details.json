@@ -1,0 +1,24 @@
+{
+  "CourseDetails": {
+    "backToCourses": "Back to Courses",
+    "courses": "Courses",
+    "courseDetails": "Course Details",
+    "allDetailsFor": "All Details For Course",
+    "filters": "Filters",
+    "share": "Share:",
+    "oneTimePayment": "One-time payment",
+    "enrollNow": "Enroll Now",
+    "rating": "Rating",
+    "students": "Students",
+    "duration": "Duration",
+    "selectCourseDate": "Select Course Date",
+    "registerNow": "Register Now",
+    "requestInternal": "Request an Internal Course",
+    "quickInquiry": "Quick Inquiry",
+    "reviews": "Reviews",
+    "similarCourses": "Similar Courses",
+    "seeAll": "See All",
+    "courseVideo": "Course Video",
+    "videoPreview": "Preview what you'll learn in this comprehensive training"
+  }
+}

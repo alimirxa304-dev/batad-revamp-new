@@ -1,0 +1,81 @@
+.tab {
+    width: var(--tab-width, 165px);
+    height: var(--tab-height, 48px);
+    gap: var(--tab-gap, 14px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--tab-bg, #{$white});
+    padding: var(--tab-padding, 22px);
+    border-radius: var(--tab-radius, 13.58px);
+    border: var(--tab-border, 1px solid #{$gray-300});
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    color: var(--tab-color, #{$text-blue});
+
+    @media (max-width: 768px) {
+        width: var(--tab-mobile-width, auto);
+        min-width: var(--tab-mobile-min-width, 100px);
+        padding: var(--tab-mobile-padding, 14px 16px);
+        border-radius: var(--tab-mobile-radius, 12px);
+    }
+
+    &:hover {
+        background-color: var(--tab-hover-bg, #{$blue-900});
+        color: var(--tab-hover-color, #{$white});
+        border-color: var(--tab-hover-border, var(--tab-hover-bg, #{$blue-900}));
+
+        .tabIcon {
+            color: var(--tab-hover-icon-color, inherit);
+        }
+
+        .tabTitle {
+            color: var(--tab-hover-text-color, inherit);
+        }
+    }
+
+    &.active {
+        background-color: var(--tab-active-bg, #{$blue-900});
+        color: var(--tab-active-color, #{$white});
+        border-color: var(--tab-active-border, var(--tab-active-bg, #{$blue-900}));
+        font-weight: var(--tab-active-weight, inherit);
+
+        .tabIcon {
+            color: var(--tab-active-icon-color, inherit);
+        }
+
+        .tabTitle {
+            color: var(--tab-active-text-color, inherit);
+        }
+    }
+
+    .tabIcon {
+        font-size: var(--tab-icon-size, 33px);
+        color: var(--tab-icon-color, #{$gray-600});
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media (max-width: 768px) {
+            font-size: var(--tab-mobile-icon-size, 24px);
+        }
+        
+        svg {
+            width: 1em;
+            height: 1em;
+        }
+    }
+
+    .tabTitle {
+        color: inherit;
+        font-size: var(--tab-font-size, 13px);
+        font-weight: var(--tab-weight, 400);
+        text-align: center;
+
+        @media (max-width: 768px) {
+            font-size: var(--tab-mobile-font-size, 11px);
+        }
+    }
+}
+

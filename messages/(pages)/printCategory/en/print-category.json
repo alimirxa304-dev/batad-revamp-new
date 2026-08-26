@@ -1,0 +1,19 @@
+{
+  "PrintCategory": {
+    "headerTitle": "Year Plans -",
+    "seats": "seats",
+    "date": "Date",
+    "duration": "Duration",
+    "location": "Location",
+    "pricingOptions": "Pricing Options",
+    "details": "Details",
+    "register": "Register",
+    "allLocations": "All Locations",
+    "searchPlaceholder": "Search courses, topics, or categories...",
+    "print": "Print",
+    "exportExcel": "Export",
+    "showing": "Showing",
+    "courses": "Courses",
+    "backToYearPlan": "Back to Year Plan"
+  }
+}

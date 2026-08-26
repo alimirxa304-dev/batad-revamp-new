@@ -1,0 +1,344 @@
+.mainContent {
+    padding: 40px 0px 100px 0px;
+
+    @media (max-width: 992px) {
+        padding: 24px 0px 60px 0px;
+    }
+
+    .mobileHeader {
+        display: none;
+        background: $white;
+        border: 1px dashed #E2E8F0;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        overflow: hidden;
+
+        @media (max-width: 992px) {
+            display: block;
+        }
+
+        .headerTrigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            cursor: pointer;
+
+            .courseMiniInfo {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+
+                img {
+                    width: 48px;
+                    height: 32px;
+                    object-fit: cover;
+                    border-radius: 4px;
+                }
+
+                h3 {
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: #1E293B;
+                }
+            }
+        }
+
+        .mobileDetails {
+            padding: 0 16px 16px 16px;
+            border-top: 1px solid #F1F5F9;
+            background: #F8FAFC;
+
+            .instructor {
+                margin-top: 12px;
+                font-size: 13px;
+                color: #64748B;
+
+                strong {
+                    color: #1E293B;
+                }
+            }
+
+            .stats {
+                margin-top: 8px;
+                display: flex;
+                gap: 20px;
+                font-size: 13px;
+                color: #64748B;
+
+                strong {
+                    color: #1E293B;
+                }
+            }
+        }
+    }
+
+    .content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 40px;
+
+        @media (max-width: 1200px) {
+            gap: 40px;
+        }
+
+        @media (max-width: 992px) {
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        &.successLayout {
+            grid-template-columns: 1fr;
+            gap: 0;
+            justify-items: center;
+
+            .formContent {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        .formContent {
+            display: flex;
+            flex-direction: column;
+            gap: 35.63px;
+
+            .formCard {
+                .formGrid {
+                    grid-template-columns: 1fr;
+                    gap: 24px;
+
+                    .DateInput_wrapper {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .sidebar {
+            @media (max-width: 992px) {
+                order: 1;
+            }
+        }
+    }
+}
+
+.datePickerInput {
+    width: 100%;
+}
+
+.DateInput_wrapper {
+    width: 100%;
+}
+
+.mainLayout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+// Sidebar Styles
+.sidebar {
+    position: sticky;
+    top: 20px;
+}
+
+.summaryCard {
+  border: 1px solid #E5E7EB;
+  background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);
+padding:30px 25px;
+    border-radius: 20px;
+    @media (max-width: 576px) {
+        padding:16px;
+    }
+
+    .courseImg {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .summaryContent {
+        padding: 25px;
+ @media (max-width: 576px) {
+        padding:0px;
+    }
+        h3 {
+            font-size: 18px;
+            color: $blue-900;
+            margin-bottom: 20px;
+        }
+
+        .instructor {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+
+            .avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: $blue-900;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $white;
+            }
+
+            .info {
+                span {
+                    display: block;
+                    font-size: 12px;
+                    color: $text-gray;
+                }
+
+                p {
+                    font-size: 14px;
+                    font-weight: 600;
+                    color: $blue-900;
+                }
+            }
+        }
+
+        .detailsRow {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+
+            .label {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                color: $text-gray;
+                font-size: 14px;
+
+                svg {
+                    width: 16px;
+                    color: $blue-900;
+                }
+            }
+
+            .value {
+                font-weight: 600;
+                color: $blue-900;
+                font-size: 14px;
+            }
+        }
+
+        .divider {
+            height: 1px;
+            background-color: $gray-100;
+            margin: 20px 0;
+             @media (max-width: 576px) {
+        margin:16px 0px;
+    }
+        }
+
+        .priceSection {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .label {
+                color: $blue-900;
+                font-weight: 600;
+            }
+
+            .priceContainer {
+                text-align: right;
+
+                .oldPrice {
+                    display: block;
+                    font-size: 12px;
+                    color: $gray-400;
+                    text-decoration: line-through;
+                }
+
+                .newPrice {
+                    font-size: 24px;
+                    font-weight: 800;
+                    color: $blue-900;
+                }
+            }
+        }
+
+        .whatsIncluded {
+         
+            border: 1px solid #E5E7EB;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            padding: 17px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            h4 {
+                font-size: 12px;
+                font-weight: 400;
+                color: #4A5565;
+                
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                li {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    font-size: 12px;
+                    color: #364153;
+                    margin-bottom: 10px;
+                    span{
+                        width: 6px;
+                        height: 6px;
+                        border-radius: 50%;
+                        background-color: #3B4A7D;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+.helpCard {
+    background-color: $white;
+    border-radius: $radius-xl;
+    padding: 25px;
+    box-shadow: $shadow-sm;
+
+    h3 {
+        font-size: 16px;
+        color: $blue-900;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 14px;
+        color: $text-gray;
+        margin-bottom: 20px;
+    }
+
+    .contactInfo {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: $blue-900;
+
+            svg {
+                width: 16px;
+            }
+        }
+    }
+}

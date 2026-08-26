@@ -1,0 +1,51 @@
+{
+  "Hero": {
+    "badge": "Trusted British Training Academy Since 2010",
+    "title": "Empowering Ambitious Professionals Through Internationally Recognised <highlight>British Training</highlight>",
+    "subtitle": "For over 15 years, British Academy has helped more than 65,000 professionals, executives, and organisations achieve career growth through internationally recognised training programmes and certifications.",
+    "headline": "Love Your <highlight>Career</highlight>",
+    "tagline": "Get ahead on <highlight>course</highlight>",
+    "searchPlaceholder": "Subject or qualification, e.g. Management",
+    "searchButton": "Search",
+    "searchCourses": "Search courses",
+    "links": {
+      "upcoming": "Upcoming courses",
+      "cities": "Courses by city",
+      "consulting": "Consulting services",
+      "blog": "Latest articles",
+      "contact": "Contact us"
+    },
+    "statsBar": {
+      "courses": {
+        "title": "600+ courses in 40+ subjects",
+        "text": "Develop your skills across management, tech and media"
+      },
+      "alumni": {
+        "title": "65,000+ professionals trained",
+        "text": "Rated excellent by our alumni"
+      },
+      "clients": {
+        "title": "Corporate & government clients",
+        "text": "Trusted British training partner since 2010"
+      }
+    },
+    "explorePrograms": "Explore Training Programs",
+    "requestConsultation": "Request Consultation",
+    "trust": {
+      "experience": "15+ Years of Excellence",
+      "professionals": "65,000+ Professionals Trained",
+      "programs": "600+ Training Programs",
+      "clients": "Corporate & Government Clients",
+      "standards": "International Training Standards"
+    },
+    "stats": {
+      "programsLabel": "Training Programs"
+    },
+    "floating": {
+      "recognized": "Internationally Recognized Programs",
+      "certifications": "Professional Certifications",
+      "corporate": "Corporate Training Solutions",
+      "leadership": "Leadership Development"
+    }
+  }
+}

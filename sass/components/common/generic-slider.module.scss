@@ -1,0 +1,118 @@
+.genericSlider {
+  position: relative;
+
+  @media (max-width: $tablet) {
+    padding-bottom:80px;
+
+  }
+}
+
+// Positions the arrows against the swiper's own height only, excluding the
+// "View all" link below it, so they center on the cards instead of the whole section.
+.sliderTrack {
+  position: relative;
+
+  @media (max-width: $tablet) {
+    position: static;
+  }
+}
+
+%arrow-base {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1.5px solid $gray-300;
+  background: $blue-900;
+  @include flex-center;
+  padding: 5px 7px;
+  cursor: pointer;
+  color: $white;
+  transition: $transition-base;
+
+  &:hover,
+  &:focus-visible {
+    background: $blue-800;
+    box-shadow: 0 6px 16px rgba(22, 37, 84, 0.25);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $blue-800;
+    outline-offset: 2px;
+  }
+
+  &:global(.swiper-button-disabled) {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.sliderPrev {
+  @extend %arrow-base;
+  left: -60px;
+
+  @media (max-width: $tablet) {
+    top: auto;
+    bottom: 0;
+    left: calc(50% - 55px);
+    transform: none;
+    // display: none;
+  }
+}
+
+.sliderNext {
+  @extend %arrow-base;
+  right: -60px;
+
+  @media (max-width: $tablet) {
+    top: auto;
+    bottom: 0;
+    right: calc(50% - 55px);
+    transform: none;
+    // display: none;
+  }
+}
+
+.viewAll {
+  width: 287px;
+  height: 48px;
+  text-align: center;
+  border: 1px solid $blue-900;
+  border-radius: $radius-md;
+  padding: 4px 30px;
+  @include flex-center;
+  margin: 60px auto 0 auto;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+
+  @media (max-width: $tablet) {
+    display: none;
+  }
+
+  a {
+    color: $blue-900;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    transition: color 0.35s ease;
+  }
+
+  &:hover {
+    background-color: $blue-900;
+    box-shadow: 0 8px 20px rgba(30, 39, 73, 0.2);
+
+    a {
+      color: $white;
+    }
+  }
+}

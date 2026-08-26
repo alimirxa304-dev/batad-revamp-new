@@ -1,0 +1,53 @@
+// CustomDatePicker.module.scss
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1E2749;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  
+
+    .input {
+        width: 100%;
+        padding: 10px 36px 10px 14px;
+        border: 1px solid #E5E7EB;
+        border-radius: 10px;
+        font-size: 14px;
+        color: #9CA3AF;
+        background: #fff;
+        outline: none;
+        cursor: pointer;
+
+        &:focus {
+            border-color: #1E2749;
+            color: #1E2749;
+        }
+    }
+
+    .icon {
+          svg{
+        right: 15px !important;
+    }
+        position: absolute;
+        right: 12px !important;
+        color: #9CA3AF;
+        pointer-events: none;
+    }
+
+    .datePickerWrapper {
+        width: 100%;
+    }
+}

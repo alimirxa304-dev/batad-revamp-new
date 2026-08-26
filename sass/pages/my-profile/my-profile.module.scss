@@ -1,0 +1,1405 @@
+// ==========================================
+// PROFILE PAGE
+// ==========================================
+
+.profilePage {
+    background: $home_color;
+    padding: 36px 0 80px;
+
+    @media (max-width: $tablet) {
+        padding: 24px 0 60px;
+    }
+
+    @media (max-width: $mobile) {
+        padding: 16px 0 48px;
+    }
+}
+
+// ==========================================
+// HEADER CARD
+// ==========================================
+
+.headerCard {
+    background: $white;
+    border-radius: $radius-xl;
+    border: 1px solid $gray-100;
+    box-shadow: $shadow-sm;
+    overflow: hidden;
+    margin-bottom: 20px;
+
+    @media (max-width: $tablet) {
+        margin-bottom: 32px;
+    }
+
+    @media (max-width: $mobile) {
+        margin-bottom: 24px;
+    }
+}
+
+.banner {
+    height: 130px;
+    background-color: $blue-900;
+    opacity: 80%;
+
+    @media (max-width: $mobile) {
+        height: 100px;
+    }
+}
+
+.profileInfoRow {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 32px 24px;
+
+    @media (max-width: $tablet) {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px 24px;
+        gap: 12px;
+    }
+}
+
+.avatarWrapper {
+    position: relative;
+    flex-shrink: 0;
+    margin-top: -44px;
+
+    @media (max-width: $tablet) {
+        margin-top: -36px;
+    }
+}
+
+.avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    border: 4px solid $white;
+    background: $blue-900;
+    @include flex-center;
+    font-size: 26px;
+    font-weight: 700;
+    color: $white;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    @media (max-width: $mobile) {
+        width: 76px;
+        height: 76px;
+        font-size: 22px;
+    }
+}
+
+.onlineIndicator {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #22c55e;
+    border: 2.5px solid $white;
+}
+
+.userInfo {
+    flex: 1;
+    padding-top: 16px;
+
+    @media (max-width: $tablet) {
+        padding-top: 8px;
+    }
+
+    h2 {
+        font-size: 22px;
+        font-weight: 700;
+        color: $text-blue;
+        margin-bottom: 4px;
+
+        @media (max-width: $mobile) {
+            font-size: 19px;
+        }
+    }
+
+    .jobText {
+        font-size: 13.5px;
+        color: $gray-600;
+        margin-bottom: 6px;
+    }
+
+    .locationText {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12.5px;
+        color: $gray-400;
+
+        @media (max-width: $tablet) {
+            justify-content: center;
+        }
+    }
+}
+
+.editBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: $blue-900;
+    color: $white;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: $radius-md;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease, transform 0.2s ease;
+    margin-top: 16px;
+
+    &:hover {
+        background: lighten($blue-900, 8%);
+        transform: translateY(-1px);
+    }
+
+    @media (max-width: $tablet) {
+        margin-top: 0;
+    }
+}
+
+// ==========================================
+// STATS
+// ==========================================
+
+.statsDivider {
+    height: 1px;
+    background: $gray-100;
+    margin: 0 32px;
+
+    @media (max-width: $mobile) {
+        margin: 0 20px;
+    }
+}
+
+.statsRow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 24px 32px;
+
+    @media (max-width: $tablet) {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px;
+        gap: 20px;
+    }
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 28px;
+    border-right: 1px solid $gray-100;
+
+    &:first-child {
+        padding-left: 0;
+    }
+
+    &:last-child {
+        border-right: none;
+    }
+
+    @media (max-width: $tablet) {
+        padding: 0;
+        border-right: none;
+    }
+
+    strong {
+        font-size: 24px;
+        font-weight: 700;
+        color: $blue-900;
+
+        @media (max-width: $mobile) {
+            font-size: 20px;
+        }
+    }
+
+    span {
+        font-size: 12.5px;
+        color: $gray-600;
+    }
+}
+
+// ==========================================
+// TABS NAV
+// ==========================================
+
+.tabsNav {
+    display: flex;
+    align-items: center;
+    background: $white;
+    border-radius: $radius-xl;
+    border: 1px solid $gray-100;
+    box-shadow: $shadow-sm;
+    padding: 6px;
+    margin-bottom: 20px;
+    gap: 4px;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.tabBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: $radius-md;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: $gray-600;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+
+    .tabLabel {
+        @media (max-width: $tablet) {
+            display: none;
+        }
+    }
+
+    &.activeTab {
+        background: $blue-900;
+        color: $white;
+
+        .tabLabel {
+            display: block;
+        }
+    }
+
+    &:not(.activeTab):hover {
+        background: $gray-50;
+        color: $text-blue;
+    }
+
+    @media (max-width: $mobile) {
+        padding: 10px 16px;
+    }
+}
+
+// ==========================================
+// CONTENT CARD
+// ==========================================
+
+.contentCard {
+    background: $white;
+    border-radius: $radius-xl;
+    border: 1px solid $gray-100;
+    box-shadow: $shadow-sm;
+    padding: 32px;
+
+    @media (max-width: $tablet) {
+        padding: 24px 20px;
+    }
+}
+
+// ==========================================
+// PERSONAL INFO
+// ==========================================
+
+.sectionTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: $text-blue;
+    margin-bottom: 28px;
+
+    @media (max-width: $mobile) {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+}
+
+.fieldsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 40px;
+
+    @media (max-width: $tablet) {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+}
+
+.fullWidth {
+    grid-column: 1 / -1;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.fieldLabel {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: $gray-600;
+    padding: 16px 0 8px;
+}
+
+.fieldValue {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: #F9FAFB;
+
+    svg {
+        color: $gray-400;
+        flex-shrink: 0;
+    }
+
+    span {
+        font-size: 17px;
+        color: #2D2B5E;
+    }
+}
+
+// ==========================================
+// PLACEHOLDER TABS
+// ==========================================
+
+.tabPlaceholder {
+    @include flex-center(column, 10px);
+    padding: 60px 0;
+    color: $gray-400;
+    font-size: 14px;
+}
+
+// ==========================================
+// MY COURSES
+// ==========================================
+
+.coursesHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+
+    h2 {
+        font-size: 18px;
+        font-weight: 700;
+        color: $text-blue;
+
+        @media (max-width: $mobile) {
+            font-size: 16px;
+        }
+    }
+}
+
+.activeCount {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12.5px;
+    color: $gray-600;
+
+    svg {
+        color: $gray-400;
+    }
+}
+
+.courseList {
+    display: flex;
+    flex-direction: column;
+}
+
+.courseCard {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1.5px solid $gray-100;
+
+    &:first-child {
+        padding-top: 0;
+    }
+
+    &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    @media (max-width: $mobile) {
+        flex-direction: column;
+        gap: 0;
+        border-bottom: none;
+        padding: 0 0 16px;
+        margin-bottom: 16px;
+        border-radius: $radius-lg;
+        border: 1.5px solid $gray-100;
+        overflow: hidden;
+
+        &:last-child {
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.courseImage {
+    width: 175px;
+    flex-shrink: 0;
+    border-radius: $radius-md;
+    overflow: hidden;
+    background: $gray-100;
+    position: relative;
+    min-height: 140px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    @media (max-width: $mobile) {
+        width: 100%;
+        min-height: 180px;
+        border-radius: 0;
+    }
+}
+
+.imagePlaceholder {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #374168 0%, #2d3a6a 100%);
+    @include flex-center;
+
+    svg {
+        opacity: 0.3;
+    }
+}
+
+.courseContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-width: 0;
+
+    @media (max-width: $mobile) {
+        padding: 14px 14px 14px;
+    }
+}
+
+.tagsRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 3px 11px;
+    border-radius: 20px;
+}
+
+.tagCategory {
+    background: rgba($blue-900, 0.08);
+    color: $blue-900;
+}
+
+.tagInProgress {
+    background: rgba($blue-600, 0.1);
+    color: $blue-600;
+}
+
+.tagCompleted {
+    background: rgba(#10b981, 0.12);
+    color: #059669;
+}
+
+.courseTitle {
+    font-size: 15.5px;
+    font-weight: 700;
+    color: $text-blue;
+    margin-bottom: 5px;
+    line-height: 1.35;
+
+    @media (max-width: $mobile) {
+        font-size: 14.5px;
+    }
+}
+
+.instructor {
+    font-size: 12.5px;
+    color: $gray-600;
+    margin-bottom: 10px;
+}
+
+.metaRow {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.metaItem {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: $gray-600;
+
+    svg {
+        color: $gray-400;
+        flex-shrink: 0;
+    }
+}
+
+.progressSection {
+    margin-bottom: 14px;
+}
+
+.progressHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+    font-size: 12px;
+    color: $gray-600;
+
+    strong {
+        font-size: 12.5px;
+        font-weight: 700;
+        color: $text-blue;
+    }
+}
+
+.progressTrack {
+    height: 6px;
+    background: $gray-100;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    border-radius: 99px;
+    background: $blue-900;
+    transition: width 0.4s ease;
+
+    &.completedFill {
+        background: #10b981;
+    }
+}
+
+.actionsRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: auto;
+    padding-top: 4px;
+
+    @media (max-width: $mobile) {
+        flex-direction: column;
+
+        button {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}
+
+.btnContinue {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    background: $blue-900;
+    color: $white;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: $radius-md;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+
+    &:hover {
+        background: lighten($blue-900, 8%);
+        transform: translateY(-1px);
+    }
+}
+
+.btnCertificate {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    background: #10b981;
+    color: $white;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: $radius-md;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+
+    &:hover {
+        background: darken(#10b981, 6%);
+        transform: translateY(-1px);
+    }
+}
+
+.btnDetails {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    background: transparent;
+    color: $text-blue;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: $radius-md;
+    border: 1.5px solid $gray-300;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+
+    &:hover {
+        border-color: $blue-900;
+        background: rgba($blue-900, 0.04);
+    }
+}
+
+// ==========================================
+// CERTIFICATES
+// ==========================================
+
+.certHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+
+    h2 {
+        font-size: 18px;
+        font-weight: 700;
+        color: $text-blue;
+
+        @media (max-width: $mobile) {
+            font-size: 16px;
+        }
+    }
+}
+
+.certCount {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12.5px;
+    color: $gray-600;
+
+    svg {
+        color: $gray-400;
+    }
+}
+
+.certGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @media (max-width: $small-desktop) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $mobile) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.certCard {
+    border: 1.5px solid $gray-100;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    background: $white;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        box-shadow: $shadow-md;
+        transform: translateY(-2px);
+    }
+}
+
+.certImageArea {
+    position: relative;
+    height: 165px;
+    background: linear-gradient(135deg, #374168 0%, #2d3a6a 100%);
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+}
+
+.certImagePlaceholder {
+    width: 100%;
+    height: 100%;
+    @include flex-center;
+
+    svg {
+        opacity: 0.2;
+    }
+}
+
+.certBadge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba($white, 0.92);
+    @include flex-center;
+    box-shadow: $shadow-sm;
+
+    svg {
+        color: $blue-900;
+    }
+}
+
+.certContent {
+    padding: 14px 16px 16px;
+}
+
+.certTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: $text-blue;
+    margin-bottom: 10px;
+    line-height: 1.35;
+}
+
+.certMeta {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 6px;
+}
+
+.certMetaItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: $gray-600;
+
+    svg {
+        color: $gray-400;
+        flex-shrink: 0;
+    }
+}
+
+.certId {
+    font-size: 11.5px;
+    color: $gray-400;
+    margin-bottom: 14px;
+    font-family: monospace;
+    letter-spacing: 0.02em;
+}
+
+.downloadBtn {
+    width: 100%;
+    padding: 10px;
+    background: $blue-900;
+    color: $white;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: $radius-md;
+    border: none;
+    cursor: pointer;
+    @include flex-center($gap: 7px);
+    transition: background 0.2s ease, transform 0.15s ease;
+
+    &:hover {
+        background: lighten($blue-900, 8%);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.noCerts {
+    @include flex-center(column, 12px);
+    padding: 60px 0;
+    color: $gray-400;
+    font-size: 14px;
+
+    svg {
+        opacity: 0.4;
+    }
+
+    p {
+        color: $gray-400;
+    }
+}
+
+// ==========================================
+// MESSAGES
+// ==========================================
+
+.msgsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+
+    h2 {
+        font-size: 18px;
+        font-weight: 700;
+        color: $text-blue;
+
+        @media (max-width: $mobile) {
+            font-size: 16px;
+        }
+    }
+}
+
+.msgCount {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12.5px;
+    color: $gray-600;
+
+    svg {
+        color: $gray-400;
+    }
+}
+
+.msgList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.msgCard {
+    display: flex;
+    border: 1.5px solid $gray-100;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+        box-shadow: $shadow-sm;
+    }
+
+    &.unread {
+        border-color: rgba($blue-600, 0.25);
+        background: rgba($blue-600, 0.02);
+    }
+
+    @media (max-width: $mobile) {
+        flex-direction: column;
+    }
+}
+
+.msgIconArea {
+    width: 256px;
+    flex-shrink: 0;
+    @include flex-center;
+    border-right: 1.5px solid $gray-100;
+
+    svg {
+        color: #3D3B7E;
+    }
+
+    @media (max-width: $mobile) {
+        width: 100%;
+        height: 80px;
+        border-right: none;
+        border-bottom: 1.5px solid $gray-100;
+    }
+}
+
+.msgContent {
+    flex: 1;
+    padding: 16px 18px;
+    min-width: 0;
+}
+
+.msgBadge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 10px;
+    border-radius: 20px;
+    background: $gray-100;
+    color: $gray-600;
+    margin-bottom: 8px;
+    text-transform: lowercase;
+    letter-spacing: 0.01em;
+}
+
+.msgTitle {
+    font-size: 15px;
+    font-weight: 700;
+    color: $text-blue;
+    margin-bottom: 4px;
+    line-height: 1.3;
+
+    @media (max-width: $mobile) {
+        font-size: 14px;
+    }
+}
+
+.msgFrom {
+    font-size: 12.5px;
+    color: $gray-600;
+    margin-bottom: 10px;
+}
+
+.msgMeta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.msgMetaItem {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: $gray-600;
+
+    svg {
+        color: $gray-400;
+        flex-shrink: 0;
+    }
+
+    &.statusRead {
+        color: $gray-600;
+    }
+
+    &.statusUnread {
+        color: $blue-600;
+        font-weight: 600;
+    }
+}
+
+.msgActions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    @media (max-width: $mobile) {
+        flex-direction: column;
+
+        button {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}
+
+.btnViewMsg {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    background: $blue-900;
+    color: $white;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: $radius-md;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+
+    &:hover {
+        background: lighten($blue-900, 8%);
+        transform: translateY(-1px);
+    }
+}
+
+.btnMarkRead {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 18px;
+    background: transparent;
+    color: $text-blue;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: $radius-md;
+    border: 1.5px solid $gray-300;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+
+    &:hover {
+        border-color: $blue-900;
+        background: rgba($blue-900, 0.04);
+    }
+
+    &.alreadyRead {
+        color: $gray-400;
+        border-color: $gray-300;
+        cursor: default;
+
+        &:hover {
+            border-color: $gray-300;
+            background: transparent;
+        }
+    }
+}
+
+.noMsgs {
+    @include flex-center(column, 12px);
+    padding: 60px 0;
+    color: $gray-400;
+    font-size: 14px;
+
+    svg {
+        opacity: 0.4;
+    }
+}
+
+// ==========================================
+// COURSE DETAILS MODAL
+// ==========================================
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1000;
+    @include flex-center;
+    padding: 20px;
+    backdrop-filter: blur(3px);
+    animation: overlayIn 0.2s ease;
+
+    @media (max-width: $mobile) {
+        padding: 0;
+        align-items: flex-end;
+    }
+}
+
+@keyframes overlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal {
+    background: $white;
+    border-radius: $radius-2xl;
+    width: 100%;
+    max-width: 620px;
+    max-height: 88vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: $shadow-lg;
+    animation: modalIn 0.25s ease;
+    scrollbar-width: thin;
+    scrollbar-color: $gray-300 transparent;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $gray-300;
+        border-radius: 99px;
+    }
+
+    @media (max-width: $mobile) {
+        border-radius: $radius-2xl $radius-2xl 0 0;
+        max-height: 92vh;
+        animation: modalInMobile 0.3s ease;
+    }
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes modalInMobile {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.modalImageArea {
+    position: relative;
+    height: 200px;
+    background: linear-gradient(135deg, #374168 0%, #2d3a6a 100%);
+    overflow: hidden;
+    flex-shrink: 0;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba($blue-900, 0.75) 0%, transparent 60%);
+    }
+
+    @media (max-width: $mobile) {
+        height: 170px;
+    }
+}
+
+.modalImagePlaceholder {
+    width: 100%;
+    height: 100%;
+    @include flex-center;
+
+    svg {
+        opacity: 0.2;
+    }
+}
+
+.modalCloseBtn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba($white, 0.15);
+    border: 1px solid rgba($white, 0.25);
+    backdrop-filter: blur(4px);
+    @include flex-center;
+    cursor: pointer;
+    color: $white;
+    transition: background 0.2s ease;
+
+    &:hover {
+        background: rgba($white, 0.3);
+    }
+}
+
+.modalImageTitle {
+    position: absolute;
+    bottom: 16px;
+    left: 20px;
+    right: 60px;
+    z-index: 2;
+
+    h2 {
+        font-size: 18px;
+        font-weight: 700;
+        color: $white;
+        line-height: 1.3;
+
+        @media (max-width: $mobile) {
+            font-size: 16px;
+        }
+    }
+}
+
+.modalBody {
+    padding: 24px 28px;
+
+    @media (max-width: $mobile) {
+        padding: 20px 18px;
+    }
+}
+
+.modalTagsRow {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+}
+
+.modalInstructor {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: $gray-600;
+    margin-bottom: 20px;
+
+    svg {
+        color: $gray-400;
+        flex-shrink: 0;
+    }
+}
+
+.modalInfoGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+
+    @media (max-width: $mobile) {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+.modalInfoItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    background: $gray-50;
+    border-radius: $radius-md;
+    border: 1px solid $gray-100;
+
+    svg {
+        color: $blue-900;
+        flex-shrink: 0;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        span:first-child {
+            font-size: 11px;
+            color: $gray-400;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        span:last-child {
+            font-size: 13px;
+            font-weight: 600;
+            color: $text-blue;
+        }
+    }
+}
+
+.modalDivider {
+    height: 1px;
+    background: $gray-100;
+    margin: 20px 0;
+}
+
+.modalProgressSection {
+    margin-bottom: 20px;
+
+    .progressHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+
+        span {
+            font-size: 13px;
+            font-weight: 600;
+            color: $text-blue;
+        }
+
+        strong {
+            font-size: 13px;
+            font-weight: 700;
+            color: $blue-900;
+        }
+    }
+}
+
+.modalDescription {
+    margin-bottom: 4px;
+
+    h4 {
+        font-size: 13.5px;
+        font-weight: 600;
+        color: $text-blue;
+        margin-bottom: 8px;
+    }
+
+    p {
+        font-size: 13.5px;
+        color: $gray-600;
+        line-height: 1.7;
+    }
+}
+
+.modalFooter {
+    display: flex;
+    gap: 10px;
+    padding: 16px 28px 24px;
+    border-top: 1px solid $gray-100;
+
+    @media (max-width: $mobile) {
+        padding: 14px 18px 20px;
+        flex-direction: column;
+
+        button {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}
+
+.modalBtnSecondary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 10px 20px;
+    background: transparent;
+    color: $text-blue;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: $radius-md;
+    border: 1.5px solid $gray-300;
+    cursor: pointer;
+    flex: 1;
+    transition: border-color 0.2s ease, background 0.2s ease;
+
+    &:hover {
+        border-color: $blue-900;
+        background: rgba($blue-900, 0.04);
+    }
+}
