@@ -3,7 +3,7 @@
     "badge": "Trusted British Training Academy Since 2010",
     "title": "Empowering Ambitious Professionals Through Internationally Recognised <highlight>British Training</highlight>",
     "subtitle": "For over 15 years, British Academy has helped more than 65,000 professionals, executives, and organisations achieve career growth through internationally recognised training programmes and certifications.",
-    "headline": "Love Your <highlight>Career</highlight>",
+    "headline": "British Academy for <highlight>Training and Development</highlight>",
     "tagline": "Get ahead on <highlight>course</highlight>",
     "searchPlaceholder": "Subject or qualification, e.g. Management",
     "searchButton": "Search",
@@ -29,20 +29,20 @@
         "text": "Trusted British training partner since 2010"
       }
     },
-    "explorePrograms": "Explore Training Programs",
+    "explorePrograms": "Explore Training Programmes",
     "requestConsultation": "Request Consultation",
     "trust": {
       "experience": "15+ Years of Excellence",
       "professionals": "65,000+ Professionals Trained",
-      "programs": "600+ Training Programs",
+      "programs": "600+ Training Programmes",
       "clients": "Corporate & Government Clients",
       "standards": "International Training Standards"
     },
     "stats": {
-      "programsLabel": "Training Programs"
+      "programsLabel": "Training Programmes"
     },
     "floating": {
-      "recognized": "Internationally Recognized Programs",
+      "recognized": "Internationally Recognised Programmes",
       "certifications": "Professional Certifications",
       "corporate": "Corporate Training Solutions",
       "leadership": "Leadership Development"

@@ -24,7 +24,7 @@
     "subjectRequired": "Please select a subject",
     "subjects": {
       "courseInquiry": "Course Inquiry",
-      "trainingPrograms": "Training Programs",
+      "trainingPrograms": "Training Programmes",
       "consultingServices": "Consulting Services",
       "technicalSupport": "Technical Support",
       "other": "Other"

@@ -42,7 +42,7 @@
     "failMsg": "Registration failed. Please try again.",
     "errorMsg": "Something went wrong!",
     "successTitle": "Registration Successful!",
-    "successSub": "Congratulations! You're enrolled in the course. We've sent a confirmation email to",
+    "successSub": "Congratulations! You're enroled in the course. We've sent a confirmation email to",
     "registrationDetails": "Registration Details",
     "course": "Course",
     "startDateLabel": "Start Date",

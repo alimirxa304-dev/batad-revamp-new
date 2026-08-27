@@ -1,6 +1,6 @@
 'use client'
 import { useEffect } from "react";
-import GenericSlider from "@/components/common/GenericSlider";
+import { motion } from "framer-motion";
 import Title from "@/components/common/Title";
 import styleContainer from "@/sass/components/common/container.module.scss";
 import styles from "@/sass/pages/home/course-by-city.module.scss";
@@ -9,32 +9,53 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import Skeleton from "@/components/ui/Skeleton";
+import { ArrowLeft, ArrowRight, Building2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-const CouresByCities = ({ city }) => {
-    const { locale } = useParams();
-    return (
+// Venue-style card: skyline icon, city name, "View Courses" link.
+const CityCard = ({ city, locale, viewCourses }) => (
+    <motion.div
+        className={styles.cityCard}
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+    >
         <Link
-            className={styles.couresByCities}
             href={`/${locale}/city/${city.id}/${encodeURIComponent(city.slug)}`}
+            className={styles.cityCardInner}
             title={city.name}
         >
-            <div className={styles.couresByCities__image}>
-                <Image src={city.image} alt={city.name} width={130} height={130} />
-            </div>
-            <div className={styles.couresByCities__content}>
-                <h3 className={styles.couresByCities__content__title}>{city.name}</h3>
-            </div>
+            <span className={styles.cityIcon}>
+                {city.icon || city.image ? (
+                    <Image
+                        src={city.icon || city.image}
+                        alt={city.name}
+                        width={140}
+                        height={100}
+                    />
+                ) : (
+                    <Building2 aria-hidden="true" />
+                )}
+            </span>
+            <h3 className={styles.cityName}>{city.name}</h3>
+            <span className={styles.cityLink}>
+                {viewCourses}
+                {locale === 'ar' ? <ArrowLeft size={15} aria-hidden="true" /> : <ArrowRight size={15} aria-hidden="true" />}
+            </span>
         </Link>
-    )
-}
+    </motion.div>
+)
 
 const CourseByCity = () => {
     const t = useTranslations('CourseByCity')
-    const { handleGetCities, cities , isLoading } = useCitiesStore();
+    const { locale } = useParams();
+    const { handleGetCities, cities, isLoading } = useCitiesStore();
+
     useEffect(() => {
         handleGetCities();
     }, []);
+
     return (
         <section>
             <div className={styleContainer.container}>
@@ -49,30 +70,23 @@ const CourseByCity = () => {
                             <Skeleton type="card" className={styles.skeletonCard} />
                         </div>
                     ) : (
-                    <GenericSlider
-  navId="citys"
-  items={cities}
-  renderSlide={(city) => <CouresByCities key={city.id} city={city} />}
-
-  spaceBetween={20}
-  breakpoints={{
-    0:{
-        slidesPerView:1.5,
-        centeredSlides:true,
-        centeredSlidesBounds:true
-    },
-    768: {
-        slidesPerView:2.5,
-        centeredSlides:false,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
-    1280: {
-      slidesPerView: 4,
-    },
-  }}
-/>
+                        <>
+                            <div className={styles.citiesGrid}>
+                                {cities?.slice(0, 6).map((city) => (
+                                    <CityCard
+                                        key={city.id}
+                                        city={city}
+                                        locale={locale}
+                                        viewCourses={t('viewCourses')}
+                                    />
+                                ))}
+                            </div>
+                            <div className={styles.allCitiesWrap}>
+                                <Link href={`/${locale}/show_cities`} className={styles.allCitiesBtn}>
+                                    {t('allCities')}
+                                </Link>
+                            </div>
+                        </>
                     )
                 }
 

@@ -48,13 +48,13 @@
 // ─── Headline & tagline ──────────────────────────────────────────
 .title {
     font-family: var(--font-heading), inherit;
-    font-size: clamp(44px, 6.5vw, 84px);
+    font-size: clamp(34px, 4.2vw, 58px);
     font-weight: 800;
     color: $white;
-    line-height: 1.04;
+    line-height: 1.12;
     letter-spacing: -0.02em;
     margin-bottom: clamp(18px, 3vw, 30px);
-    max-width: 12ch;
+    max-width: 18ch;
 
     span {
         color: #e85d6a;

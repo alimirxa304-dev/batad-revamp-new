@@ -1,35 +1,106 @@
-.couresByCities{
-    display: flex;
-    flex-direction: column;
-    gap:12px;
-   
-    .couresByCities__image{
-         background-color: #FFFFFF;
-    border-radius: 12px;
-    padding:  0px;
-   display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 259px;
-    img{
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 12px;
-    }
-    }
-    .couresByCities__content{
-        .couresByCities__content__title{
-            font-size: 16px;
-            font-weight: 400;
-            color:$blue-900;
-            text-align: center;
-            @media (max-width: 768px) {
-                font-size: 14px;
-                text-align: center;
-            }
-        }
-    }
- 
+// ─── Training venues grid (londonpremierhub-style cards) ─────────
+.citiesGrid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(12px, 1.4vw, 18px);
+  padding-top: 10px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @media (max-width: $tablet) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.cityCard {
+  min-width: 0;
+}
+
+.cityCardInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  height: 100%;
+  background: $white;
+  border: 1.5px solid $gray-300;
+  border-radius: 14px;
+  padding: clamp(18px, 2vw, 26px) 14px;
+  transition: border-color 0.25s ease-out, box-shadow 0.25s ease-out, transform 0.25s ease-out;
+
+  &:hover {
+    border-color: $blue-900;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(22, 37, 84, 0.1);
+  }
+}
+
+.cityIcon {
+  width: 100%;
+  height: 96px;
+  @include flex-center;
+
+  img {
+    max-width: 130px;
+    max-height: 96px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  svg {
+    width: 48px;
+    height: 48px;
+    color: $blue-900;
+  }
+}
+
+.cityName {
+  font-size: clamp(15px, 1.2vw, 18px);
+  font-weight: 700;
+  color: #101828;
+  line-height: 1.3;
+}
+
+.cityLink {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: $red;
+  transition: gap 0.2s ease-out;
+}
+
+.cityCardInner:hover .cityLink {
+  gap: 10px;
+}
+
+.allCitiesWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(20px, 3vw, 32px);
+}
+
+.allCitiesBtn {
+  background: $blue-900;
+  color: $white;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 11px 28px;
+  border-radius: 10px;
+  transition: $transition-base;
+
+  &:hover {
+    background: lighten($blue-900, 8%);
+  }
+}
+
+.skeletonCard {
+  width: 200px;
+  height: 220px;
 }

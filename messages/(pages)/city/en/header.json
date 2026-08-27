@@ -1,15 +1,15 @@
 {
-    "header": {
-        "globle": "EXPLORE OUR GLOBAL LOCATIONS",
-        "title": "Professional Training Courses in",
-        "subTitle": "Training Destination",
-        "text": "World-class training programs in",
-        "subText": "City",
-        "allCities": "All Cities",
-        "searchPlaceHolder": "Search by city...",
-        "allSpecialties": "All Specialties",
-        "cityStat": "Cities",
-        "trainingPrograms": "Training Programs",
-        "happyStudents": "Happy Students"
-    }
+  "header": {
+    "globle": "EXPLORE OUR GLOBAL LOCATIONS",
+    "title": "Professional Training Courses in",
+    "subTitle": "Training Destination",
+    "text": "World-class training programmes in",
+    "subText": "City",
+    "allCities": "All Cities",
+    "searchPlaceHolder": "Search by city...",
+    "allSpecialties": "All Specialties",
+    "cityStat": "Cities",
+    "trainingPrograms": "Training Programmes",
+    "happyStudents": "Happy Students"
+  }
 }
