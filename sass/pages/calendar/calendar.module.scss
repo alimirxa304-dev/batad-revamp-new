@@ -1,0 +1,306 @@
+// ─── 2026-2027 Training Calendar page ──────────────────────────────
+.calendar {
+    padding-bottom: 90px;
+}
+
+.hero {
+    background: $blue-900;
+    padding: clamp(36px, 5vw, 64px) 0;
+    margin-bottom: 28px;
+}
+
+.heroTitle {
+    font-size: clamp(26px, 3vw, 40px);
+    font-weight: 800;
+    color: $white;
+
+    span {
+        color: #e85d6a;
+    }
+}
+
+.heroSubtitle {
+    margin-top: 10px;
+    font-size: clamp(14px, 1.2vw, 16px);
+    color: rgba($white, 0.75);
+    max-width: 64ch;
+}
+
+// ─── Filters ─────────────────────────────────────────────────────
+.filters {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr auto;
+    gap: 10px;
+    background: $white;
+    border: 1px solid $gray-100;
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: $shadow-sm;
+    margin-bottom: 26px;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: 640px) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.filterField {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding-inline: 12px;
+    border: 1px solid $gray-300;
+    border-radius: 10px;
+    background: $white;
+    font-size: 13.5px;
+    color: #101828;
+    min-width: 0;
+
+    svg {
+        color: $gray-400;
+        flex-shrink: 0;
+    }
+
+    input {
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 13.5px;
+        width: 100%;
+        min-width: 0;
+
+        &::placeholder {
+            color: $gray-400;
+        }
+    }
+
+    &:focus-within,
+    &:focus {
+        outline: 2px solid rgba($blue-600, 0.45);
+        outline-offset: 1px;
+    }
+}
+
+select.filterField,
+input.filterField {
+    cursor: pointer;
+    width: 100%;
+}
+
+.filterSearch {
+    @media (max-width: 1200px) {
+        grid-column: 1 / -1;
+    }
+}
+
+.resetBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 44px;
+    padding-inline: 16px;
+    background: $red-light;
+    color: $red;
+    border: 1px solid rgba($red, 0.25);
+    border-radius: 10px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: $transition-base;
+
+    &:hover {
+        background: $red;
+        color: $white;
+    }
+}
+
+// ─── Result rows ─────────────────────────────────────────────────
+.rows {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1.6fr 0.8fr 1.4fr 0.55fr auto;
+    gap: 14px;
+    align-items: center;
+    background: $white;
+    border: 1px solid $gray-100;
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
+
+    &:hover {
+        border-color: $blue-900;
+        box-shadow: 0 8px 20px rgba(22, 37, 84, 0.08);
+    }
+
+    @media (max-width: 991px) {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+    }
+}
+
+.rowHead {
+    background: $blue-900;
+    border-color: $blue-900;
+    color: $white;
+    font-size: 13px;
+    font-weight: 600;
+    padding-block: 12px;
+    box-shadow: none;
+
+    &:hover {
+        border-color: $blue-900;
+        box-shadow: none;
+    }
+
+    @media (max-width: 991px) {
+        display: none;
+    }
+}
+
+.courseCell {
+    min-width: 0;
+
+    h3 {
+        font-size: 15.5px;
+        font-weight: 600;
+        color: #101828;
+        line-height: 1.4;
+    }
+}
+
+.courseMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    margin-top: 5px;
+
+    span {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        color: $text-gray;
+
+        svg {
+            color: $red;
+        }
+    }
+}
+
+.cityCell {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13.5px;
+    color: $gray-700;
+
+    svg {
+        color: $blue-900;
+        flex-shrink: 0;
+    }
+}
+
+.datesCell {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.dateChip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: $gray-50;
+    border: 1px solid $gray-100;
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: $gray-700;
+
+    svg {
+        color: $blue-900;
+    }
+}
+
+.priceCell {
+    font-size: 16px;
+    font-weight: 700;
+    color: $blue-900;
+    white-space: nowrap;
+}
+
+.actionsCell {
+    display: flex;
+    gap: 8px;
+
+    @media (max-width: 991px) {
+        width: 100%;
+
+        a {
+            flex: 1;
+        }
+    }
+}
+
+.registerBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding-inline: 16px;
+    background: $blue-900;
+    color: $white;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: $transition-base;
+
+    &:hover {
+        background: lighten($blue-900, 8%);
+    }
+}
+
+.detailsBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    padding-inline: 16px;
+    border: 1px solid $blue-900;
+    color: $blue-900;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: $transition-base;
+
+    &:hover {
+        background: $blue-900;
+        color: $white;
+    }
+}
+
+.noResults {
+    text-align: center;
+    color: $text-gray;
+    padding: 60px 0;
+    font-size: 15px;
+}
+
+.skeletonRow {
+    height: 92px;
+    width: 100%;
+}

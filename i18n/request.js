@@ -112,6 +112,9 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const contactMessages = (
     await import(`../messages/(pages)/contact_us/${locale}/contact.json`)
   ).default;
+  const calendarMessages = (
+    await import(`../messages/(pages)/calendar/${locale}/calendar.json`)
+  ).default;
   return {
     locale,
     messages: {
@@ -149,6 +152,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       ...registerCourseMessages,
       ...registerInternalMessages,
       ...contactMessages,
+      ...calendarMessages,
     },
   };
 });
