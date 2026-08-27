@@ -17,7 +17,7 @@ export async function getCourses(language, queryParams = "") {
     let data = await response.json();
     return data;
   } catch {
-    return demoResponse("courses", language);
+    return demoResponse("courses", language, queryParams);
   }
 }
 

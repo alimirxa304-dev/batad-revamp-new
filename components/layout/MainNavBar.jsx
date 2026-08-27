@@ -110,6 +110,9 @@ const MainNavBar = () => {
               {item.label}
             </Link>
           ))}
+          <Link href="/calendar" className={styles.calendarBtn}>
+            {t('trainingCalendar')}
+          </Link>
         </nav>
 
         {
@@ -215,6 +218,13 @@ const MainNavBar = () => {
               {item.label}
             </Link>
           ))}
+          <Link
+            href="/calendar"
+            className={styles.calendarBtnMobile}
+            onClick={() => setMobileOpen(false)}
+          >
+            {t('trainingCalendar')}
+          </Link>
 
           {
             member ? (

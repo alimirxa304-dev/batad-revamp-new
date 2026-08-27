@@ -2,6 +2,7 @@ import { getMeta } from "@/action/meta";
 import MotionWrapper from "@/components/common/MotionWrapper";
 import { cleanMeta, parseKeywords, buildAlternates } from "@/lib/seoMeta";
 import styles from "@/sass/pages/home/home.module.scss";
+import AboutAcademy from "./AboutAcademy";
 import ChatAi from "./ChatAi";
 import CourseByCity from "./CourseByCity";
 import CoursesBySpecial from "./CoursesBySpecial";
@@ -67,6 +68,9 @@ const Home = () => {
         </MotionWrapper>
         <MotionWrapper>
           <RequestCoures />
+        </MotionWrapper>
+        <MotionWrapper>
+          <AboutAcademy />
         </MotionWrapper>
         <MotionWrapper>
           <WhatIs />

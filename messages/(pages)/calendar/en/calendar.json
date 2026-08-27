@@ -1,0 +1,24 @@
+{
+  "CalendarPage": {
+    "title": "Training Plan",
+    "titleSpan": "2026-2027",
+    "subtitle": "Browse the British Academy's full training calendar. Filter by category, specialisation, city and date, or search by keyword to find your next course.",
+    "filters": {
+      "keyword": "Search by keyword...",
+      "category": "All Categories",
+      "specialization": "All Specialisations",
+      "city": "All Cities",
+      "date": "Any date",
+      "reset": "Reset"
+    },
+    "columns": {
+      "course": "Course",
+      "city": "City",
+      "dates": "Available Dates",
+      "price": "Price"
+    },
+    "register": "Register",
+    "details": "Details",
+    "noResults": "No courses match your filters. Try adjusting or resetting them."
+  }
+}

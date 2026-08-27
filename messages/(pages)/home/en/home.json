@@ -19,6 +19,21 @@
     "viewCourses": "View Courses",
     "allCities": "All Venues"
   },
+  "AboutAcademy": {
+    "title": "About",
+    "titleSpan": "British Academy",
+    "p1": "The British Academy for Training and Development is a British institution specialised in the training and development of human and institutional staff in the areas of management, business management, media, public relations, information technology, public health and other related disciplines.",
+    "p2": "In the face of intense competition among organisations striving to provide superior services, effective management and leadership have emerged as critical factors for achieving a competitive edge. Our annual training plan offers comprehensive learning pathways, delivered by senior British and international experts, designed to elevate professional development and drive meaningful career growth.",
+    "points": {
+      "accredited": "Internationally accredited training programmes",
+      "hq": "Headquartered in London with venues worldwide",
+      "trainers": "Senior British and international trainers",
+      "support": "End-to-end support before and after training"
+    },
+    "cta": "Discover Our Vision",
+    "badgeValue": "15+",
+    "badgeLabel": "Years of Excellence"
+  },
   "WhatIs": {
     "title": "What is",
     "titleSpan": "BRITISH ACADEMY?",
