@@ -11,7 +11,6 @@ import {
 import * as Dialog from "@radix-ui/react-dialog";
 import {
   ArrowRight,
-  Calendar,
   ChevronRight,
   Clock,
   Filter,
@@ -22,7 +21,6 @@ import {
   Users,
   X,
 } from "lucide-react";
-import CustomDatePicker from "@/components/common/DateInput";
 import Tabs from "@/components/common/Tabs";
 import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
 import useCategoriesStore from "@/store/useCategoriesStore";
@@ -33,9 +31,6 @@ import styles from "@/sass/pages/course-details/course-details.module.scss";
 import SidebarFilter from "@/components/common/SidebarFilter";
 import { useTranslations } from "next-intl";
 
-const formatDateParam = (value) =>
-  value instanceof Date ? value.toISOString().split("T")[0] : value;
-
 // The printable course PDF is served by the Laravel site (not part of this Next.js
 // app), so it can't be built from NEXT_PUBLIC_SITE_URL — that resolves to localhost
 // in dev, where this route doesn't exist.
@@ -45,7 +40,6 @@ const CourseDetails = ({ initialCourse }) => {
   const t = useTranslations('CourseDetails');
   const tCommon = useTranslations();
   const [activeTabId, setActiveTabId] = useState(1);
-  const [selectedDate, setSelectedDate] = useState();
   const [mounted, setMounted] = useState(false);
   const { handleGetCourses, data } = useCoursesStore();
 
@@ -58,11 +52,19 @@ const CourseDetails = ({ initialCourse }) => {
   const registerUrl = useMemo(() => {
     const params = new URLSearchParams();
     params.set("course_id", id);
-    if (selectedDate) {
-      params.set("date", formatDateParam(selectedDate));
-    }
     return `/${locale}/registerCourse?${params.toString()}`;
-  }, [locale, id, selectedDate]);
+  }, [locale, id]);
+
+  // Instructor shown in the sticky side card; falls back to a senior trainer
+  // from the academy roster when the API doesn't provide one.
+  const instructor = course?.instructor || {
+    name: "Dr. Faysal Shahne",
+    job: "Management Trainer & Expert",
+    image: "/asstes/team/1787513947.png",
+    rating: "4.9",
+    students: "8,600+",
+    courses_count: 24,
+  };
 
   const handleFacebookShare = () => {
     const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
@@ -149,7 +151,7 @@ const CourseDetails = ({ initialCourse }) => {
                       </Dialog.Close>
                     </div>
 
-                    <SidebarFilter data={data} updateFilter={updateFilter} className='mobileFilter'/>
+                    <SidebarFilter data={data} updateFilter={updateFilter} className='mobileFilter' hideTags />
                   </Dialog.Content>
                 </Dialog.Portal>
               )}
@@ -157,8 +159,6 @@ const CourseDetails = ({ initialCourse }) => {
           </div>
 
           <div className={styles.content}>
-            <SidebarFilter data={data} updateFilter={updateFilter} className='filter'/>
-
             <div className={styles.details}>
               <div className={styles.contentCourse}>
                 <div className={styles.info}>
@@ -262,108 +262,51 @@ const CourseDetails = ({ initialCourse }) => {
                     </div>
 
                     <div className={styles.right}>
-                      <div className={styles.priceHeaderMobile}>
-                        <div className={styles.priceTag}>
+                      {/* ── Sticky instructor card (replaces price/dates panel) ── */}
+                      <div className={styles.instructorCard}>
+                        <span className={styles.instructorLabel}>{t('instructorTitle')}</span>
+                        <div className={styles.instructorPhoto}>
+                          <Image
+                            src={instructor.image}
+                            alt={instructor.name}
+                            width={300}
+                            height={300}
+                          />
+                        </div>
+                        <h3 className={styles.instructorName}>{instructor.name}</h3>
+                        <p className={styles.instructorJob}>{instructor.job}</p>
+
+                        <div className={styles.instructorStats}>
+                          <div className={styles.instructorStat}>
+                            <Star size={16} fill="#FACC15" color="#FACC15" />
+                            <strong>{instructor.rating || "4.9"}</strong>
+                            <span>{t('rating')}</span>
+                          </div>
+                          <div className={styles.instructorStat}>
+                            <Users size={16} color="#2F327D" />
+                            <strong>{instructor.students || "8,600+"}</strong>
+                            <span>{t('students')}</span>
+                          </div>
+                          <div className={styles.instructorStat}>
+                            <Clock size={16} color="#B12E33" />
+                            <strong>{course?.week_number ? `${course.week_number} ${tCommon('weeks')}` : `1-2 ${tCommon('weeks')}`}</strong>
+                            <span>{t('duration')}</span>
+                          </div>
+                        </div>
+
+                        <div className={styles.instructorPrice}>
                           <span>£{course?.price}</span>
                           <p>{t('oneTimePayment')}</p>
                         </div>
-                        <Link
-                          href={registerUrl}
-                          className={`${styles.enrollBtnMobile} ${selectedDate ? styles.enrollBtnMobileActive : ""}`}
-                        >
-                          {t('enrollNow')}
-                        </Link>
-                      </div>
 
-                      <div className={styles.mobileStatsRow}>
-                        <div className={styles.mobileStatItem}>
-                          <div className={styles.statIcon}>
-                            <Star size={16} fill="#FACC15" color="#FACC15" />
-                          </div>
-                          <div className={styles.statInfo}>
-                            <span className={styles.statValue}>4.5</span>
-                            <span className={styles.statLabel}>{t('rating')}</span>
-                          </div>
-                        </div>
-                        <div className={styles.mobileStatItem}>
-                          <div className={styles.statIcon}>
-                            <Users size={16} color="#2F327D" />
-                          </div>
-                          <div className={styles.statInfo}>
-                            <span className={styles.statValue}>8,643</span>
-                            <span className={styles.statLabel}>{t('students')}</span>
-                          </div>
-                        </div>
-                        <div className={styles.mobileStatItem}>
-                          <div className={styles.statIcon}>
-                            <Clock size={16} color="#B12E33" />
-                          </div>
-                          <div className={styles.statInfo}>
-                            <span className={styles.statValue}>{course?.week_number ? `${course.week_number} ${tCommon('weeks')}` : `1-2 ${tCommon('weeks')}`}</span>
-                            <span className={styles.statLabel}>{t('duration')}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className={styles.dateInfo}>
-                        <h3>£{course?.price}</h3>
-                        <div className={styles.infoContainer}>
-                          <h4>
-                            {" "}
-                            <Calendar color="#1E2749" size={20} /> {t('selectCourseDate')}
-                          </h4>
-                          <div className={styles.dates}>
-                            {course?.dates?.map((session) => (
-                              <div
-                                className={`${styles.date} ${selectedDate === session.date ? styles.dateSelected : ""}`}
-                                key={session.id}
-                                role="button"
-                                tabIndex={0}
-                                onClick={() => setSelectedDate(session.date)}
-                                onKeyDown={(e) => {
-                                  if (e.key === "Enter" || e.key === " ") {
-                                    e.preventDefault();
-                                    setSelectedDate(session.date);
-                                  }
-                                }}
-                              >
-                                <p>{session.date}</p>
-                                <span>{session?.time}</span>
-                              </div>
-                            ))}
-                           
-                            <div className={styles.selectDate}>
-                              <h4>
-                                {" "}
-                                <Calendar color="#B12E33" size={20} /> {t('selectCourseDate')}
-                              </h4>
-                              <CustomDatePicker
-                                selected={
-                                  selectedDate instanceof Date
-                                    ? selectedDate
-                                    : null
-                                }
-                                onChange={(date) => setSelectedDate(date)}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className={styles.register}>
-                        <Link
-                          href={registerUrl}
-                          className={`${styles.primaryBtn} ${selectedDate ? styles.primaryBtnActive : ""}`}
-                        >
+                        <Link href={registerUrl} className={styles.instructorRegisterBtn}>
                           {t('registerNow')}
                         </Link>
                         <Link
                           href={`/${locale}/registerInternalCourse?course_id=${id}`}
+                          className={styles.instructorOutlineBtn}
                         >
                           {t('requestInternal')}
-                        </Link>
-                        <Link href={`/${locale}/contact_us?course_id=${id}`}>
-                          {t('quickInquiry')}
                         </Link>
                       </div>
                     </div>
