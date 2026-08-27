@@ -185,11 +185,19 @@ const CalendarPage = () => {
                                     {course.city?.name}
                                 </div>
                                 <div className={styles.datesCell}>
-                                    {course.dates?.map((session) => (
-                                        <span key={session.id} className={styles.dateChip}>
-                                            <Calendar size={12} aria-hidden="true" /> {session.date}
-                                        </span>
-                                    ))}
+                                    {course.dates?.map((session) => {
+                                        const matchesFilter = filters.date && session.date.startsWith(filters.date);
+                                        return (
+                                            <Link
+                                                key={session.id}
+                                                href={`/${locale}/registerCourse?course_id=${course.id}&date=${session.date}`}
+                                                className={`${styles.dateChip} ${matchesFilter ? styles.dateChipActive : ''}`}
+                                                title={t('registerOnDate', { date: session.date })}
+                                            >
+                                                <Calendar size={12} aria-hidden="true" /> {session.date}
+                                            </Link>
+                                        );
+                                    })}
                                 </div>
                                 <div className={styles.priceCell}>£{course.price}</div>
                                 <div className={styles.actionsCell}>
