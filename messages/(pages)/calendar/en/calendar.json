@@ -19,6 +19,7 @@
     },
     "register": "Register",
     "details": "Details",
+    "registerOnDate": "Register for the {date} session",
     "noResults": "No courses match your filters. Try adjusting or resetting them."
   }
 }

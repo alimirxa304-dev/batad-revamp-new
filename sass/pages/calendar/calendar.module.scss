@@ -213,11 +213,17 @@ input.filterField {
 }
 
 .datesCell {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, max-content));
     gap: 6px;
+
+    @media (max-width: 991px) {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 
+// Clickable: each chip registers for that specific session date.
 .dateChip {
     display: inline-flex;
     align-items: center;
@@ -228,9 +234,33 @@ input.filterField {
     padding: 4px 10px;
     font-size: 12px;
     color: $gray-700;
+    white-space: nowrap;
+    transition: $transition-base;
 
     svg {
         color: $blue-900;
+        transition: color 0.2s;
+    }
+
+    &:hover {
+        background: $blue-900;
+        border-color: $blue-900;
+        color: $white;
+
+        svg {
+            color: $white;
+        }
+    }
+}
+
+// Sessions matching the active month filter.
+.dateChipActive {
+    background: $red-light;
+    border-color: rgba($red, 0.35);
+    color: $red;
+
+    svg {
+        color: $red;
     }
 }
 
