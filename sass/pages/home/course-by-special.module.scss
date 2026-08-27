@@ -12,6 +12,122 @@
   @media (max-width: 1024px) {
     grid-template-columns: minmax(0, 1fr);
   }
+
+  // Mobile uses the accordion instead.
+  @media (max-width: $tablet) {
+    display: none;
+  }
+}
+
+// ─── Mobile accordion (category bars → sub-specialisation rows) ──
+.accordion {
+  display: none;
+
+  @media (max-width: $tablet) {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 10px;
+  }
+}
+
+.accordionItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.accordionBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  background: $blue-900;
+  color: $white;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 14.5px;
+  font-weight: 600;
+  text-align: start;
+  cursor: pointer;
+  transition: $transition-base;
+
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.accordionChevron {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  background: rgba($white, 0.14);
+  flex-shrink: 0;
+  transition: transform 0.25s ease-out;
+  @include flex-center;
+}
+
+.accordionChevronOpen {
+  transform: rotate(180deg);
+}
+
+.accordionSubs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-inline-start: 6px;
+}
+
+.accordionSub {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba($blue-900, 0.05);
+  border: 1px solid $gray-100;
+  border-radius: 10px;
+  padding: 10px 12px;
+  transition: $transition-base;
+
+  // Compact version of the shared spec icon inside a one-line row.
+  .specIcon {
+    width: 36px;
+    height: 36px;
+    background: $white;
+    border: 1px solid $gray-100;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:active,
+  &:hover {
+    background: rgba($blue-900, 0.1);
+  }
+}
+
+.accordionSubName {
+  flex: 1;
+  min-width: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #101828;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.accordionSubArrow {
+  color: $red;
+  flex-shrink: 0;
 }
 
 // ─── Main specialization list (left) ─────────────────────────────

@@ -6,7 +6,7 @@ import styleContainer from '@/sass/components/common/container.module.scss';
 import styles from '@/sass/pages/home/course-by-special.module.scss';
 import useCategoriesStore from "@/store/useCategoriesStore";
 import { isPlaceholderImage } from "@/lib/seoMeta";
-import { ArrowLeft, ArrowRight, BookOpen } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, ChevronDown } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -42,6 +42,8 @@ const CoursesBySpecial = () => {
     const isRtl = locale === 'ar';
     const { categories, handleGetCategories, isLoading } = useCategoriesStore();
     const [activeTabId, setActiveTabId] = useState(null);
+    // Mobile accordion: which category bar is expanded.
+    const [expandedId, setExpandedId] = useState(null);
 
     useEffect(() => {
         handleGetCategories();
@@ -70,6 +72,46 @@ const CoursesBySpecial = () => {
                             <Skeleton type="card" className={styles.skeletonCard} />
                         </div>
                     ) : (
+                        <>
+                        {/* ── Mobile accordion (category bars → sub-specialisations) ── */}
+                        <div className={styles.accordion}>
+                            {withSpecs.map((cat) => {
+                                const isOpen = expandedId === cat.id;
+                                return (
+                                    <div key={cat.id} className={styles.accordionItem}>
+                                        <button
+                                            type="button"
+                                            className={styles.accordionBar}
+                                            aria-expanded={isOpen}
+                                            onClick={() => setExpandedId(isOpen ? null : cat.id)}
+                                        >
+                                            <span>{cat.name}</span>
+                                            <span className={`${styles.accordionChevron} ${isOpen ? styles.accordionChevronOpen : ''}`}>
+                                                <ChevronDown size={16} aria-hidden="true" />
+                                            </span>
+                                        </button>
+                                        {isOpen && (
+                                            <div className={styles.accordionSubs}>
+                                                {cat.specializations.map((item) => (
+                                                    <Link
+                                                        key={item.id}
+                                                        href={`/course_training/${item.id}/${encodeURIComponent(item.slug)}`}
+                                                        className={styles.accordionSub}
+                                                    >
+                                                        <SpecIcon item={item} />
+                                                        <span className={styles.accordionSubName}>{item.name}</span>
+                                                        {isRtl
+                                                            ? <ArrowLeft size={16} className={styles.accordionSubArrow} aria-hidden="true" />
+                                                            : <ArrowRight size={16} className={styles.accordionSubArrow} aria-hidden="true" />}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </div>
+
                         <div className={styles.layout}>
                             {/* ── Main specializations (left) ── */}
                             <div className={styles.categoryList} role="tablist" aria-label={t('titleSpan')}>
@@ -129,6 +171,7 @@ const CoursesBySpecial = () => {
                                 )}
                             </div>
                         </div>
+                        </>
                     )
                 }
             </div>
