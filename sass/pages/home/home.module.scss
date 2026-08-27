@@ -8,14 +8,18 @@
   }
   .mainContent {
     display: flex;
-    padding: 41px 0px;
+    padding: clamp(48px, 5vw, 72px) 0px;
     flex-direction: column;
-    gap: 50px;
-   @media (min-width:1021px) and (max-width:1440px){
-    padding: 50px 0px;
-    }
+    // Roomier rhythm between home sections.
+    gap: clamp(56px, 6.5vw, 96px);
+
     @media (max-width: 1024px) {
       padding: 0px;
+      gap: 56px;
+    }
+
+    @media (max-width: 576px) {
+      gap: 44px;
     }
   }
 }
