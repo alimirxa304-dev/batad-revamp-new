@@ -11,9 +11,12 @@ import {
 import * as Dialog from "@radix-ui/react-dialog";
 import {
   ArrowRight,
+  Banknote,
+  BookOpen,
   ChevronRight,
   Clock,
   Filter,
+  Languages,
   Mail,
   Play,
   Printer,
@@ -24,6 +27,7 @@ import {
 import Tabs from "@/components/common/Tabs";
 import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
 import useCategoriesStore from "@/store/useCategoriesStore";
+import useCitiesStore from "@/store/useCitiesStore";
 import useCoursesStore from "@/store/useCoursesStore";
 import Header from "./Header";
 import stylesContainer from "@/sass/components/common/container.module.scss";
@@ -41,7 +45,10 @@ const CourseDetails = ({ initialCourse }) => {
   const tCommon = useTranslations();
   const [activeTabId, setActiveTabId] = useState(1);
   const [mounted, setMounted] = useState(false);
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
   const { handleGetCourses, data } = useCoursesStore();
+  const { cities, handleGetCities } = useCitiesStore();
 
   const { handleGetCategories } = useCategoriesStore();
   const searchParams = useSearchParams();
@@ -52,8 +59,10 @@ const CourseDetails = ({ initialCourse }) => {
   const registerUrl = useMemo(() => {
     const params = new URLSearchParams();
     params.set("course_id", id);
+    if (selectedDate) params.set("date", selectedDate);
+    if (selectedCity) params.set("city_id", selectedCity);
     return `/${locale}/registerCourse?${params.toString()}`;
-  }, [locale, id]);
+  }, [locale, id, selectedDate, selectedCity]);
 
   // Instructor shown in the sticky side card; falls back to a senior trainer
   // from the academy roster when the API doesn't provide one.
@@ -107,6 +116,7 @@ const CourseDetails = ({ initialCourse }) => {
   useEffect(() => {
     setMounted(true);
     handleGetCategories();
+    handleGetCities();
     const params = new URLSearchParams(searchParams.toString());
     if (params.has("type")) {
       params.set("taxonomy", params.get("type"));
@@ -121,12 +131,23 @@ const CourseDetails = ({ initialCourse }) => {
   return (
     <section>
       <Header />
+      {/* ── Title hero band (reference style) ── */}
+      <div className={styles.pageHero}>
+        <div className={stylesContainer.container}>
+          <div className={styles.pageHeroInner}>
+            <h1 className={styles.pageHeroTitle}>{course?.name}</h1>
+            {course?.category?.name && (
+              <p className={styles.pageHeroCategory}>
+                <BookOpen size={17} aria-hidden="true" /> {course.category.name}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
       <div className={stylesContainer.container}>
         <div className={styles.mainContent}>
-          <div className={styles.mainTitle}>
-            <h1>
-              {t('allDetailsFor')} <span> {course?.name}</span>
-            </h1>{" "}
+          <div className={`${styles.mainTitle} ${styles.mainTitleActions}`}>
             <Dialog.Root modal={true}>
               <Dialog.Trigger asChild>
                 <button
@@ -333,45 +354,82 @@ const CourseDetails = ({ initialCourse }) => {
                   </div>
                   </div>
 
-                  {/* ── Sticky instructor card column (replaces price/dates) ── */}
+                  {/* ── Sticky course card: instructor + info rows + booking ── */}
                   <aside className={styles.rightCol}>
                     <div className={styles.instructorCard}>
-                      <span className={styles.instructorLabel}>{t('instructorTitle')}</span>
-                      <div className={styles.instructorPhoto}>
-                        <Image
-                          src={instructor.image}
-                          alt={instructor.name}
-                          width={300}
-                          height={300}
-                        />
-                      </div>
-                      <h3 className={styles.instructorName}>{instructor.name}</h3>
-                      <p className={styles.instructorJob}>{instructor.job}</p>
-
-                      <div className={styles.instructorStats}>
-                        <div className={styles.instructorStat}>
-                          <Star size={16} fill="#FACC15" color="#FACC15" />
-                          <strong>{instructor.rating || "4.9"}</strong>
-                          <span>{t('rating')}</span>
+                      <div className={styles.instructorHeader}>
+                        <div className={styles.instructorPhoto}>
+                          <Image
+                            src={instructor.image}
+                            alt={instructor.name}
+                            width={300}
+                            height={300}
+                          />
                         </div>
-                        <div className={styles.instructorStat}>
-                          <Users size={16} color="#2F327D" />
-                          <strong>{instructor.students || "8,600+"}</strong>
-                          <span>{t('students')}</span>
-                        </div>
-                        <div className={styles.instructorStat}>
-                          <Clock size={16} color="#B12E33" />
-                          <strong>{course?.week_number ? `${course.week_number} ${tCommon('weeks')}` : `1-2 ${tCommon('weeks')}`}</strong>
-                          <span>{t('duration')}</span>
+                        <div className={styles.instructorHeaderText}>
+                          <span className={styles.instructorLabel}>{t('instructorTitle')}</span>
+                          <h3 className={styles.instructorName}>{instructor.name}</h3>
+                          <p className={styles.instructorJob}>{instructor.job}</p>
                         </div>
                       </div>
 
-                      <div className={styles.instructorPrice}>
-                        <span>£{course?.price}</span>
-                        <p>{t('oneTimePayment')}</p>
+                      <div className={styles.cardRows}>
+                        <div className={styles.cardRow}>
+                          <span className={styles.cardRowLabel}>
+                            <Clock size={16} aria-hidden="true" /> {t('duration')}
+                          </span>
+                          <span className={styles.cardRowValue}>
+                            {course?.week_number === 1
+                              ? t('oneWeek')
+                              : course?.week_number
+                                ? `${course.week_number} ${tCommon('weeks')}`
+                                : `1-2 ${tCommon('weeks')}`}
+                          </span>
+                        </div>
+                        <div className={styles.cardRow}>
+                          <span className={styles.cardRowLabel}>
+                            <Banknote size={16} aria-hidden="true" /> {t('price')}
+                          </span>
+                          <span className={styles.cardRowValue}>£{course?.price}</span>
+                        </div>
+                        <div className={styles.cardRow}>
+                          <span className={styles.cardRowLabel}>
+                            <Languages size={16} aria-hidden="true" /> {t('language')}
+                          </span>
+                          <span className={styles.cardRowValue}>{t('languageValue')}</span>
+                        </div>
                       </div>
 
-                      <Link href={registerUrl} className={styles.instructorRegisterBtn}>
+                      <select
+                        className={styles.cardSelect}
+                        value={selectedDate}
+                        onChange={(e) => setSelectedDate(e.target.value)}
+                        aria-label={t('courseDates')}
+                      >
+                        <option value="">{t('courseDates')}</option>
+                        {course?.dates?.map((session) => (
+                          <option key={session.id} value={session.date}>
+                            {session.date}{session.time ? ` — ${session.time}` : ""}
+                          </option>
+                        ))}
+                      </select>
+
+                      <select
+                        className={styles.cardSelect}
+                        value={selectedCity}
+                        onChange={(e) => setSelectedCity(e.target.value)}
+                        aria-label={t('courseCities')}
+                      >
+                        <option value="">{t('courseCities')}</option>
+                        {cities?.map((city) => (
+                          <option key={city.id} value={city.id}>{city.name}</option>
+                        ))}
+                      </select>
+
+                      <Link
+                        href={registerUrl}
+                        className={`${styles.instructorRegisterBtn} ${selectedDate ? styles.instructorRegisterBtnReady : ""}`}
+                      >
                         {t('registerNow')}
                       </Link>
                       <Link

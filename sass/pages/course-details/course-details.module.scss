@@ -1527,3 +1527,148 @@
         position: static;
     }
 }
+
+// ─── Title hero band (reference style) ─────────────────────────────
+.pageHero {
+    background: #eef1f6;
+    border-bottom: 1px solid $gray-100;
+}
+
+.pageHeroInner {
+    padding: clamp(28px, 4vw, 56px) 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.pageHeroTitle {
+    font-size: clamp(26px, 3.2vw, 44px);
+    font-weight: 800;
+    color: #101828;
+    line-height: 1.2;
+    max-width: 22ch;
+}
+
+.pageHeroCategory {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: $gray-700;
+
+    svg {
+        color: $blue-900;
+    }
+}
+
+// Filter-icon-only row now that the title lives in the hero band.
+.mainTitleActions {
+    justify-content: flex-end;
+}
+
+// ─── Course card (instructor + info rows + booking) ───────────────
+.instructorHeader {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    text-align: start;
+
+    .instructorPhoto {
+        width: 72px;
+        height: 72px;
+        flex-shrink: 0;
+        margin-top: 0;
+        border-width: 3px;
+    }
+}
+
+.instructorHeaderText {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+
+    .instructorLabel {
+        align-self: flex-start;
+        background: none;
+        padding: 0;
+        font-size: 11px;
+        color: $red;
+        letter-spacing: 0.06em;
+    }
+
+    .instructorName {
+        font-size: 16.5px;
+    }
+
+    .instructorJob {
+        margin-top: 0;
+    }
+}
+
+.cardRows {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-block: 1px solid $gray-100;
+    margin-top: 4px;
+}
+
+.cardRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 2px;
+
+    & + & {
+        border-top: 1px solid $gray-100;
+    }
+}
+
+.cardRowLabel {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #101828;
+
+    svg {
+        color: $blue-900;
+    }
+}
+
+.cardRowValue {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: $gray-600;
+    white-space: nowrap;
+}
+
+.cardSelect {
+    width: 100%;
+    height: 44px;
+    padding-inline: 12px;
+    border: 1px solid $gray-300;
+    border-radius: 10px;
+    background: $white;
+    font-size: 13.5px;
+    color: #101828;
+    cursor: pointer;
+
+    &:focus {
+        outline: 2px solid rgba($blue-600, 0.45);
+        outline-offset: 1px;
+    }
+}
+
+.instructorRegisterBtnReady {
+    background: $red !important;
+
+    &:hover {
+        background: darken($red, 8%) !important;
+    }
+}
