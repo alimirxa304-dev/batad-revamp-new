@@ -162,6 +162,7 @@ const CourseDetails = ({ initialCourse }) => {
             <div className={styles.details}>
               <div className={styles.contentCourse}>
                 <div className={styles.info}>
+                  <div className={styles.infoMain}>
                   <div className={styles.summaryContent}>
                     <div className={styles.left}>
                       <div className={styles.top}>
@@ -261,56 +262,8 @@ const CourseDetails = ({ initialCourse }) => {
                       </div>
                     </div>
 
-                    <div className={styles.right}>
-                      {/* ── Sticky instructor card (replaces price/dates panel) ── */}
-                      <div className={styles.instructorCard}>
-                        <span className={styles.instructorLabel}>{t('instructorTitle')}</span>
-                        <div className={styles.instructorPhoto}>
-                          <Image
-                            src={instructor.image}
-                            alt={instructor.name}
-                            width={300}
-                            height={300}
-                          />
-                        </div>
-                        <h3 className={styles.instructorName}>{instructor.name}</h3>
-                        <p className={styles.instructorJob}>{instructor.job}</p>
-
-                        <div className={styles.instructorStats}>
-                          <div className={styles.instructorStat}>
-                            <Star size={16} fill="#FACC15" color="#FACC15" />
-                            <strong>{instructor.rating || "4.9"}</strong>
-                            <span>{t('rating')}</span>
-                          </div>
-                          <div className={styles.instructorStat}>
-                            <Users size={16} color="#2F327D" />
-                            <strong>{instructor.students || "8,600+"}</strong>
-                            <span>{t('students')}</span>
-                          </div>
-                          <div className={styles.instructorStat}>
-                            <Clock size={16} color="#B12E33" />
-                            <strong>{course?.week_number ? `${course.week_number} ${tCommon('weeks')}` : `1-2 ${tCommon('weeks')}`}</strong>
-                            <span>{t('duration')}</span>
-                          </div>
-                        </div>
-
-                        <div className={styles.instructorPrice}>
-                          <span>£{course?.price}</span>
-                          <p>{t('oneTimePayment')}</p>
-                        </div>
-
-                        <Link href={registerUrl} className={styles.instructorRegisterBtn}>
-                          {t('registerNow')}
-                        </Link>
-                        <Link
-                          href={`/${locale}/registerInternalCourse?course_id=${id}`}
-                          className={styles.instructorOutlineBtn}
-                        >
-                          {t('requestInternal')}
-                        </Link>
-                      </div>
-                    </div>
                   </div>
+
                   <div className={styles.summaryIcons}>
                     <div className={styles.item}>
                       <div className={`${styles.icon} ${styles.yellow}`}>
@@ -378,6 +331,57 @@ const CourseDetails = ({ initialCourse }) => {
                       })}
                     </div>
                   </div>
+                  </div>
+
+                  {/* ── Sticky instructor card column (replaces price/dates) ── */}
+                  <aside className={styles.rightCol}>
+                    <div className={styles.instructorCard}>
+                      <span className={styles.instructorLabel}>{t('instructorTitle')}</span>
+                      <div className={styles.instructorPhoto}>
+                        <Image
+                          src={instructor.image}
+                          alt={instructor.name}
+                          width={300}
+                          height={300}
+                        />
+                      </div>
+                      <h3 className={styles.instructorName}>{instructor.name}</h3>
+                      <p className={styles.instructorJob}>{instructor.job}</p>
+
+                      <div className={styles.instructorStats}>
+                        <div className={styles.instructorStat}>
+                          <Star size={16} fill="#FACC15" color="#FACC15" />
+                          <strong>{instructor.rating || "4.9"}</strong>
+                          <span>{t('rating')}</span>
+                        </div>
+                        <div className={styles.instructorStat}>
+                          <Users size={16} color="#2F327D" />
+                          <strong>{instructor.students || "8,600+"}</strong>
+                          <span>{t('students')}</span>
+                        </div>
+                        <div className={styles.instructorStat}>
+                          <Clock size={16} color="#B12E33" />
+                          <strong>{course?.week_number ? `${course.week_number} ${tCommon('weeks')}` : `1-2 ${tCommon('weeks')}`}</strong>
+                          <span>{t('duration')}</span>
+                        </div>
+                      </div>
+
+                      <div className={styles.instructorPrice}>
+                        <span>£{course?.price}</span>
+                        <p>{t('oneTimePayment')}</p>
+                      </div>
+
+                      <Link href={registerUrl} className={styles.instructorRegisterBtn}>
+                        {t('registerNow')}
+                      </Link>
+                      <Link
+                        href={`/${locale}/registerInternalCourse?course_id=${id}`}
+                        className={styles.instructorOutlineBtn}
+                      >
+                        {t('requestInternal')}
+                      </Link>
+                    </div>
+                  </aside>
                 </div>
 
                 {course?.video && (

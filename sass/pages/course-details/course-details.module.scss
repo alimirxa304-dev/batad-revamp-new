@@ -179,7 +179,9 @@
     gap: 39px;
     padding: 25.93px 0px 100px 0px;
     max-width: 100%;
-    overflow-x: hidden;
+    // clip (not hidden): hidden makes this element a scroll container, which
+    // silently disables the sticky instructor card in the descendant tree.
+    overflow-x: clip;
 
     @media (max-width: 768px) {
         gap: 20px;
@@ -300,12 +302,18 @@
                 gap: 24px;
 
                 .info {
-                    display: flex;
-                    flex-direction: column;
+                    // Two columns: all course content | sticky instructor card.
+                    display: grid;
+                    grid-template-columns: minmax(0, 1fr) 340px;
                     gap: 32px;
+                    align-items: start;
                     overflow-wrap: break-word;
                     word-break: break-word;
                     max-width: 100%;
+
+                    @media (max-width: 991px) {
+                        grid-template-columns: minmax(0, 1fr);
+                    }
 
                     @media (max-width: 768px) {
                         gap: 20px;
@@ -334,7 +342,7 @@
 
                     .summaryContent {
                         display: grid;
-                        grid-template-columns: 2fr 1fr;
+                        grid-template-columns: minmax(0, 1fr);
                         gap: 18px;
 
                         @media (max-width: 991px) {
@@ -1487,5 +1495,35 @@
     &:hover {
         background: $blue-900;
         color: $white;
+    }
+}
+
+// ─── Info layout columns (content | sticky instructor card) ────────
+.infoMain {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    min-width: 0;
+
+    @media (max-width: 768px) {
+        gap: 20px;
+    }
+}
+
+.rightCol {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-self: start;
+    position: sticky;
+    top: 100px;
+    box-shadow: 0px 8px 10px -6px #0000001A, 0px 20px 25px -5px #0000001A;
+    border: 1px solid #F3F4F6;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 20px;
+
+    @media (max-width: 991px) {
+        position: static;
     }
 }
