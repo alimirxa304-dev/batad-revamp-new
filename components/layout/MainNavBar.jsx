@@ -21,10 +21,24 @@ const MainNavBar = () => {
   const dropdownRef = useRef(null);
   const mobileMenuRef = useRef(null);
 
-  const TRAINING_ITEMS = [
-    { label: t('programs.master'), href: '/search_course?type=2' },
-    { label: t('programs.diploma'), href: '/search_course?type=3' },
+  // Menu mirrors the live batdacademy.com navigation.
+  const WHO_WE_ARE_ITEMS = [
+    { label: t('who.academyVision'), href: '/page/Academy-Vision' },
+    { label: t('who.teamStaff'), href: '/page/Team-work' },
+    { label: t('who.academyServices'), href: '/page/Academy-Services' },
+    { label: t('who.workField'), href: '/page/Work-Field' },
+    { label: t('who.boardOfAdvisors'), href: '/page/Board_of_Advisors' },
+  ];
+
+  const NAV_ITEMS = [
     { label: t('programs.trainingCourses'), href: '/search_course?type=1' },
+    { label: t('programs.diploma'), href: '/search_course?type=3' },
+    { label: t('programs.master'), href: '/search_course?type=2' },
+    { label: t('cities'), href: '/show_cities' },
+    { label: t('consulting'), href: '/consulting' },
+    { label: t('teamWork'), href: '/page/Team-work' },
+    { label: t('contactUs'), href: '/contact_us' },
+    { label: t('externalTraining'), href: '/search_course' },
   ];
 
   const { member } = useAuthStore();
@@ -67,7 +81,7 @@ const MainNavBar = () => {
               aria-haspopup="true"
               aria-expanded={trainingOpen}
             >
-              {t('trainingPrograms')}
+              {t('whoWeAre')}
               <ChevronDown
                 className={`${styles.chevron} ${trainingOpen ? styles.open : ''}`}
                 aria-hidden="true"
@@ -76,7 +90,7 @@ const MainNavBar = () => {
 
             {trainingOpen && (
               <ul className={styles.dropdownMenu} role="menu">
-                {TRAINING_ITEMS.map((item) => (
+                {WHO_WE_ARE_ITEMS.map((item) => (
                   <li key={item.href} role="none">
                     <Link
                       href={item.href}
@@ -91,10 +105,11 @@ const MainNavBar = () => {
               </ul>
             )}
           </div>
-          <Link href={'/show_cities'} className={styles.navLink} >{t('cities')}</Link>
-          <Link href="/consulting" className={styles.navLink}>{t('consulting')}</Link>
-          <Link href="/blog" className={styles.navLink}>{t('blog')}</Link>
-          <Link href="/contact_us" className={styles.navLink}>{t('contactUs')}</Link>
+          {NAV_ITEMS.map((item) => (
+            <Link key={item.label} href={item.href} className={styles.navLink}>
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
         {
@@ -163,7 +178,7 @@ const MainNavBar = () => {
               aria-haspopup="true"
               aria-expanded={trainingOpen}
             >
-              {t('trainingPrograms')}
+              {t('whoWeAre')}
               <ChevronDown
                 className={`${styles.chevron} ${trainingOpen ? styles.open : ''}`}
                 aria-hidden="true"
@@ -172,7 +187,7 @@ const MainNavBar = () => {
 
             {trainingOpen && (
               <ul className={styles.mobileDropdownMenu} role="menu">
-                {TRAINING_ITEMS.map((item) => (
+                {WHO_WE_ARE_ITEMS.map((item) => (
                   <li key={item.href} role="none">
                     <Link
                       href={item.href}
@@ -190,11 +205,16 @@ const MainNavBar = () => {
               </ul>
             )}
           </div>
-          <Link href={'/show_cities'} className={styles.mobileLink} onClick={() => setMobileOpen(false)} >{t('cities')}</Link>
-
-          <Link href="/consulting" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>{t('consulting')}</Link>
-          <Link href="/blog" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>{t('blog')}</Link>
-          <Link href="/contact_us" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>{t('contactUs')}</Link>
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={styles.mobileLink}
+              onClick={() => setMobileOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
 
           {
             member ? (

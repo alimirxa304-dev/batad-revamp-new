@@ -32,11 +32,12 @@
   }
 }
 
-// ─── Main Grid ────────────────────────────────────────────────
+// ─── Main Grid (about | who | cities | info | logo) ───────────
 .main {
   padding: 44px 80px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2.2fr 1fr 1fr 1fr auto;
+  gap: clamp(24px, 3vw, 48px);
   align-items: start;
 
   @media (max-width: $small-desktop) {
@@ -52,8 +53,49 @@
   }
 
   @media (max-width: 480px) {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 26px;
+  }
+}
+
+// ─── About column ─────────────────────────────────────────────
+.aboutColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  @media (max-width: $small-desktop) {
+    grid-column: 1 / -1;
+  }
+}
+
+.aboutDesc {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: #FFFFFFB2;
+  margin: 0;
+  max-width: 52ch;
+}
+
+// Short red accent bar under column titles, like the live footer.
+.titleLine {
+  display: block;
+  width: 34px;
+  height: 3px;
+  border-radius: 3px;
+  background: $red;
+  margin-bottom: 6px;
+}
+
+// ─── Logo column ──────────────────────────────────────────────
+.logoColumn {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  @media (max-width: $small-desktop) {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
   }
 }
 
@@ -127,8 +169,8 @@
 }
 
 .socialIcon {
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   border-radius: 13.59px;
   border:  none;
   display: flex;
@@ -195,16 +237,20 @@
   }
 }
 
-// ─── Bottom Bar ───────────────────────────────────────────────
+// ─── Bottom Bar (copyright + socials, like live subfooter) ────
 .bottom {
   border-top: 1px solid #FFFFFF1A;
-  padding-top: 32px;
+  padding: 24px 80px 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
 
   @media (max-width: $tablet) {
-    padding: 16px 24px;
+    padding: 16px 24px 0;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
   }
 }

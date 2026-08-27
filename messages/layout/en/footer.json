@@ -1,31 +1,30 @@
 {
   "Footer": {
-    "tagline": "The world's most trusted training partner for improving knowledge, skills, and capabilities through innovative learning solutions.",
+    "aboutTitle": "About the Academy",
+    "aboutDesc": "The British Academy for Training and Development is a British institution specialized in the training and development of human and institutional staff in the areas of management, business management, media, public relations, information technology, public health and other related disciplines.",
     "columns": {
-      "about": {
-        "title": "About",
-        "consultations": "Our Services",
-        "blog": "Academy Vision",
-        "faq": "FAQ",
-        "privacy": "Privacy Policy"
+      "who": {
+        "title": "Who we are",
+        "vision": "Vision and Mission",
+        "workArea": "Work Area",
+        "services": "Academy Services",
+        "consulting": "Consulting & Solutions"
       },
-      "quickLinks": {
-        "title": "Quick Links",
-        "coursesByCity": "Courses by City",
-        "yearPlans": "Year Plans",
-        "professionalPath": "Professional Path",
-        "jobs": "Jobs",
-        "categories": "Categories",
-        "specialization": "Specializations"
+      "cities": {
+        "title": "Cities",
+        "london": "London",
+        "barcelona": "Barcelona",
+        "dubai": "Dubai",
+        "istanbul": "Istanbul"
       },
-      "support": {
-        "title": "Support",
-        "supportCenter": "Support Center",
-        "account": "My Account",
-        "contact": "Contact Us",
-        "feedback": "Feedback"
+      "info": {
+        "title": "Info.",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of use",
+        "customers": "Customers Service",
+        "corporate": "Corporate Service"
       }
     },
-    "copyright": "© {year} British Academy for Training & Development. All Rights Reserved."
+    "copyright": "{year} - Copyright © All Rights Reserved By British Academy."
   }
 }
