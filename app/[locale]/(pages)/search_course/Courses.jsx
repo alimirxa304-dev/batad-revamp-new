@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import * as Dialog from "@radix-ui/react-dialog";
+import { ArrowRight, ArrowLeft, Filter, X } from "lucide-react";
 import Header from "./Header";
 import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
 import styleContainer from "@/sass/components/common/container.module.scss";
@@ -21,10 +22,16 @@ const CoursesPage = ({ initialCoursesData }) => {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    const [visibleCount, setVisibleCount] = useState(6);
+    // Multiples of 4 to match the 4-across results grid.
+    const [visibleCount, setVisibleCount] = useState(8);
     const [data, setData] = useState(initialCoursesData);
     const [isLoading, setIsLoading] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const isInitialMount = useRef(true);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const fetchCourses = async (queryString, append = false) => {
         setIsLoading(!append);
@@ -63,14 +70,14 @@ const CoursesPage = ({ initialCoursesData }) => {
     }, [searchParams]);
     const firstCourseId = data?.courses?.[0]?.id;
     useEffect(() => {
-        setVisibleCount(6);
+        setVisibleCount(8);
     }, [firstCourseId]);
 
     const handleViewMore = () => {
         if (data?.courses && visibleCount < data.courses.length) {
-            setVisibleCount(prev => prev + 6);
+            setVisibleCount(prev => prev + 8);
         } else if (data?.has_more) {
-            setVisibleCount(prev => prev + 6);
+            setVisibleCount(prev => prev + 8);
             const params = new URLSearchParams(window.location.search);
             if (params.has('type')) {
                 params.set('taxonomy', params.get('type'));
@@ -102,13 +109,9 @@ const CoursesPage = ({ initialCoursesData }) => {
                 <div className={styleContainer.container}>
                     {!data ? (
                         <div className={styles.wrapper}>
-                            <div className={styles.filter}>
-                                <Skeleton type="card" height="300px" style={{ marginBottom: '20px' }} />
-                                <Skeleton type="card" height="400px" />
-                            </div>
                             <div className={styles.coursesWrapper}>
                                 <div className={styles.courses}>
-                                    {[1, 2, 3, 4, 5, 6].map((i) => (
+                                    {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
                                         <Skeleton key={i} type="card" height="400px" />
                                     ))}
                                 </div>
@@ -116,7 +119,32 @@ const CoursesPage = ({ initialCoursesData }) => {
                         </div>
                     ) : (
                         <div className={styles.wrapper}>
-                            <SidebarFilter updateFilter={updateFilter} data={data} className='filter'/>
+                            {/* Filters live in an overlay drawer, opened from this button. */}
+                            <div className={styles.toolbar}>
+                                <Dialog.Root modal={true}>
+                                    <Dialog.Trigger asChild>
+                                        <button className={styles.filterBtn} type="button">
+                                            <Filter size={17} aria-hidden="true" /> {t('filters')}
+                                        </button>
+                                    </Dialog.Trigger>
+                                    {mounted && (
+                                        <Dialog.Portal>
+                                            <Dialog.Overlay className={styles.drawerOverlay} />
+                                            <Dialog.Content className={styles.drawerContent}>
+                                                <div className={styles.drawerHeader}>
+                                                    <Dialog.Title className={styles.drawerTitle}>
+                                                        {t('filters')}
+                                                    </Dialog.Title>
+                                                    <Dialog.Close className={styles.drawerClose}>
+                                                        <X size={20} aria-hidden="true" />
+                                                    </Dialog.Close>
+                                                </div>
+                                                <SidebarFilter updateFilter={updateFilter} data={data} className='mobileFilter' />
+                                            </Dialog.Content>
+                                        </Dialog.Portal>
+                                    )}
+                                </Dialog.Root>
+                            </div>
 
                             <MotionWrapper className={styles.coursesWrapper}>
                                 {isLoading ? (
