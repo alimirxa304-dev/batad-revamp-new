@@ -442,3 +442,26 @@ display: flex;
     margin: 10px 0;
     width: 100%;
 }
+
+// Compact 2026-2027 Training pill shown in the mobile top bar (the desktop
+// nav that carries .calendarBtn is hidden at this width).
+.calendarBtnTop {
+    display: none;
+
+    @media (max-width: 1024px) {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+        background: $red;
+        color: $white;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 8px 12px;
+        border-radius: 9999px;
+    }
+
+    @media (max-width: 360px) {
+        font-size: 11px;
+        padding: 7px 10px;
+    }
+}
