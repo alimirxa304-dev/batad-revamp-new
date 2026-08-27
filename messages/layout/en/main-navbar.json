@@ -1,10 +1,20 @@
 {
-     "Navbar": {
+  "Navbar": {
     "home": "Home",
+    "whoWeAre": "Who we are",
+    "who": {
+      "academyVision": "Academy Vision",
+      "teamStaff": "Team Staff",
+      "academyServices": "Academy Services",
+      "workField": "Work Field",
+      "boardOfAdvisors": "Board of Advisors"
+    },
     "trainingPrograms": "Training Programs",
     "consulting": "Consulting",
+    "teamWork": "Team Work",
+    "externalTraining": "External Training",
     "blog": "Blog",
-    "contactUs": "Contact Us",
+    "contactUs": "Contact us",
     "signIn": "Sign in",
     "signUp": "Sign up",
     "programs": {
@@ -12,6 +22,6 @@
       "diploma": "Diploma",
       "trainingCourses": "Training Courses"
     },
-    "cities":"Cities"
+    "cities": "Cities"
   }
 }

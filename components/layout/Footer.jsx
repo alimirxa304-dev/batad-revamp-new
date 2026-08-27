@@ -29,19 +29,15 @@ const IconFacebook = () => (
   </svg>
 );
 
-const IconPhone = () => (
+const IconWhatsapp = () => (
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
   </svg>
 );
 
-const IconMail = () => (
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
-  </svg>
-);
-
+// Same social destinations as the live batdacademy.com footer.
 const SOCIALS = [
+  { icon: <IconWhatsapp />, href: "https://api.whatsapp.com/send?phone=442035827999", label: "WhatsApp" },
   { icon: <IconFacebook />, href: "https://www.facebook.com/Batdacademy.arabic", label: "Facebook" },
   { icon: <IconTwitter />, href: "https://twitter.com/batadacademy", label: "Twitter / X" },
   { icon: <IconInstagram />, href: "https://www.instagram.com/batdacademy", label: "Instagram" },
@@ -49,60 +45,53 @@ const SOCIALS = [
 ];
 
 // ─── Component ────────────────────────────────────────────────
+// Layout mirrors the live batdacademy.com footer: about column, three link
+// columns (Who we are / Cities / Info.), logo, then a sub-bar with the
+// copyright and social icons.
 export default async function Footer() {
   const t = await getTranslations('Footer');
-  // Dynamic so the copyright year never goes stale again like the hardcoded "2024" this
-  // replaced — no yearly code change needed.
   const copyrightYear = new Date().getFullYear();
 
   const NAV_COLUMNS = [
     {
-      title: t('columns.about.title'),
+      title: t('columns.who.title'),
       links: [
-        { label: t('columns.about.consultations'), href: "/page/our-services" },
-        { label: t('columns.about.blog'), href: "/page/Academy-Vision" },
-        { label: t('columns.about.faq'), href: "/page/FAQ" },
-        { label: t('columns.about.privacy'), href: "/privacy" },
+        { label: t('columns.who.vision'), href: "/page/Academy-Vision" },
+        { label: t('columns.who.workArea'), href: "/page/Work-Field" },
+        { label: t('columns.who.services'), href: "/page/Academy-Services" },
+        { label: t('columns.who.consulting'), href: "/consulting" },
       ],
     },
     {
-      title: t('columns.quickLinks.title'),
+      title: t('columns.cities.title'),
       links: [
-        { label: t('columns.quickLinks.coursesByCity'), href: "/show_cities" },
-          { label: t('columns.quickLinks.yearPlans'), href: "/year_plan" },
-
-        // { label: t('columns.quickLinks.professionalPath'), href: "#" },
-        { label: t('columns.quickLinks.jobs'), href: "/jobs" },
-        { label: t('columns.quickLinks.categories'), href: "/search_course" },
-        { label: t('columns.quickLinks.specialization'), href: "/search_course" },
+        { label: t('columns.cities.london'), href: "/city/33/Training-Course-in-London" },
+        { label: t('columns.cities.barcelona'), href: "/city/45/Training-Course-in-Barcelona" },
+        { label: t('columns.cities.dubai'), href: "/city/61/Training-Course-in-Dubai" },
+        { label: t('columns.cities.istanbul'), href: "/city/71/Training-Course-in-Istanbul" },
       ],
     },
     {
-      title: t('columns.support.title'),
+      title: t('columns.info.title'),
       links: [
-        // { label: t('columns.support.supportCenter'), href: "#" },
-        // { label: t('columns.support.account'), href: "#" },
-        { label: t('columns.support.contact'), href: "/contact_us" },
-        // { label: t('columns.support.feedback'), href: "#" },
+        { label: t('columns.info.privacy'), href: "/privacy" },
+        { label: t('columns.info.terms'), href: "/page/manual" },
+        { label: t('columns.info.customers'), href: "/page/our-services" },
+        { label: t('columns.info.corporate'), href: `/page/${encodeURIComponent('خدمة-الشركات')}` },
       ],
     },
   ];
 
   return (
     <footer className={styles.footer} aria-label="Site footer">
-      <div className={styles.top}>
-        {/* <Image
-          src={footerLogo}
-          width={150}
-          height={107}
-          alt="British Academy"
-          priority={false}
-          style={{ width: "150px", height: "107px" }}
-        /> */}
-        <p className={styles.tagline}>{t('tagline')}</p>
-      </div>
-
       <div className={styles.main}>
+        {/* ── About the Academy ── */}
+        <div className={styles.aboutColumn}>
+          <h2 className={styles.navTitle}>{t('aboutTitle')}</h2>
+          <span className={styles.titleLine} aria-hidden="true" />
+          <p className={styles.aboutDesc}>{t('aboutDesc')}</p>
+        </div>
+
         {NAV_COLUMNS.map((col) => (
           <nav
             key={col.title}
@@ -110,6 +99,7 @@ export default async function Footer() {
             aria-label={col.title}
           >
             <h2 className={styles.navTitle}>{col.title}</h2>
+            <span className={styles.titleLine} aria-hidden="true" />
             <ul className={styles.navList}>
               {col.links.map((link) => (
                 <li key={link.label}>
@@ -122,51 +112,42 @@ export default async function Footer() {
           </nav>
         ))}
 
-        {/* ── Contact block ── */}
-        <div className={styles.contactColumn}>
-          <div
-            className={styles.socials}
-            role="list"
-            aria-label="Social media links"
-          >
-            {SOCIALS.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialIcon}
-                aria-label={s.label}
-                role="listitem"
-              >
-                {s.icon}
-              </a>
-            ))}
-          </div>
-
-          <div className={styles.contactItems}>
-            <a href="tel:+442035827999" className={styles.contactItem}>
-              <span className={styles.contactIcon}>
-                <IconPhone />
-              </span>
-              +44 20 3582 7999
-            </a>
-            <a
-              href="mailto:info@batdacademy.org.uk"
-              className={styles.contactItem}
-            >
-              <span className={styles.contactIcon}>
-                <IconMail />
-              </span>
-              info@batdacademy.org.uk
-            </a>
-          </div>
+        {/* ── Logo ── */}
+        <div className={styles.logoColumn}>
+          <Link href="/">
+            <Image
+              src={footerLogo}
+              alt="British Academy for Training & Development"
+              width={150}
+              height={107}
+              style={{ width: "auto", maxHeight: "120px", height: "auto" }}
+            />
+          </Link>
         </div>
       </div>
 
-      {/* ── Bottom bar ── */}
+      {/* ── Bottom bar: copyright + socials, like the live subfooter ── */}
       <div className={styles.bottom}>
         <p className={styles.copyright}>{t('copyright', { year: copyrightYear })}</p>
+        <div
+          className={styles.socials}
+          role="list"
+          aria-label="Social media links"
+        >
+          {SOCIALS.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.socialIcon}
+              aria-label={s.label}
+              role="listitem"
+            >
+              {s.icon}
+            </a>
+          ))}
+        </div>
       </div>
     </footer>
   );

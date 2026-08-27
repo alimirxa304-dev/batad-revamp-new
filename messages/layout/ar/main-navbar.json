@@ -1,8 +1,18 @@
 {
-     "Navbar": {
+  "Navbar": {
     "home": "الرئيسية",
+    "whoWeAre": "من نحن",
+    "who": {
+      "academyVision": "الرؤية و المهمة",
+      "teamStaff": "طاقم العمل",
+      "academyServices": "خدمات الأكادمية البريطانية",
+      "workField": "نطاق العمل",
+      "boardOfAdvisors": "مجلس المستشارين"
+    },
     "trainingPrograms": "البرامج التدريبية",
-    "consulting": "الاستشارات",
+    "consulting": "استشارات",
+    "teamWork": "فريق العمل",
+    "externalTraining": "تدريب خارجي",
     "blog": "المدونة",
     "contactUs": "اتصل بنا",
     "signIn": "دخول",
@@ -10,8 +20,8 @@
     "programs": {
       "master": "الماجستير",
       "diploma": "الدبلوم",
-      "trainingCourses": "الدورات التدريبية"
+      "trainingCourses": "دورات التدريب"
     },
-    "cities":"المدن"
+    "cities": "المدن"
   }
 }
