@@ -5,6 +5,14 @@
     padding-bottom:80px;
 
   }
+
+  // Swiper clips its viewport (overflow: hidden), which cut the top of hovered
+  // cards and their shadows. Give the track breathing room via padding and pull
+  // it back with negative margins so the layout width/height doesn't change.
+  :global(.swiper) {
+    padding: 14px 6px 26px;
+    margin: -14px -6px -26px;
+  }
 }
 
 // Positions the arrows against the swiper's own height only, excluding the
