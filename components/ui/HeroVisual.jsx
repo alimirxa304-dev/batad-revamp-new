@@ -37,7 +37,7 @@ const DEFAULT_CONFIG = {
     text:  "Certified Programs",
   },
   teamCard: {
-    title:    "Our Specialized Team",
+    title:    "Our Specialised Team",
     members:  ["S", "M", "E", "J"],
     moreText: "+500",
   },

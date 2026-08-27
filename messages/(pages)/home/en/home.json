@@ -6,28 +6,30 @@
   },
   "CoursesBySpecial": {
     "title": "Courses by",
-    "titleSpan": "Specialization",
-    "subtitle": "Leverage British-European expertise with specialized instructors tailored to your success",
+    "titleSpan": "Specialisation",
+    "subtitle": "Leverage British-European expertise with specialised instructors tailored to your success",
     "coursesCount": "courses",
     "viewCourses": "View Courses",
-    "viewAll": "View All Specializations"
+    "viewAll": "View All Specialisations"
   },
   "CourseByCity": {
-    "title": "Courses by",
-    "titleSpan": "City",
-    "subtitle": "Explore our training centers in the world's most iconic cities"
+    "title": "Our Training",
+    "titleSpan": "Venues",
+    "subtitle": "Explore our training centres in the world's most iconic cities",
+    "viewCourses": "View Courses",
+    "allCities": "All Venues"
   },
   "WhatIs": {
     "title": "What is",
     "titleSpan": "BRITISH ACADEMY?",
     "annualPlan": "Annual Training Plan",
-    "annualPlanSub": "Courses & Programs",
+    "annualPlanSub": "Courses & Programmes",
     "goToPlan": "Go to Plan",
     "description": "The British Academy's annual training plan offers comprehensive learning pathways crafted to elevate your professional development and drive meaningful career growth.",
     "viewDetails": "View Details",
     "stats": {
       "years": "Years of Excellence",
-      "programs": "Training Programs",
+      "programs": "Training Programmes",
       "professionals": "Professionals Trained"
     },
     "items": {
@@ -37,19 +39,19 @@
       },
       "approved": {
         "title": "Accredited Courses",
-        "desc": "Our accredited programs deliver premium services, verified credentials, and world-class learning."
+        "desc": "Our accredited programmes deliver premium services, verified credentials, and world-class learning."
       },
       "featured": {
         "title": "Featured Courses",
-        "desc": "Continuously updated curricula designed to meet evolving labor market and industry demands."
+        "desc": "Continuously updated curricula designed to meet evolving labour market and industry demands."
       },
       "specialization": {
-        "title": "Courses by Specialization",
-        "desc": "Over 20 specialized tracks spanning a broad range of professional disciplines."
+        "title": "Courses by Specialisation",
+        "desc": "Over 20 specialised tracks spanning a broad range of professional disciplines."
       },
       "city": {
         "title": "Courses by City",
-        "desc": "Train in globally recognized cities, each offering a unique cultural and professional experience."
+        "desc": "Train in globally recognised cities, each offering a unique cultural and professional experience."
       }
     }
   },
@@ -80,14 +82,14 @@
     "partTime": "Part Time",
     "location": "Location",
     "postedAgo": "ago",
-    "details":"Details",
-    "published":"published",
+    "details": "Details",
+    "published": "published",
     "requestConsultation": "Request Consultation",
     "blogs": {
       "card1": {
         "category": "Leadership",
         "title": "10 Essential Leadership Skills for Modern Managers",
-        "excerpt": "Discover the key leadership competencies that drive team performance and organizational success in today's dynamic business landscape.",
+        "excerpt": "Discover the key leadership competencies that drive team performance and organisational success in today's dynamic business landscape.",
         "author": "Dr. Sarah Mitchell",
         "date": "Jun 28, 2026",
         "readTime": "8"
@@ -138,12 +140,12 @@
     "consultancy": {
       "card1": {
         "title": "Business Strategy & Transformation",
-        "description": "Expert guidance on organizational restructuring, digital transformation, and strategic planning for sustainable growth.",
+        "description": "Expert guidance on organisational restructuring, digital transformation, and strategic planning for sustainable growth.",
         "features": "Strategic Planning, Change Management, Growth Modeling"
       },
       "card2": {
         "title": "HR & Talent Development",
-        "description": "Optimize your workforce with tailored talent acquisition, performance systems, and leadership development programs.",
+        "description": "Optimise your workforce with tailored talent acquisition, performance systems, and leadership development programmes.",
         "features": "Talent Strategy, Performance Systems, Leadership Coaching"
       },
       "card3": {
@@ -176,7 +178,7 @@
   "RequestCourse": {
     "title": "Request a",
     "titleSpan": "Course",
-    "subtitle": "Contact us to tailor a training program that meets your specific needs",
+    "subtitle": "Contact us to tailor a training programme that meets your specific needs",
     "stats": {
       "students": "Active Students",
       "graduates": "Certified Graduates",
@@ -184,7 +186,7 @@
     },
     "whatYouGet": "What You Get",
     "benefits": {
-      "certificates": "Internationally recognized certificates",
+      "certificates": "Internationally recognised certificates",
       "instructors": "Expert industry instructors",
       "curriculum": "Up-to-date, market-aligned curriculum",
       "support": "Post-training career support"
