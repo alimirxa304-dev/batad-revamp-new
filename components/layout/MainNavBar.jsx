@@ -146,6 +146,10 @@ const MainNavBar = () => {
 
         {/* Mobile Search, Lang Toggle & Hamburger */}
         <div className={styles.mobileActions_top}>
+          <Link href="/calendar" className={styles.calendarBtnTop}>
+            {t('trainingCalendar')}
+          </Link>
+
           <button className={styles.searchIconMobile} aria-label="Search">
             <Search size={22} />
           </button>
