@@ -26,24 +26,11 @@
     }
 
     .wrapper {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 67px;
-
-        // The sidebar filter is display:none below 1440px — collapse its
-        // column too, or the results get squeezed into the empty 1fr track.
-        @media (max-width: 1440px) {
-            grid-template-columns: 1fr;
-        }
-
-        @media (max-width: 1200px) {
-            gap: 40px;
-        }
-
-        @media (max-width: 992px) {
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
+        // Filters open from the toolbar button in an overlay drawer, so the
+        // results always take the full width.
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
 
         @media (max-width: 480px) {
             gap: 16px;
@@ -65,22 +52,17 @@
 
             .courses {
                 display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 26px;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 22px;
                 min-height: 500px;
 
-                @media (min-width: 1600px) {
-                    grid-template-columns: repeat(3, minmax(0, 1fr));
-                }
-
-                // Full-width results (sidebar hidden): three across.
                 @media (max-width: 1440px) {
                     grid-template-columns: repeat(3, minmax(0, 1fr));
                 }
 
-                @media (max-width: 1200px) {
+                @media (max-width: 1024px) {
                     grid-template-columns: repeat(2, minmax(0, 1fr));
-                    gap: 20px;
+                    gap: 18px;
                 }
 
                 @media (max-width: 640px) {
@@ -151,4 +133,105 @@
             }
         }
     }
+}
+
+// ─── Toolbar with the filter-drawer trigger ─────────────────────────
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filterBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 42px;
+    padding-inline: 18px;
+    background: $blue-900;
+    color: $white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: $transition-base;
+
+    &:hover {
+        opacity: 0.88;
+    }
+}
+
+// ─── Overlay filter drawer ──────────────────────────────────────────
+.drawerOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    animation: drawerFadeIn 300ms ease;
+}
+
+.drawerContent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 85%;
+    max-width: 340px;
+    background: #ffffff;
+    z-index: 10000;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
+    animation: drawerSlideIn 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.drawerHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #F3F4F6;
+}
+
+.drawerTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: $blue-900;
+    margin: 0;
+}
+
+.drawerClose {
+    background: #F3F4F6;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #6B7280;
+    transition: $transition-base;
+
+    &:hover {
+        background: #E5E7EB;
+        color: $blue-900;
+    }
+}
+
+@keyframes drawerFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes drawerSlideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
 }
