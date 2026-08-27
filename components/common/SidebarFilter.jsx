@@ -8,7 +8,7 @@ import Category from "../ui/Categories";
 import styles from "@/sass/components/common/sidebar-filter.module.scss";
 import { useTranslations } from "next-intl";
 
-const SidebarFilter = ({ updateFilter, data, className, activeCategoryId, activeSpecializationId: activeSpecIdProp }) => {
+const SidebarFilter = ({ updateFilter, data, className, activeCategoryId, activeSpecializationId: activeSpecIdProp, hideTags = false }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { locale } = useParams();
@@ -117,7 +117,7 @@ const SidebarFilter = ({ updateFilter, data, className, activeCategoryId, active
           </CategoriesBox>
         )}
 
-        {tagsBox}
+        {!hideTags && tagsBox}
       </MotionWrapper>
     );
   }
@@ -135,7 +135,7 @@ const SidebarFilter = ({ updateFilter, data, className, activeCategoryId, active
 
       {categoriesBox}
 
-      {tagsBox}
+      {!hideTags && tagsBox}
     </MotionWrapper>
   );
 };
