@@ -1161,7 +1161,10 @@
     gap: 20px;
     align-self: start;
     position: sticky;
-    top: 100px;
+    // Header height + the sticky tabs bar's own height, so this card settles
+    // just below the tabs instead of scrolling underneath them.
+    top: calc(clamp(60px, 10vw, 83px) + 74px);
+    z-index: 10;
     box-shadow: 0px 8px 10px -6px #0000001A, 0px 20px 25px -5px #0000001A;
     border: 1px solid #F3F4F6;
     background-color: #FFFFFF;
@@ -1182,8 +1185,22 @@
 .pageHeroInner {
     padding: clamp(28px, 4vw, 56px) 0;
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(24px, 4vw, 56px);
+
+    @media (max-width: 900px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.pageHeroText {
+    display: flex;
     flex-direction: column;
     gap: 12px;
+    flex: 1;
+    min-width: 0;
 }
 
 .pageHeroTitle {
@@ -1204,6 +1221,78 @@
 
     svg {
         color: $blue-900;
+    }
+}
+
+// ─── Hero actions: online badge + register CTA ─────────────────────
+.pageHeroActions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.pageHeroOnlineBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 46px;
+    padding: 0 18px;
+    border-radius: 10px;
+    background: $white;
+    border: 1px solid $blue-900;
+    color: $blue-900;
+    font-size: 14.5px;
+    font-weight: 600;
+    white-space: nowrap;
+
+    svg {
+        color: $blue-900;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 13px;
+        padding: 0 14px;
+    }
+}
+
+.pageHeroRegisterBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    padding: 0 24px;
+    border-radius: 10px;
+    background: $red;
+    color: $white;
+    font-size: 15px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: $transition-base;
+
+    &:hover {
+        background: darken($red, 8%);
+    }
+}
+
+// ─── Hero course image — contained, not full-bleed ──────────────────
+.pageHeroImage {
+    flex-shrink: 0;
+    width: clamp(220px, 26vw, 380px);
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0px 16px 32px -12px rgba(16, 24, 40, 0.25);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    @media (max-width: 900px) {
+        width: min(100%, 380px);
     }
 }
 
