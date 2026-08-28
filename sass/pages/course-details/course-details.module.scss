@@ -573,137 +573,6 @@
                         }
                     }
 
-                    .summaryIcons {
-                        display: grid;
-                        grid-template-columns: repeat(3, 1fr);
-                        gap: 19.91px;
-
-                        @media (max-width: 991px) {
-                            gap: 12px;
-                        }
-
-                        @media (max-width: 576px) {
-                            gap: 8px;
-                        }
-
-                        .item {
-                            display: flex;
-                            gap: 14.93px;
-                            background-color: $white;
-                            border: 1px solid #F3F4F6;
-                            border-radius: 12.45px;
-                            padding: 21.16px;
-                            box-shadow: 0px 4.98px 7.47px -4.98px #0000001A, 0px 12.45px 18.67px -3.73px #0000001A;
-
-                            @media (max-width: 991px) {
-                                padding: 16px;
-                            }
-
-                            @media (max-width: 640px) {
-                                flex-direction: column;
-                                align-items: center;
-                                text-align: center;
-                                padding: 14px 8px;
-                                gap: 8px;
-                                border-radius: 10px;
-                            }
-
-                            @media (max-width: 480px) {
-                                padding: 12px 6px;
-                                gap: 6px;
-                            }
-
-                            .icon {
-                                width: 50px;
-                                height: 50px;
-                                min-width: 50px;
-                                border-radius: 12px;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-
-                                @media (max-width: 991px) {
-                                    width: 40px;
-                                    height: 40px;
-                                    min-width: 40px;
-
-                                    svg {
-                                        width: 20px;
-                                        height: 20px;
-                                    }
-                                }
-
-                                @media (max-width: 640px) {
-                                    width: 36px;
-                                    height: 36px;
-                                    min-width: 36px;
-                                    border-radius: 10px;
-
-                                    svg {
-                                        width: 18px;
-                                        height: 18px;
-                                    }
-                                }
-
-                                @media (max-width: 480px) {
-                                    width: 32px;
-                                    height: 32px;
-                                    min-width: 32px;
-
-                                    svg {
-                                        width: 16px;
-                                        height: 16px;
-                                    }
-                                }
-
-                                &.yellow { background-color: #FEF9C2; }
-                                &.blue   { background-color: #DBEAFE; }
-                                &.green  { background-color: #F3E8FF; }
-                                &.pink   { background-color: #FFE2E2; }
-                            }
-
-                            .content {
-                                display: flex;
-                                flex-direction: column;
-                                gap: 0px;
-                                min-width: 0;
-
-                                .statNumber {
-                                    font-weight: 500;
-                                    font-size: 24px;
-                                    color: $text-blue;
-                                    white-space: nowrap;
-
-                                    @media (max-width: 991px) {
-                                        font-size: 20px;
-                                    }
-
-                                    @media (max-width: 640px) {
-                                        font-size: 15px;
-                                    }
-
-                                    @media (max-width: 480px) {
-                                        font-size: 13px;
-                                    }
-                                }
-
-                                p {
-                                    font-weight: 400;
-                                    font-size: 14.93px;
-                                    color: #4A5565;
-
-                                    @media (max-width: 640px) {
-                                        font-size: 11px;
-                                    }
-
-                                    @media (max-width: 480px) {
-                                        font-size: 10px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
                     .tabContainer {
                         display: flex;
                         flex-direction: column;
@@ -1042,6 +911,25 @@
 // }
 
 
+
+// ─── Sticky tabs bar, pinned below the site header ─────────────────
+.stickyTabsBar {
+    position: sticky;
+    // Matches .mainNavBar's own height (main-navbar.module.scss) so the
+    // tabs sit flush under the header instead of behind it.
+    top: clamp(60px, 10vw, 83px);
+    z-index: 40;
+    background: $white;
+    border-bottom: 1px solid $gray-100;
+    box-shadow: 0px 4px 10px -6px rgba(0, 0, 0, 0.08);
+    padding-block: 14px;
+    margin-bottom: 32px;
+
+    @media (max-width: 576px) {
+        padding-block: 10px;
+        margin-bottom: 20px;
+    }
+}
 
 .courseTabs {
     display: flex;
