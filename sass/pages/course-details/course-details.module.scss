@@ -1185,7 +1185,9 @@
 .pageHeroInner {
     padding: clamp(28px, 4vw, 56px) 0;
     display: flex;
-    align-items: center;
+    // stretch (not center): the hero image fills the full row height —
+    // centering it left visible gray padding above/below the photo.
+    align-items: stretch;
     justify-content: space-between;
     gap: clamp(24px, 4vw, 56px);
 
@@ -1276,11 +1278,10 @@
     }
 }
 
-// ─── Hero course image — contained, not full-bleed ──────────────────
+// ─── Hero course image — contained width, fills the row's full height ──
 .pageHeroImage {
     flex-shrink: 0;
     width: clamp(220px, 26vw, 380px);
-    aspect-ratio: 4 / 3;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0px 16px 32px -12px rgba(16, 24, 40, 0.25);
@@ -1289,10 +1290,15 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        display: block;
     }
 
+    // Below 900px .pageHeroInner switches to a stacked column (align-items:
+    // flex-start), so this no longer stretches — give it an aspect ratio
+    // instead of relying on the row's cross-axis height.
     @media (max-width: 900px) {
         width: min(100%, 380px);
+        aspect-ratio: 4 / 3;
     }
 }
 
