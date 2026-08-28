@@ -2,37 +2,26 @@
 import { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
-import * as Dialog from "@radix-ui/react-dialog";
+import { useParams } from "next/navigation";
 import {
   ArrowRight,
   Banknote,
   BookOpen,
   ChevronRight,
   Clock,
-  Filter,
   Languages,
   Mail,
   Play,
   Printer,
   Star,
   Users,
-  X,
 } from "lucide-react";
 import Tabs from "@/components/common/Tabs";
 import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
-import useCategoriesStore from "@/store/useCategoriesStore";
 import useCitiesStore from "@/store/useCitiesStore";
-import useCoursesStore from "@/store/useCoursesStore";
 import Header from "./Header";
 import stylesContainer from "@/sass/components/common/container.module.scss";
 import styles from "@/sass/pages/course-details/course-details.module.scss";
-import SidebarFilter from "@/components/common/SidebarFilter";
 import { useTranslations } from "next-intl";
 
 // The printable course PDF is served by the Laravel site (not part of this Next.js
@@ -44,16 +33,9 @@ const CourseDetails = ({ initialCourse }) => {
   const t = useTranslations('CourseDetails');
   const tCommon = useTranslations();
   const [activeTabId, setActiveTabId] = useState(1);
-  const [mounted, setMounted] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
-  const { handleGetCourses, data } = useCoursesStore();
   const { cities, handleGetCities } = useCitiesStore();
-
-  const { handleGetCategories } = useCategoriesStore();
-  const searchParams = useSearchParams();
-  const pathname = usePathname();
-  const router = useRouter();
   const { id, locale } = useParams();
   const course = initialCourse;
   const registerUrl = useMemo(() => {
@@ -99,32 +81,9 @@ const CourseDetails = ({ initialCourse }) => {
     window.open(printUrl, "_blank", "noopener,noreferrer");
   };
 
-  const updateFilter = (key, value) => {
-    const params = new URLSearchParams(searchParams.toString());
-
-    if (value) {
-      params.set(key, value);
-    } else {
-      params.delete(key);
-    }
-
-    params.delete("cursor");
-
-    router.push(`${pathname}?${params.toString()}`, { scroll: false });
-  };
-
   useEffect(() => {
-    setMounted(true);
-    handleGetCategories();
     handleGetCities();
-    const params = new URLSearchParams(searchParams.toString());
-    if (params.has("type")) {
-      params.set("taxonomy", params.get("type"));
-      params.delete("type");
-    }
-    const queryString = params.toString() ? `?${params.toString()}` : "";
-    handleGetCourses(queryString);
-  }, [searchParams]);
+  }, []);
   const courseTabs = course?.tabs;
   const activeTab =
     courseTabs?.find((tab) => tab.id === activeTabId) || courseTabs?.[0];
@@ -147,38 +106,6 @@ const CourseDetails = ({ initialCourse }) => {
 
       <div className={stylesContainer.container}>
         <div className={styles.mainContent}>
-          <div className={`${styles.mainTitle} ${styles.mainTitleActions}`}>
-            <Dialog.Root modal={true}>
-              <Dialog.Trigger asChild>
-                <button
-                  className={styles.filterBtn}
-                  type="button"
-                  aria-label="Open filters"
-                >
-                  <Filter size={20} aria-hidden="true" />
-                </button>
-              </Dialog.Trigger>
-
-              {mounted && (
-                <Dialog.Portal>
-                  <Dialog.Overlay className={styles.drawerOverlay} />
-                  <Dialog.Content className={styles.drawerContent}>
-                    <div className={styles.drawerHeader}>
-                      <Dialog.Title className={styles.drawerTitle}>
-                        {t('filters')}
-                      </Dialog.Title>
-                      <Dialog.Close className={styles.drawerClose}>
-                        <X size={20} aria-hidden="true" />
-                      </Dialog.Close>
-                    </div>
-
-                    <SidebarFilter data={data} updateFilter={updateFilter} className='mobileFilter' hideTags />
-                  </Dialog.Content>
-                </Dialog.Portal>
-              )}
-            </Dialog.Root>
-          </div>
-
           <div className={styles.content}>
             <div className={styles.details}>
               <div className={styles.contentCourse}>
