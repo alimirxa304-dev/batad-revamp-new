@@ -11,6 +11,7 @@ import {
   Clock,
   Languages,
   Mail,
+  Monitor,
   Play,
   Printer,
 } from "lucide-react";
@@ -92,11 +93,33 @@ const CourseDetails = ({ initialCourse }) => {
       <div className={styles.pageHero}>
         <div className={stylesContainer.container}>
           <div className={styles.pageHeroInner}>
-            <h1 className={styles.pageHeroTitle}>{course?.name}</h1>
-            {course?.category?.name && (
-              <p className={styles.pageHeroCategory}>
-                <BookOpen size={17} aria-hidden="true" /> {course.category.name}
-              </p>
+            <div className={styles.pageHeroText}>
+              <h1 className={styles.pageHeroTitle}>{course?.name}</h1>
+              {course?.category?.name && (
+                <p className={styles.pageHeroCategory}>
+                  <BookOpen size={17} aria-hidden="true" /> {course.category.name}
+                </p>
+              )}
+
+              <div className={styles.pageHeroActions}>
+                <span className={styles.pageHeroOnlineBadge}>
+                  <Monitor size={17} aria-hidden="true" /> {t('heroOnlineAvailable')}
+                </span>
+                <Link href={registerUrl} className={styles.pageHeroRegisterBtn}>
+                  {t('registerNow')}
+                </Link>
+              </div>
+            </div>
+
+            {course?.image && (
+              <div className={styles.pageHeroImage}>
+                <Image
+                  src={course.image}
+                  alt={course?.name || "course-image"}
+                  width={420}
+                  height={300}
+                />
+              </div>
             )}
           </div>
         </div>
