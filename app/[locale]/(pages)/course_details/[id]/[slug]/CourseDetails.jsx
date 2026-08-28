@@ -13,8 +13,6 @@ import {
   Mail,
   Play,
   Printer,
-  Star,
-  Users,
 } from "lucide-react";
 import Tabs from "@/components/common/Tabs";
 import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
@@ -101,6 +99,20 @@ const CourseDetails = ({ initialCourse }) => {
               </p>
             )}
           </div>
+        </div>
+      </div>
+
+      {/* ── Sticky tabs bar (stays pinned below the site header) ── */}
+      <div className={styles.stickyTabsBar}>
+        <div className={stylesContainer.container}>
+          <Tabs
+            tabs={course?.tabs}
+            activeTabId={activeTabId}
+            onTabChange={setActiveTabId}
+            className={styles.courseTabs}
+            tabClassName={styles.courseTabItem}
+            activeTabClassName={styles.active}
+          />
         </div>
       </div>
 
@@ -212,47 +224,7 @@ const CourseDetails = ({ initialCourse }) => {
 
                   </div>
 
-                  <div className={styles.summaryIcons}>
-                    <div className={styles.item}>
-                      <div className={`${styles.icon} ${styles.yellow}`}>
-                        <Star size={24} color="#D08700" />
-                      </div>
-                      <div className={styles.content}>
-                        <p className={styles.statNumber}>+600k</p>
-                        <p>{t('reviews')}</p>
-                      </div>
-                    </div>
-
-                    <div className={styles.item}>
-                      <div className={`${styles.icon} ${styles.blue}`}>
-                        <Users size={24} color="#2F327D" />
-                      </div>
-                      <div className={styles.content}>
-                        <p className={styles.statNumber}>+800k</p>
-                        <p>{t('students')}</p>
-                      </div>
-                    </div>
-
-                    <div className={styles.item}>
-                      <div className={`${styles.icon} ${styles.green}`}>
-                        <Clock size={24} color="#9810FA" />
-                      </div>
-                      <div className={styles.content}>
-                        <p className={styles.statNumber}>{course?.week_number ? `${course.week_number} ${tCommon('weeks')}` : `1-2 ${tCommon('weeks')}`}</p>
-                        <p>{t('duration')}</p>
-                      </div>
-                    </div>
-                  </div>
-
                   <div className={styles.tabContainer}>
-                    <Tabs
-                      tabs={course?.tabs}
-                      activeTabId={activeTabId}
-                      onTabChange={setActiveTabId}
-                      className={styles.courseTabs}
-                      tabClassName={styles.courseTabItem}
-                      activeTabClassName={styles.active}
-                    />
                     <div className={styles.tabContent}>
                       <h3>{activeTab?.title}</h3>
                       <div
