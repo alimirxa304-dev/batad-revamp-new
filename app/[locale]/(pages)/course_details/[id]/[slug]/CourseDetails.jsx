@@ -7,6 +7,7 @@ import {
   ArrowRight,
   Banknote,
   BookOpen,
+  ChevronDown,
   ChevronRight,
   Clock,
   Languages,
@@ -16,6 +17,7 @@ import {
   Printer,
 } from "lucide-react";
 import Tabs from "@/components/common/Tabs";
+import DropdownMenuCustom from "@/components/common/DropdownMenu";
 import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
 import useCitiesStore from "@/store/useCitiesStore";
 import Header from "./Header";
@@ -44,6 +46,20 @@ const CourseDetails = ({ initialCourse }) => {
     if (selectedCity) params.set("city_id", selectedCity);
     return `/${locale}/registerCourse?${params.toString()}`;
   }, [locale, id, selectedDate, selectedCity]);
+
+  // Searchable dropdown options for the booking card.
+  const dateOptions = useMemo(
+    () =>
+      (course?.dates || []).map((session) => ({
+        label: session.time ? `${session.date} — ${session.time}` : session.date,
+        value: session.date,
+      })),
+    [course?.dates]
+  );
+  const cityOptions = useMemo(
+    () => (cities || []).map((city) => ({ label: city.name, value: city.id })),
+    [cities]
+  );
 
   // Instructor shown in the sticky side card; falls back to a senior trainer
   // from the academy roster when the API doesn't provide one.
@@ -322,31 +338,23 @@ const CourseDetails = ({ initialCourse }) => {
                         </div>
                       </div>
 
-                      <select
-                        className={styles.cardSelect}
+                      <DropdownMenuCustom
+                        label={t('courseDates')}
+                        options={dateOptions}
                         value={selectedDate}
-                        onChange={(e) => setSelectedDate(e.target.value)}
-                        aria-label={t('courseDates')}
-                      >
-                        <option value="">{t('courseDates')}</option>
-                        {course?.dates?.map((session) => (
-                          <option key={session.id} value={session.date}>
-                            {session.date}{session.time ? ` — ${session.time}` : ""}
-                          </option>
-                        ))}
-                      </select>
+                        onChange={setSelectedDate}
+                        triggerClassName={styles.cardSelect}
+                        icon={<ChevronDown size={16} aria-hidden="true" />}
+                      />
 
-                      <select
-                        className={styles.cardSelect}
+                      <DropdownMenuCustom
+                        label={t('courseCities')}
+                        options={cityOptions}
                         value={selectedCity}
-                        onChange={(e) => setSelectedCity(e.target.value)}
-                        aria-label={t('courseCities')}
-                      >
-                        <option value="">{t('courseCities')}</option>
-                        {cities?.map((city) => (
-                          <option key={city.id} value={city.id}>{city.name}</option>
-                        ))}
-                      </select>
+                        onChange={setSelectedCity}
+                        triggerClassName={styles.cardSelect}
+                        icon={<ChevronDown size={16} aria-hidden="true" />}
+                      />
 
                       <Link
                         href={registerUrl}
