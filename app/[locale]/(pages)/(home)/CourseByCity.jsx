@@ -31,8 +31,8 @@ const CityCard = ({ city, locale, viewCourses }) => (
                     <Image
                         src={city.icon || city.image}
                         alt={city.name}
-                        width={140}
-                        height={100}
+                        width={200}
+                        height={140}
                     />
                 ) : (
                     <Building2 aria-hidden="true" />
