@@ -116,8 +116,8 @@ const CourseDetails = ({ initialCourse }) => {
                 <Image
                   src={course.image}
                   alt={course?.name || "course-image"}
-                  width={420}
-                  height={300}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 380px"
                 />
               </div>
             )}
