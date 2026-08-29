@@ -5,9 +5,7 @@ import { motion } from "framer-motion"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import whatis from '@/public/asstes/whatis.webp'
 import { useParams } from "next/navigation"
-import computer from '@/public/asstes/icons/computer.svg';
 import gameDevelopment from '@/public/asstes/icons/game-development.svg';
-import promotion from '@/public/asstes/icons/promotion.svg';
 import uxInterface from '@/public/asstes/icons/ux-interface.svg';
 import containerStyle from '@/sass/components/common/container.module.scss'
 import styles from '@/sass/pages/home/what-is.module.scss'
@@ -25,13 +23,10 @@ const WhatIs = () => {
         { value: '65,000+', label: t('stats.professionals') },
     ];
 
+    // Discounted / Featured / Courses by City moved out to their own
+    // CourseHighlights section (between Upcoming Courses and Courses by
+    // Specialisation) — kept here: Accredited Courses and Specialisation.
     const items = [
-        {
-            params: { query: { discounted: 22 } },
-            img: computer,
-            title: t('items.discounted.title'),
-            desc: t('items.discounted.desc'),
-        },
         {
             params: { query: { has_approval: 1 } },
             img: gameDevelopment,
@@ -39,21 +34,10 @@ const WhatIs = () => {
             desc: t('items.approved.desc'),
         },
         {
-            params: { query: { featured: 1 } },
-            img: promotion,
-            title: t('items.featured.title'),
-            desc: t('items.featured.desc'),
-        },
-        {
             params: { query: { specialization_id: 22 } },
             img: uxInterface,
             title: t('items.specialization.title'),
             desc: t('items.specialization.desc'),
-        },
-        {
-            img: computer,
-            title: t('items.city.title'),
-            desc: t('items.city.desc'),
         },
     ];
 

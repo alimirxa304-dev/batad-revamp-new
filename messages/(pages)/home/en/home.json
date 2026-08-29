@@ -34,6 +34,12 @@
     "badgeValue": "15+",
     "badgeLabel": "Years of Excellence"
   },
+  "CourseHighlights": {
+    "title": "Explore",
+    "titleSpan": "More Ways to Learn",
+    "subtitle": "Discounted, featured, and city-based training tailored to your needs",
+    "viewDetails": "View Details"
+  },
   "WhatIs": {
     "title": "What is",
     "titleSpan": "BRITISH ACADEMY?",

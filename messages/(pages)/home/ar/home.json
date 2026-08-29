@@ -34,6 +34,12 @@
     "badgeValue": "+15",
     "badgeLabel": "عاماً من التميز"
   },
+  "CourseHighlights": {
+    "title": "استكشف",
+    "titleSpan": "المزيد من طرق التعلم",
+    "subtitle": "دورات مخفضة ومميزة ومصنفة حسب المدينة تناسب احتياجاتك",
+    "viewDetails": "عرض التفاصيل"
+  },
   "WhatIs": {
     "title": "ما هي",
     "titleSpan": "الأكاديمية البريطانية؟",
