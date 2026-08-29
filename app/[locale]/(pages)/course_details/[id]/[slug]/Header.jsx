@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 
-const Header = () => {
+const Header = ({ courseName }) => {
     const { locale } = useParams();
     const t = useTranslations('CourseDetails');
 
@@ -23,7 +23,9 @@ const Header = () => {
                     <ArrowRight color='#4A5565' size={20} />
                     <span>{t('courses')}</span>
                     <ArrowRight color='#4A5565' size={20} />
-                    <span>{t('courseDetails')}</span>
+                    <span className={styles.current} title={courseName}>
+                        {courseName || t('courseDetails')}
+                    </span>
                 </div>
             </div>
         </section>

@@ -97,6 +97,24 @@
             }
         }
 
+        // Explicit class (in addition to the nth-child(7) rule above) so the
+        // course-name crumb keeps truncating even if the breadcrumb markup
+        // ever changes — and widened to desktop, since real course titles
+        // run much longer than "Course Details" ever did.
+        .current {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 320px;
+
+            @media (max-width: 768px) {
+                max-width: 200px;
+            }
+
+            @media (max-width: 576px) {
+                max-width: 100px;
+            }
+        }
+
         svg {
             flex-shrink: 0;
 
