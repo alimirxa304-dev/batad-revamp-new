@@ -1,7 +1,11 @@
 .request-courses {
   display: flex;
   flex-direction: column;
-  gap: clamp(2rem, 5vw, 3.75rem);
+  // No extra gap here — the shared Title component already carries its own
+  // bottom margin, so a flex-gap on top of that was double-spacing the title
+  // away from the form below it.
+  background: $white;
+  padding-block: clamp(2.5rem, 5vw, 4rem);
 
   &__content {
     // Form-only layout: one centered column.
