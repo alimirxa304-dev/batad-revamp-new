@@ -4,7 +4,6 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import { useParams } from "next/navigation"
-import Title from "@/components/common/Title"
 import computer from '@/public/asstes/icons/computer.svg'
 import promotion from '@/public/asstes/icons/promotion.svg'
 import cityIcon from '@/public/asstes/icons/city.png'
@@ -13,8 +12,8 @@ import styles from '@/sass/pages/home/course-highlights.module.scss'
 import { useTranslations } from "next-intl"
 
 // Discounted / Featured / Courses by City — moved here from the "What is
-// British Academy" panel, as their own quick-shortcuts row between
-// Upcoming Courses and Courses by Specialisation.
+// British Academy" panel, laid out as heading-on-one-side + the 3 cards on
+// the other side (a single row on desktop, stacked on mobile).
 const CourseHighlights = () => {
     const t = useTranslations('CourseHighlights')
     const tWhatIs = useTranslations('WhatIs')
@@ -45,34 +44,49 @@ const CourseHighlights = () => {
     return (
         <section>
             <div className={containerStyle.container}>
-                <Title title={t('title')} span={t('titleSpan')} subtitle={t('subtitle')} />
+                <div className={styles.layout}>
+                    {/* ── Heading side ── */}
+                    <motion.div
+                        className={styles.heading}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                    >
+                        <h2 className={styles.headingTitle}>
+                            {t('title')} <span>{t('titleSpan')}</span>
+                        </h2>
+                        <p className={styles.headingSubtitle}>{t('subtitle')}</p>
+                    </motion.div>
 
-                <div className={styles.grid}>
-                    {items.map((item, index) => (
-                        <motion.div
-                            key={index}
-                            className={styles.card}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: index * 0.08, ease: 'easeOut' }}
-                        >
-                            <span className={styles.icon}>
-                                <Image src={item.img} width={30} height={30} alt="" aria-hidden="true" />
-                            </span>
-                            <h3 className={styles.title}>{item.title}</h3>
-                            <p className={styles.desc}>{item.desc}</p>
-                            <Link
-                                href={item.params?.query
-                                    ? `/${locale}/search_course?${new URLSearchParams(item.params.query).toString()}`
-                                    : `/${locale}/search_course`}
-                                className={styles.link}
+                    {/* ── Cards side ── */}
+                    <div className={styles.grid}>
+                        {items.map((item, index) => (
+                            <motion.div
+                                key={index}
+                                className={styles.card}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: index * 0.08, ease: 'easeOut' }}
                             >
-                                {t('viewDetails')}
-                                <Arrow size={15} aria-hidden="true" />
-                            </Link>
-                        </motion.div>
-                    ))}
+                                <span className={styles.icon}>
+                                    <Image src={item.img} width={30} height={30} alt="" aria-hidden="true" />
+                                </span>
+                                <h3 className={styles.title}>{item.title}</h3>
+                                <p className={styles.desc}>{item.desc}</p>
+                                <Link
+                                    href={item.params?.query
+                                        ? `/${locale}/search_course?${new URLSearchParams(item.params.query).toString()}`
+                                        : `/${locale}/search_course`}
+                                    className={styles.link}
+                                >
+                                    {t('viewDetails')}
+                                    <Arrow size={15} aria-hidden="true" />
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
