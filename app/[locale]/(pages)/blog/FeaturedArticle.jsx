@@ -78,10 +78,6 @@ const FeaturedArticle = ({ postFeatured }) => {
             </div>
 
             <div className={styles.articleAuthor}>
-              <div className={styles.author}>
-                <h3>{postFeatured?.author_name}</h3>
-                <span>{t('author')}</span>
-              </div>
               <div className={styles.articleReaction}>
                 <span>
                   {" "}
