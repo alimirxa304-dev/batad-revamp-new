@@ -18,7 +18,7 @@ import Link from 'next/link';
 import heroImage from "@/public/asstes/heroup.jpeg"
 import { useRouter } from 'next/navigation';
 import useSearchAutocomplete from '@/hooks/useSearchAutocomplete';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SearchSuggestions from '@/components/ui/SearchSuggestions';
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -38,6 +38,10 @@ export default function Hero() {
 
     const statsTrackRef = useRef(null);
     const linksTrackRef = useRef(null);
+    // Which end of each horizontal track is currently reachable — drives
+    // hiding the prev/next arrow once there's nothing left in that direction.
+    const [linksEdges, setLinksEdges] = useState({ atStart: true, atEnd: false });
+    const [statsEdges, setStatsEdges] = useState({ atStart: true, atEnd: false });
 
     const quickLinks = [
         { label: t('links.upcoming'), href: `/${locale}/search_course` },
@@ -99,6 +103,51 @@ export default function Hero() {
             behavior: 'smooth',
         });
     };
+
+    // Whether a track's first/last child is currently visible within its own
+    // viewport — i.e. whether there's anything left to scroll to on that side.
+    // Compares actual bounding boxes rather than scrollLeft, since scrollLeft's
+    // sign convention in RTL differs across browsers and is easy to get wrong.
+    // In RTL the browser lays the DOM-first child out on the *right* (flex-
+    // direction: row still follows DOM order, but the start edge flips), so
+    // which side counts as "start" vs "end" has to flip too.
+    const measureEdges = (ref) => {
+        const el = ref.current;
+        if (!el || !el.children.length) return { atStart: true, atEnd: true };
+        const trackRect = el.getBoundingClientRect();
+        const first = el.children[0].getBoundingClientRect();
+        const last = el.children[el.children.length - 1].getBoundingClientRect();
+        return isRtl
+            ? {
+                atStart: first.right <= trackRect.right + 1,
+                atEnd: last.left >= trackRect.left - 1,
+            }
+            : {
+                atStart: first.left >= trackRect.left - 1,
+                atEnd: last.right <= trackRect.right + 1,
+            };
+    };
+
+    useEffect(() => {
+        const linksEl = linksTrackRef.current;
+        const statsEl = statsTrackRef.current;
+        const onLinksScroll = () => setLinksEdges(measureEdges(linksTrackRef));
+        const onStatsScroll = () => setStatsEdges(measureEdges(statsTrackRef));
+
+        onLinksScroll();
+        onStatsScroll();
+
+        linksEl?.addEventListener('scroll', onLinksScroll, { passive: true });
+        statsEl?.addEventListener('scroll', onStatsScroll, { passive: true });
+        window.addEventListener('resize', onLinksScroll);
+        window.addEventListener('resize', onStatsScroll);
+        return () => {
+            linksEl?.removeEventListener('scroll', onLinksScroll);
+            statsEl?.removeEventListener('scroll', onStatsScroll);
+            window.removeEventListener('resize', onLinksScroll);
+            window.removeEventListener('resize', onStatsScroll);
+        };
+    }, []);
 
     const NextIcon = isRtl ? ChevronLeft : ChevronRight;
     const PrevIcon = isRtl ? ChevronRight : ChevronLeft;
@@ -167,6 +216,16 @@ export default function Hero() {
                                 </div>
 
                                 <div className={styles.quickLinks}>
+                                    {!linksEdges.atStart && (
+                                        <button
+                                            type="button"
+                                            className={styles.quickChevron}
+                                            aria-label="previous"
+                                            onClick={() => scrollTrack(linksTrackRef, -1, 0.6)}
+                                        >
+                                            <PrevIcon size={18} />
+                                        </button>
+                                    )}
                                     <div className={styles.quickLinksTrack} ref={linksTrackRef}>
                                         {quickLinks.map((link) => (
                                             <Link key={link.href} href={link.href} className={styles.quickLink}>
@@ -174,14 +233,16 @@ export default function Hero() {
                                             </Link>
                                         ))}
                                     </div>
-                                    <button
-                                        type="button"
-                                        className={styles.quickChevron}
-                                        aria-label={t('searchCourses')}
-                                        onClick={() => scrollTrack(linksTrackRef, 1, 0.6)}
-                                    >
-                                        <NextIcon size={18} />
-                                    </button>
+                                    {!linksEdges.atEnd && (
+                                        <button
+                                            type="button"
+                                            className={styles.quickChevron}
+                                            aria-label="next"
+                                            onClick={() => scrollTrack(linksTrackRef, 1, 0.6)}
+                                        >
+                                            <NextIcon size={18} />
+                                        </button>
+                                    )}
                                 </div>
                             </motion.div>
                         </div>
@@ -212,14 +273,16 @@ export default function Hero() {
             <section className={styles.statsStrip}>
                 <div className={stylesConteiner.container}>
                     <div className={styles.statsInner}>
-                        <button
-                            type="button"
-                            className={styles.statsArrow}
-                            aria-label="previous"
-                            onClick={() => scrollTrack(statsTrackRef, -1)}
-                        >
-                            <PrevIcon size={22} />
-                        </button>
+                        {!statsEdges.atStart && (
+                            <button
+                                type="button"
+                                className={styles.statsArrow}
+                                aria-label="previous"
+                                onClick={() => scrollTrack(statsTrackRef, -1)}
+                            >
+                                <PrevIcon size={22} />
+                            </button>
+                        )}
                         <div className={styles.statsTrack} ref={statsTrackRef}>
                             {stats.map((stat, i) => (
                                 <div key={i} className={styles.statItem}>
@@ -231,14 +294,16 @@ export default function Hero() {
                                 </div>
                             ))}
                         </div>
-                        <button
-                            type="button"
-                            className={styles.statsArrow}
-                            aria-label="next"
-                            onClick={() => scrollTrack(statsTrackRef, 1)}
-                        >
-                            <NextIcon size={22} />
-                        </button>
+                        {!statsEdges.atEnd && (
+                            <button
+                                type="button"
+                                className={styles.statsArrow}
+                                aria-label="next"
+                                onClick={() => scrollTrack(statsTrackRef, 1)}
+                            >
+                                <NextIcon size={22} />
+                            </button>
+                        )}
                     </div>
                 </div>
             </section>
