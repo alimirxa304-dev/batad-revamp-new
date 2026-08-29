@@ -5,6 +5,7 @@ import styles from "@/sass/pages/home/home.module.scss";
 import AboutAcademy from "./AboutAcademy";
 import ChatAi from "./ChatAi";
 import CourseByCity from "./CourseByCity";
+import CourseHighlights from "./CourseHighlights";
 import CoursesBySpecial from "./CoursesBySpecial";
 import Customers from "./Customers";
 import Hero from "./Hero";
@@ -62,6 +63,9 @@ const Home = () => {
       <div className={styles.mainContent}>
         <MotionWrapper>
           <UpcomingCourses />
+        </MotionWrapper>
+        <MotionWrapper>
+          <CourseHighlights />
         </MotionWrapper>
         <MotionWrapper>
           <CoursesBySpecial />
