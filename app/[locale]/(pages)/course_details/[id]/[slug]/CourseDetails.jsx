@@ -104,7 +104,7 @@ const CourseDetails = ({ initialCourse }) => {
     courseTabs?.find((tab) => tab.id === activeTabId) || courseTabs?.[0];
   return (
     <section>
-      <Header />
+      <Header courseName={course?.name} />
       {/* ── Title hero band (reference style) ── */}
       <div className={styles.pageHero}>
         <div className={stylesContainer.container}>
