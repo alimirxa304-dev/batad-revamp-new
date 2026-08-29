@@ -12,6 +12,11 @@
     "noCoursesFound": "No courses found in this specialisation",
     "noCategoryCoursesFound": "No courses found in this category",
     "viewMore": "Show More",
-    "showMore": "Show More"
+    "showMore": "Show More",
+    "subSpecializationsTitle": "Explore",
+    "subSpecializationsTitleSpan": "Specialisations",
+    "subSpecializationsSubtitle": "Choose a specialisation to see its available courses",
+    "viewCourses": "View Courses",
+    "coursesCount": "courses"
   }
 }

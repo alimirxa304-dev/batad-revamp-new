@@ -1,87 +1,51 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
-import Skeleton from "@/components/ui/Skeleton";
-import SidebarFilter from "@/components/common/SidebarFilter";
-import NoData from "@/components/common/NoData";
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import Header from "./Header";
+import Title from "@/components/common/Title";
+import NoData from "@/components/common/NoData";
 import stylesContainer from "@/sass/components/common/container.module.scss";
 import styles from "@/sass/pages/category-details/category-details.module.scss";
-import { getCourses } from "@/action/courses";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { ArrowRight, ArrowLeft } from "lucide-react";
+import specStyles from "@/sass/pages/home/course-by-special.module.scss";
+import { BookOpen } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
-import { cleanMeta } from "@/lib/seoMeta";
+import { cleanMeta, isPlaceholderImage } from "@/lib/seoMeta";
 
-const CategoryDetails = ({ initialCategory, initialCoursesData, categoryId }) => {
+// Same "no image" detection used on the home page's specialisation cards.
+const SpecIcon = ({ item }) => {
+    const [iconFailed, setIconFailed] = useState(false);
+    const hasValidIcon =
+        !iconFailed && typeof item?.icon === "string" && item.icon.trim() && !isPlaceholderImage(item.icon);
+    return (
+        <div className={specStyles.specIcon}>
+            {hasValidIcon ? (
+                <Image
+                    src={item.icon}
+                    alt={item.name}
+                    width={40}
+                    height={40}
+                    onError={() => setIconFailed(true)}
+                />
+            ) : (
+                <BookOpen aria-hidden="true" />
+            )}
+        </div>
+    );
+};
+
+// A main category's page is a picker for its specialisations — matching the
+// same card design as the home page's "Courses by Specialisation" section
+// (icon + name + course count + a View Courses button), not a course listing.
+const CategoryDetails = ({ initialCategory }) => {
     const t = useTranslations('CourseTraning');
     const locale = useLocale();
-    const router = useRouter();
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
-    const [visibleCount, setVisibleCount] = useState(6);
-    const [data, setData] = useState(initialCoursesData);
-    const [isLoading, setIsLoading] = useState(false);
-    const isInitialMount = useRef(true);
 
     const categoryName = initialCategory?.name;
     const categoryDescription = cleanMeta(initialCategory?.meta?.description || initialCategory?.description);
+    const specializations = initialCategory?.specializations || [];
 
-    const fetchCourses = async (queryString, append = false) => {
-        setIsLoading(!append);
-        try {
-            const res = await getCourses(locale, queryString);
-            setData((prev) => {
-                if (append && prev?.courses) {
-                    return { ...res?.data, courses: [...prev.courses, ...(res?.data?.courses || [])] };
-                }
-                return res?.data || { courses: [] };
-            });
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        // The server already fetched this category's courses for the initial URL (see
-        // page.jsx) — skip the redundant refetch on mount and only react to later
-        // filter changes.
-        if (isInitialMount.current) {
-            isInitialMount.current = false;
-            return;
-        }
-        const params = new URLSearchParams(searchParams.toString());
-        params.set("category_id", categoryId);
-        fetchCourses(`?${params.toString()}`);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [searchParams, categoryId]);
-
-    const handleViewMore = () => {
-        if (data?.courses && visibleCount < data.courses.length) {
-            setVisibleCount(prev => prev + 6);
-        } else if (data?.has_more) {
-            setVisibleCount(prev => prev + 6);
-            const params = new URLSearchParams(window.location.search);
-            params.set("category_id", categoryId);
-            params.set('cursor', data.next_cursor);
-            fetchCourses(`?${params.toString()}`, true);
-        }
-    };
-
-    const updateFilter = (key, value) => {
-        const params = new URLSearchParams(searchParams.toString());
-
-        if (value) {
-            params.set(key, value);
-        } else {
-            params.delete(key);
-        }
-
-        params.delete('cursor');
-
-        router.push(`${pathname}?${params.toString()}`, { scroll: false });
-    };
     return (
         <div className={styles.categoryDetails}>
             <Header categoryName={categoryName} />
@@ -98,37 +62,37 @@ const CategoryDetails = ({ initialCategory, initialCoursesData, categoryId }) =>
                             </div>
                         )}
 
-                        <div className={styles.content}>
-                            <SidebarFilter data={data} updateFilter={updateFilter} activeCategoryId={String(categoryId)} />
-                            <div className={styles.rightWrapper}>
+                        <div>
+                            <Title
+                                title={t('subSpecializationsTitle')}
+                                span={t('subSpecializationsTitleSpan')}
+                                subtitle={t('subSpecializationsSubtitle')}
+                            />
 
-                            <div className={styles.rightContent}>
-                                {isLoading ? (
-                                    Array.from({ length: 6 }).map((_, i) => (
-                                        <Skeleton key={i} type="card" height="400px" />
-                                    ))
-                                ) : data?.courses?.length > 0 ? (
-                                    data.courses.map((course, index) => (
-                                        <UpcomingCouresCard key={index} course={course} locale={locale} index={index} />
-                                    ))
-                                ) : (
-                                    <div className={styles.noCourses}>
-                                        <NoData message={t('noCategoryCoursesFound')} />
-                                    </div>
-                                )}
-
-                            </div>
-
-                              {(visibleCount < (data?.courses?.length || 0) || data?.has_more) && (
-                                    <button className={styles.showMoreBtn} onClick={handleViewMore}>
-                                        {t('showMore')} {locale === 'ar' ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
-                                    </button>
-                                )}
-                            </div>
+                            {specializations.length === 0 ? (
+                                <div className={styles.noCourses}>
+                                    <NoData message={t('noCategoriesFound')} />
+                                </div>
+                            ) : (
+                                <div className={specStyles.specsGrid}>
+                                    {specializations.map((item) => (
+                                        <div key={item.id} className={specStyles.specCard}>
+                                            <SpecIcon item={item} />
+                                            <h3 className={specStyles.specName} title={item.name}>{item.name}</h3>
+                                            <p className={specStyles.specCount}>{item.courses_count} {t('coursesCount')}</p>
+                                            <Link
+                                                href={`/${locale}/course_training/${item.id}/${encodeURIComponent(item.slug)}`}
+                                                className={specStyles.specBtn}
+                                            >
+                                                {t('viewCourses')}
+                                            </Link>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     );

@@ -12,6 +12,11 @@
     "noCoursesFound": "لا توجد دورات في هذا التخصص",
     "noCategoryCoursesFound": "لا توجد دورات في هذه الفئة",
     "viewMore": "عرض المزيد",
-    "showMore": "عرض المزيد"
+    "showMore": "عرض المزيد",
+    "subSpecializationsTitle": "استكشف",
+    "subSpecializationsTitleSpan": "التخصصات",
+    "subSpecializationsSubtitle": "اختر تخصصًا لعرض الدورات المتاحة فيه",
+    "viewCourses": "عرض الدورات",
+    "coursesCount": "دورة"
   }
 }

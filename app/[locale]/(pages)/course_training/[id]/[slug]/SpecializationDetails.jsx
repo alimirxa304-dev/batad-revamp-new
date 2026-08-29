@@ -2,7 +2,7 @@
 
 import Skeleton from "@/components/ui/Skeleton";
 import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
-import SidebarFilter from "@/components/common/SidebarFilter";
+import NoData from "@/components/common/NoData";
 import stylesContainer from "@/sass/components/common/container.module.scss";
 import styles from "@/sass/pages/category-details/category-details.module.scss";
 import { getCourses } from "@/action/courses";
@@ -10,7 +10,7 @@ import { ArrowRight, ArrowLeft } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import { useTranslations, useLocale } from "next-intl";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { cleanMeta } from "@/lib/seoMeta";
 
 const SpecializationDetails = ({ initialSpecialization, initialCoursesData, specializationId }) => {
@@ -18,9 +18,7 @@ const SpecializationDetails = ({ initialSpecialization, initialCoursesData, spec
   const locale = useLocale();
   const [data, setData] = useState(initialCoursesData);
   const [isLoading, setIsLoading] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(6);
-  const router = useRouter();
-  const pathname = usePathname();
+  const [visibleCount, setVisibleCount] = useState(8);
   const searchParams = useSearchParams();
   const isInitialMount = useRef(true);
 
@@ -66,29 +64,14 @@ const SpecializationDetails = ({ initialSpecialization, initialCoursesData, spec
 
   const handleViewMore = () => {
     if (data?.courses && visibleCount < data.courses.length) {
-      setVisibleCount(prev => prev + 6);
+      setVisibleCount(prev => prev + 8);
     } else if (data?.has_more) {
-      setVisibleCount(prev => prev + 6);
+      setVisibleCount(prev => prev + 8);
       const params = new URLSearchParams();
       params.set("specialization_id", specializationId);
       params.set('cursor', data.next_cursor);
       fetchCourses(`?${params.toString()}`, true);
     }
-  };
-  // Find the parent category that contains this specialization
-  const parentCategoryId = data?.categories?.find((cat) =>
-    cat.specializations?.some((spec) => String(spec.id) === String(specializationId))
-  )?.id ?? null;
-
-  const updateFilter = (key, value) => {
-    const params = new URLSearchParams(searchParams.toString());
-    if (value) {
-      params.set(key, value);
-    } else {
-      params.delete(key);
-    }
-    params.delete('cursor');
-    router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   return (
@@ -108,50 +91,27 @@ const SpecializationDetails = ({ initialSpecialization, initialCoursesData, spec
               </div>
             )}
 
-            <div className={styles.content}>
-
-              <SidebarFilter
-                data={data}
-                updateFilter={updateFilter}
-                activeCategoryId={parentCategoryId != null ? String(parentCategoryId) : null}
-                activeSpecializationId={String(specializationId)}
-              />
-
-              <div className={styles.rightWrapper}>
-                <div className={styles.rightContent}>
-                  {isLoading ? (
-                    Array.from({ length: 6 }).map((_, i) => (
-                      <Skeleton key={i} type="card" height="400px" />
-                    ))
-                  ) : data?.courses?.length > 0 ? (
-                    data.courses.map((course, index) => (
-                      <UpcomingCouresCard key={index} course={course} locale={locale} index={index} />
-                    ))
-                  ) : (
-                    <div className={styles.noCourses}>
-                      <h3>{t('noCoursesFound')}</h3>
-                    </div>
-                  )}
-
+            <div className={styles.coursesOnly}>
+              {isLoading ? (
+                Array.from({ length: 8 }).map((_, i) => (
+                  <Skeleton key={i} type="card" height="400px" />
+                ))
+              ) : data?.courses?.length > 0 ? (
+                data.courses.slice(0, visibleCount).map((course, index) => (
+                  <UpcomingCouresCard key={index} course={course} locale={locale} index={index} />
+                ))
+              ) : (
+                <div className={styles.noCourses}>
+                  <NoData message={t('noCoursesFound')} />
                 </div>
-
-
-                {(visibleCount < (data?.courses?.length || 0) || data?.has_more) && (
-                  <button className={styles.showMoreBtn} onClick={handleViewMore}>
-                    {t('showMore')} {locale === 'ar' ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
-                  </button>
-                )}
-
-
-
-
-              </div>
-
-
-
+              )}
             </div>
 
-
+            {(visibleCount < (data?.courses?.length || 0) || data?.has_more) && (
+              <button className={styles.showMoreBtn} onClick={handleViewMore}>
+                {t('showMore')} {locale === 'ar' ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
+              </button>
+            )}
           </div>
         </div>
       </div>
