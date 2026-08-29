@@ -99,10 +99,10 @@ const CoursesBySpecial = () => {
                                                         className={styles.accordionSub}
                                                     >
                                                         <SpecIcon item={item} />
-                                                        <span className={styles.accordionSubName}>{item.name}</span>
-                                                        {isRtl
-                                                            ? <ArrowLeft size={16} className={styles.accordionSubArrow} aria-hidden="true" />
-                                                            : <ArrowRight size={16} className={styles.accordionSubArrow} aria-hidden="true" />}
+                                                        <span className={styles.accordionSubName} title={item.name}>{item.name}</span>
+                                                        <span className={styles.accordionSubCount}>
+                                                            {item.courses_count} {t('coursesCount')}
+                                                        </span>
                                                     </Link>
                                                 ))}
                                             </div>
