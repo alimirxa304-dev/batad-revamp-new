@@ -1,10 +1,57 @@
 // ─── Course Highlights: Discounted / Featured / By City shortcuts ───
+// One row: heading on one side, the 3 cards on the other — not stacked.
+.layout {
+    display: flex;
+    align-items: center;
+    gap: clamp(24px, 3.5vw, 48px);
+
+    @media (max-width: 1024px) {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+}
+
+.heading {
+    flex: 0 0 clamp(220px, 26vw, 320px);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    // flex-basis follows the main axis, which flips to vertical once
+    // .layout switches to a column below 1024px — without this the fixed
+    // basis above becomes a forced *height* instead of a width, leaving a
+    // large empty gap under the subtitle.
+    @media (max-width: 1024px) {
+        flex-basis: auto;
+    }
+}
+
+.headingTitle {
+    font-size: clamp(24px, 2.4vw, 32px);
+    font-weight: 800;
+    color: #101828;
+    line-height: 1.25;
+
+    span {
+        color: $red;
+    }
+}
+
+.headingSubtitle {
+    font-size: 14px;
+    line-height: 1.65;
+    color: $gray-600;
+}
+
 .grid {
+    flex: 1;
+    min-width: 0;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(16px, 2vw, 24px);
+    gap: clamp(14px, 1.6vw, 20px);
 
-    @media (max-width: 900px) {
+    @media (max-width: 700px) {
         grid-template-columns: minmax(0, 1fr);
     }
 }
