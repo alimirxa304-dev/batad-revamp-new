@@ -99,11 +99,7 @@ const Blogs = ({ t, locale }) => {
     return (
         <div className={styles.blogsGrid}>
             {posts?.posts?.slice(0, 3)?.map((post, i) => {
-                const { id, name, description
-                    ,
-                    author_name
-                    , date,
-                    publish_date, image } = post;
+                const { id, name, description, date, publish_date, image } = post;
                 return (
                     <motion.div
                         key={id ?? i}
@@ -140,15 +136,7 @@ const Blogs = ({ t, locale }) => {
                             <p className={styles.blogExcerpt}>{description
                             }</p>
                             <div className={styles.blogFooter}>
-                                <div className={styles.blogAuthorInfo}>
-                                    <div className={styles.blogAuthorAvatar}>
-                                        {author_name?.charAt(0)}
-                                    </div>
-                                    <div>
-                                        <span className={styles.blogAuthorName}>{author_name}</span>
-                                        <span className={styles.blogDate}>{date}</span>
-                                    </div>
-                                </div>
+                                <span className={styles.blogDate}>{date}</span>
                                 <div className={styles.blogReadTime}>
                                     <Clock size={13} />
                                     <span>{

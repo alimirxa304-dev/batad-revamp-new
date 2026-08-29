@@ -60,10 +60,6 @@ const LatestArticlesCard = ({ article, view }) => {
         </div>
 
         <div className={styles.articleAuthor}>
-          <div className={styles.author}>
-            <h3>{article?.author_name}</h3>
-            <span>{t('author')}</span>
-          </div>
           <div className={styles.articleReaction}>
             <span>
               {" "}

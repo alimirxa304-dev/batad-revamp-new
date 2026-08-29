@@ -143,31 +143,14 @@
 
         .articleAuthor {
             display: flex;
-            justify-content: space-between;
+            // Was space-between (author info on the left, reactions on the
+            // right) — with the author block removed, keep reactions at
+            // the end instead of collapsing to the start.
+            justify-content: flex-end;
             align-items: center;
             border-top: 1px solid #F3F4F6;
             margin-right: 27.78px;
             padding: 11.11px 0px;
-
-            .author {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-
-                h3 {
-                    font-weight: 400;
-                    font-size: 12.97px;
-                    line-height: 18.52px;
-                    color: $text-blue;
-                }
-
-                span {
-                    font-weight: 400;
-                    font-size: 11.11px;
-                    line-height: 14.82px;
-                    color: $text-gray;
-                }
-            }
 
             .articleReaction {
                 display: flex;
