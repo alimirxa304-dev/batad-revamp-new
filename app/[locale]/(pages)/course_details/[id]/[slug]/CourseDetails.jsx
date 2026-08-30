@@ -239,26 +239,6 @@ const CourseDetails = ({ initialCourse }) => {
                           dangerouslySetInnerHTML={{ __html: course?.details }}
                         />
                       </div>
-
-                      <div className={styles.img}>
-                        {course?.image ? (
-                          <Image
-                            src={course?.image}
-                            alt="course-details"
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                          />
-                        ) : (
-                          <Image
-                            src={"/asstes/details.jpg"}
-                            alt="course-details"
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                          />
-                        )}
-                      </div>
                     </div>
 
                   </div>
