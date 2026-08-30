@@ -26,17 +26,30 @@
     }
 
     .wrapper {
-        // Filters open from the toolbar button in an overlay drawer, so the
-        // results always take the full width.
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
+        // Persistent filter sidebar (25%) + results column, instead of the
+        // drawer this used to open from a toolbar button.
+        display: grid;
+        grid-template-columns: minmax(240px, 25%) minmax(0, 1fr);
+        align-items: start;
+        gap: 24px;
 
-        @media (max-width: 480px) {
-            gap: 16px;
+        @media (max-width: 1024px) {
+            grid-template-columns: minmax(0, 1fr);
         }
+    }
 
-    
+    .sidebarCol {
+        position: sticky;
+        top: 100px;
+
+        @media (max-width: 1024px) {
+            position: static;
+        }
+    }
+
+    .mainCol {
+        min-width: 0;
+
         .coursesWrapper {
             display: flex;
             flex-direction: column;
@@ -52,15 +65,11 @@
 
             .courses {
                 display: grid;
-                grid-template-columns: repeat(4, minmax(0, 1fr));
+                grid-template-columns: repeat(3, minmax(0, 1fr));
                 gap: 22px;
                 min-height: 500px;
 
-                @media (max-width: 1440px) {
-                    grid-template-columns: repeat(3, minmax(0, 1fr));
-                }
-
-                @media (max-width: 1024px) {
+                @media (max-width: 1200px) {
                     grid-template-columns: repeat(2, minmax(0, 1fr));
                     gap: 18px;
                 }
@@ -135,97 +144,6 @@
     }
 }
 
-// ─── Toolbar with the filter-drawer trigger ─────────────────────────
-.toolbar {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.filterBtn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    height: 42px;
-    padding-inline: 18px;
-    background: $blue-900;
-    color: $white;
-    border: none;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: $transition-base;
-
-    &:hover {
-        opacity: 0.88;
-    }
-}
-
-// ─── Overlay filter drawer ──────────────────────────────────────────
-.drawerOverlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 9999;
-    animation: drawerFadeIn 300ms ease;
-}
-
-.drawerContent {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 85%;
-    max-width: 340px;
-    background: #ffffff;
-    z-index: 10000;
-    padding: 24px 20px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
-    animation: drawerSlideIn 400ms cubic-bezier(0.16, 1, 0.3, 1);
-    overflow-y: auto;
-
-    &:focus {
-        outline: none;
-    }
-}
-
-.drawerHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #F3F4F6;
-}
-
-.drawerTitle {
-    font-size: 18px;
-    font-weight: 700;
-    color: $blue-900;
-    margin: 0;
-}
-
-.drawerClose {
-    background: #F3F4F6;
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: #6B7280;
-    transition: $transition-base;
-
-    &:hover {
-        background: #E5E7EB;
-        color: $blue-900;
-    }
-}
-
 @keyframes drawerFadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -236,21 +154,16 @@
     to { transform: translateX(0); }
 }
 
-// ─── Toolbar with view toggle, filter, and PDF download ───────────────
+// ─── Toolbar: view toggle + PDF download icons, top-right corner ──────
 .toolbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 12px;
+    justify-content: flex-end;
+    gap: 8px;
     margin-bottom: 16px;
 
     @media (max-width: 480px) {
         justify-content: center;
-    }
-
-    .filterBtn {
-        flex-shrink: 0;
     }
 }
 
@@ -297,15 +210,13 @@
 .pdfBtn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    justify-content: center;
+    width: 42px;
     height: 42px;
-    padding-inline: 18px;
     background: $red;
     color: $white;
     border: none;
     border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
     cursor: pointer;
     transition: $transition-base;
     flex-shrink: 0;
@@ -314,9 +225,9 @@
         opacity: 0.9;
     }
 
-    @media (max-width: 480px) {
-        width: 100%;
-        justify-content: center;
+    svg {
+        width: 18px;
+        height: 18px;
     }
 }
 

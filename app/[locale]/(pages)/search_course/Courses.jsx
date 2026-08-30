@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { ArrowRight, ArrowLeft, Filter, X, LayoutGrid, List, Download, FileText, FileSpreadsheet, Loader2, CheckCircle, RotateCw, Calendar, Clock } from "lucide-react";
+import { ArrowRight, ArrowLeft, X, LayoutGrid, List, Download, FileText, FileSpreadsheet, Loader2, CheckCircle, RotateCw, Calendar, Clock } from "lucide-react";
 import Header from "./Header";
 import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
 import styleContainer from "@/sass/components/common/container.module.scss";
@@ -88,7 +88,6 @@ const CoursesPage = ({ initialCoursesData }) => {
     const [visibleCount, setVisibleCount] = useState(8);
     const [data, setData] = useState(initialCoursesData);
     const [isLoading, setIsLoading] = useState(false);
-    const [mounted, setMounted] = useState(false);
     const [viewMode, setViewMode] = useState('grid');
     const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
     const [exportFormat, setExportFormat] = useState('pdf');
@@ -112,10 +111,6 @@ const CoursesPage = ({ initialCoursesData }) => {
         setPdfSubmitStatus(null);
         setIsPdfModalOpen(true);
     };
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     const fetchCourses = async (queryString, append = false) => {
         setIsLoading(!append);
@@ -231,41 +226,28 @@ const CoursesPage = ({ initialCoursesData }) => {
                 <div className={styleContainer.container}>
                     {!data ? (
                         <div className={styles.wrapper}>
-                            <div className={styles.coursesWrapper}>
-                                <div className={styles.courses}>
-                                    {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                                        <Skeleton key={i} type="card" height="400px" />
-                                    ))}
+                            <aside className={styles.sidebarCol}>
+                                <Skeleton type="card" height="480px" />
+                            </aside>
+                            <div className={styles.mainCol}>
+                                <div className={styles.coursesWrapper}>
+                                    <div className={styles.courses}>
+                                        {[1, 2, 3, 4, 5, 6].map((i) => (
+                                            <Skeleton key={i} type="card" height="400px" />
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     ) : (
                         <div className={styles.wrapper}>
-                            <div className={styles.toolbar}>
-                                <Dialog.Root modal={true}>
-                                    <Dialog.Trigger asChild>
-                                        <button className={styles.filterBtn} type="button">
-                                            <Filter size={17} aria-hidden="true" /> {t('filters')}
-                                        </button>
-                                    </Dialog.Trigger>
-                                    {mounted && (
-                                        <Dialog.Portal>
-                                            <Dialog.Overlay className={styles.drawerOverlay} />
-                                            <Dialog.Content className={styles.drawerContent}>
-                                                <div className={styles.drawerHeader}>
-                                                    <Dialog.Title className={styles.drawerTitle}>
-                                                        {t('filters')}
-                                                    </Dialog.Title>
-                                                    <Dialog.Close className={styles.drawerClose}>
-                                                        <X size={20} aria-hidden="true" />
-                                                    </Dialog.Close>
-                                                </div>
-                                                <FilterPanel cities={data?.cities} />
-                                            </Dialog.Content>
-                                        </Dialog.Portal>
-                                    )}
-                                </Dialog.Root>
+                            {/* ── Persistent filter sidebar (25%) ── */}
+                            <aside className={styles.sidebarCol}>
+                                <FilterPanel cities={data?.cities} />
+                            </aside>
 
+                            <div className={styles.mainCol}>
+                            <div className={styles.toolbar}>
                                 <div className={styles.viewToggle}>
                                     <button
                                         className={`${styles.viewBtn} ${viewMode === 'grid' ? styles.active : ''}`}
@@ -287,8 +269,8 @@ const CoursesPage = ({ initialCoursesData }) => {
 
                                 <DropdownMenu.Root>
                                     <DropdownMenu.Trigger asChild>
-                                        <button className={styles.pdfBtn} type="button">
-                                            <Download size={17} aria-hidden="true" /> {t('downloadPDF')}
+                                        <button className={styles.pdfBtn} type="button" aria-label={t('downloadPDF')} title={t('downloadPDF')}>
+                                            <Download size={18} aria-hidden="true" />
                                         </button>
                                     </DropdownMenu.Trigger>
                                     <DropdownMenu.Portal>
@@ -446,6 +428,7 @@ const CoursesPage = ({ initialCoursesData }) => {
                                     </>
                                 )}
                             </MotionWrapper>
+                            </div>
                         </div>
                     )}
                 </div>
