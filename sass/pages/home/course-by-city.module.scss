@@ -41,6 +41,11 @@
 .cityIcon {
   width: 100%;
   height: 140px;
+  // The source icon files carry a lot of built-in transparent padding around
+  // the actual artwork, so simply growing this box scaled the empty margin
+  // right along with it. Clipping + scaling the <img> crops that padding
+  // away so the artwork itself reads as noticeably bigger.
+  overflow: hidden;
   @include flex-center;
 
   img {
@@ -49,6 +54,7 @@
     width: auto;
     height: auto;
     object-fit: contain;
+    transform: scale(1.7);
   }
 
   svg {
