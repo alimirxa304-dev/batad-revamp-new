@@ -588,27 +588,10 @@
     gap: 20px;
 }
 
-.pdfDescription {
-    font-size: 15px;
-    color: #6B7280;
-    line-height: 24px;
-    margin: 0;
-}
-
 .pdfFormGroup {
     display: flex;
     flex-direction: column;
     gap: 8px;
-}
-
-.pdfFormLabel {
-    font-size: 14px;
-    font-weight: 500;
-    color: #101828;
-
-    .required {
-        color: $red;
-    }
 }
 
 .pdfFormInput {
@@ -710,4 +693,96 @@
     color: #101828;
     margin: 0;
     line-height: 24px;
+}
+
+// ─── Export dropdown (Download PDF button → PDF / Excel) ────────────
+.exportMenu {
+    background: $white;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    padding: 6px;
+    min-width: 170px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+    z-index: 10001;
+}
+
+.exportMenuItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #101828;
+    cursor: pointer;
+    outline: none;
+
+    svg {
+        color: $red;
+        flex-shrink: 0;
+    }
+
+    &[data-highlighted] {
+        background: #F3F4F6;
+    }
+}
+
+// ─── Mock CAPTCHA row (frontend-only — no backend to verify against) ──
+.captchaRow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.captchaCode {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    height: 48px;
+    min-width: 96px;
+    padding-inline: 12px;
+    background: repeating-linear-gradient(135deg, #F3F4F6, #F3F4F6 4px, #E9EAEC 4px, #E9EAEC 8px);
+    border: 1.5px solid #E5E7EB;
+    border-radius: 10px;
+    user-select: none;
+
+    span {
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 700;
+        font-style: italic;
+        color: $blue-900;
+        transform: rotate(var(--rot, 0deg));
+    }
+}
+
+.captchaRefresh {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    background: #F3F4F6;
+    border: none;
+    border-radius: 10px;
+    color: $blue-900;
+    cursor: pointer;
+    transition: $transition-base;
+
+    &:hover:not(:disabled) {
+        background: #E5E7EB;
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+.captchaInput {
+    flex: 1;
+    min-width: 0;
 }

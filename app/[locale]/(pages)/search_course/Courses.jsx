@@ -2,7 +2,8 @@
 import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ArrowRight, ArrowLeft, Filter, X, LayoutGrid, List, Download, Mail, User, Phone, Building2, Loader2, CheckCircle, Calendar, Clock } from "lucide-react";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { ArrowRight, ArrowLeft, Filter, X, LayoutGrid, List, Download, FileText, FileSpreadsheet, Loader2, CheckCircle, RotateCw, Calendar, Clock } from "lucide-react";
 import Header from "./Header";
 import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
 import styleContainer from "@/sass/components/common/container.module.scss";
@@ -10,7 +11,7 @@ import styles from "@/sass/pages/search-course/search-course.module.scss";
 import MotionWrapper from "@/components/common/MotionWrapper";
 import { getCourses } from "@/action/courses";
 import Skeleton from "@/components/ui/Skeleton";
-import SidebarFilter from "@/components/common/SidebarFilter";
+import FilterPanel from "./FilterPanel";
 import Image from "next/image";
 import NoData from "@/components/common/NoData";
 import { useTranslations, useLocale } from "next-intl";
@@ -90,16 +91,27 @@ const CoursesPage = ({ initialCoursesData }) => {
     const [mounted, setMounted] = useState(false);
     const [viewMode, setViewMode] = useState('grid');
     const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
-    const [pdfFormData, setPdfFormData] = useState({
-        fullName: '',
-        email: '',
-        phone: '',
-        company: ''
-    });
+    const [exportFormat, setExportFormat] = useState('pdf');
+    const [pdfFormData, setPdfFormData] = useState({ name: '', email: '', captcha: '' });
     const [pdfFormErrors, setPdfFormErrors] = useState({});
     const [pdfSubmitting, setPdfSubmitting] = useState(false);
     const [pdfSubmitStatus, setPdfSubmitStatus] = useState(null);
+    const [captchaCode, setCaptchaCode] = useState('');
     const isInitialMount = useRef(true);
+
+    // Frontend-only mock CAPTCHA — no backend to verify against, so this
+    // just guards against an empty/mistyped submission the way a real one would.
+    const generateCaptcha = () =>
+        Math.random().toString(36).slice(2, 7).toUpperCase();
+
+    const openPdfModal = (format) => {
+        setExportFormat(format);
+        setCaptchaCode(generateCaptcha());
+        setPdfFormData({ name: '', email: '', captcha: '' });
+        setPdfFormErrors({});
+        setPdfSubmitStatus(null);
+        setIsPdfModalOpen(true);
+    };
 
     useEffect(() => {
         setMounted(true);
@@ -173,10 +185,11 @@ const CoursesPage = ({ initialCoursesData }) => {
 
     const validatePdfForm = () => {
         const errors = {};
-        if (!pdfFormData.fullName.trim()) errors.fullName = t('fullName') + ' is required';
+        if (!pdfFormData.name.trim()) errors.name = t('fullName') + ' is required';
         if (!pdfFormData.email.trim()) errors.email = t('email') + ' is required';
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(pdfFormData.email)) errors.email = 'Invalid email format';
-        if (!pdfFormData.phone.trim()) errors.phone = t('phone') + ' is required';
+        if (!pdfFormData.captcha.trim()) errors.captcha = t('captcha') + ' is required';
+        else if (pdfFormData.captcha.trim().toUpperCase() !== captchaCode) errors.captcha = t('captchaMismatch');
         setPdfFormErrors(errors);
         return Object.keys(errors).length === 0;
     };
@@ -191,7 +204,7 @@ const CoursesPage = ({ initialCoursesData }) => {
         try {
             await new Promise(resolve => setTimeout(resolve, 1000));
             setPdfSubmitStatus('success');
-            setPdfFormData({ fullName: '', email: '', phone: '', company: '' });
+            setPdfFormData({ name: '', email: '', captcha: '' });
             setTimeout(() => {
                 setIsPdfModalOpen(false);
                 setPdfSubmitStatus(null);
@@ -247,7 +260,7 @@ const CoursesPage = ({ initialCoursesData }) => {
                                                         <X size={20} aria-hidden="true" />
                                                     </Dialog.Close>
                                                 </div>
-                                                <SidebarFilter updateFilter={updateFilter} data={data} className='mobileFilter' />
+                                                <FilterPanel cities={data?.cities} />
                                             </Dialog.Content>
                                         </Dialog.Portal>
                                     )}
@@ -272,12 +285,25 @@ const CoursesPage = ({ initialCoursesData }) => {
                                     </button>
                                 </div>
 
-                                <Dialog.Root open={isPdfModalOpen} onOpenChange={setIsPdfModalOpen}>
-                                    <Dialog.Trigger asChild>
+                                <DropdownMenu.Root>
+                                    <DropdownMenu.Trigger asChild>
                                         <button className={styles.pdfBtn} type="button">
                                             <Download size={17} aria-hidden="true" /> {t('downloadPDF')}
                                         </button>
-                                    </Dialog.Trigger>
+                                    </DropdownMenu.Trigger>
+                                    <DropdownMenu.Portal>
+                                        <DropdownMenu.Content className={styles.exportMenu} align="end" sideOffset={6}>
+                                            <DropdownMenu.Item className={styles.exportMenuItem} onSelect={() => openPdfModal('pdf')}>
+                                                <FileText size={16} aria-hidden="true" /> {t('exportPdf')}
+                                            </DropdownMenu.Item>
+                                            <DropdownMenu.Item className={styles.exportMenuItem} onSelect={() => openPdfModal('excel')}>
+                                                <FileSpreadsheet size={16} aria-hidden="true" /> {t('exportExcel')}
+                                            </DropdownMenu.Item>
+                                        </DropdownMenu.Content>
+                                    </DropdownMenu.Portal>
+                                </DropdownMenu.Root>
+
+                                <Dialog.Root open={isPdfModalOpen} onOpenChange={setIsPdfModalOpen}>
                                     <Dialog.Portal>
                                         <Dialog.Overlay className={styles.pdfModalOverlay} />
                                         <Dialog.Content className={styles.pdfModalContent}>
@@ -296,27 +322,20 @@ const CoursesPage = ({ initialCoursesData }) => {
                                                 </div>
                                             ) : (
                                                 <form onSubmit={handlePdfSubmit} className={styles.pdfForm}>
-                                                    <p className={styles.pdfDescription}>{t('pdfDownloadDescription')}</p>
                                                     <div className={styles.pdfFormGroup}>
-                                                        <label htmlFor="fullName" className={styles.pdfFormLabel}>
-                                                            {t('fullName')} <span className={styles.required}>*</span>
-                                                        </label>
                                                         <input
                                                             type="text"
-                                                            id="fullName"
-                                                            name="fullName"
-                                                            className={`${styles.pdfFormInput} ${pdfFormErrors.fullName ? styles.error : ''}`}
-                                                            value={pdfFormData.fullName}
+                                                            id="name"
+                                                            name="name"
+                                                            className={`${styles.pdfFormInput} ${pdfFormErrors.name ? styles.error : ''}`}
+                                                            value={pdfFormData.name}
                                                             onChange={handlePdfInputChange}
-                                                            placeholder={t('fullName')}
+                                                            placeholder={t('enterName')}
                                                             disabled={pdfSubmitting}
                                                         />
-                                                        {pdfFormErrors.fullName && <span className={styles.errorMessage}>{pdfFormErrors.fullName}</span>}
+                                                        {pdfFormErrors.name && <span className={styles.errorMessage}>{pdfFormErrors.name}</span>}
                                                     </div>
                                                     <div className={styles.pdfFormGroup}>
-                                                        <label htmlFor="email" className={styles.pdfFormLabel}>
-                                                            {t('email')} <span className={styles.required}>*</span>
-                                                        </label>
                                                         <input
                                                             type="email"
                                                             id="email"
@@ -324,41 +343,39 @@ const CoursesPage = ({ initialCoursesData }) => {
                                                             className={`${styles.pdfFormInput} ${pdfFormErrors.email ? styles.error : ''}`}
                                                             value={pdfFormData.email}
                                                             onChange={handlePdfInputChange}
-                                                            placeholder={t('email')}
+                                                            placeholder={t('enterEmail')}
                                                             disabled={pdfSubmitting}
                                                         />
                                                         {pdfFormErrors.email && <span className={styles.errorMessage}>{pdfFormErrors.email}</span>}
                                                     </div>
                                                     <div className={styles.pdfFormGroup}>
-                                                        <label htmlFor="phone" className={styles.pdfFormLabel}>
-                                                            {t('phone')} <span className={styles.required}>*</span>
-                                                        </label>
-                                                        <input
-                                                            type="tel"
-                                                            id="phone"
-                                                            name="phone"
-                                                            className={`${styles.pdfFormInput} ${pdfFormErrors.phone ? styles.error : ''}`}
-                                                            value={pdfFormData.phone}
-                                                            onChange={handlePdfInputChange}
-                                                            placeholder={t('phone')}
-                                                            disabled={pdfSubmitting}
-                                                        />
-                                                        {pdfFormErrors.phone && <span className={styles.errorMessage}>{pdfFormErrors.phone}</span>}
-                                                    </div>
-                                                    <div className={styles.pdfFormGroup}>
-                                                        <label htmlFor="company" className={styles.pdfFormLabel}>
-                                                            {t('company')}
-                                                        </label>
-                                                        <input
-                                                            type="text"
-                                                            id="company"
-                                                            name="company"
-                                                            className={styles.pdfFormInput}
-                                                            value={pdfFormData.company}
-                                                            onChange={handlePdfInputChange}
-                                                            placeholder={t('company')}
-                                                            disabled={pdfSubmitting}
-                                                        />
+                                                        <div className={styles.captchaRow}>
+                                                            <div className={styles.captchaCode} aria-hidden="true">
+                                                                {captchaCode.split('').map((ch, i) => (
+                                                                    <span key={i} style={{ '--rot': `${(i % 2 === 0 ? -1 : 1) * (6 + i * 2)}deg` }}>{ch}</span>
+                                                                ))}
+                                                            </div>
+                                                            <button
+                                                                type="button"
+                                                                className={styles.captchaRefresh}
+                                                                onClick={() => setCaptchaCode(generateCaptcha())}
+                                                                aria-label={t('refreshCaptcha')}
+                                                                disabled={pdfSubmitting}
+                                                            >
+                                                                <RotateCw size={16} aria-hidden="true" />
+                                                            </button>
+                                                            <input
+                                                                type="text"
+                                                                id="captcha"
+                                                                name="captcha"
+                                                                className={`${styles.pdfFormInput} ${styles.captchaInput} ${pdfFormErrors.captcha ? styles.error : ''}`}
+                                                                value={pdfFormData.captcha}
+                                                                onChange={handlePdfInputChange}
+                                                                placeholder={t('enterCaptcha')}
+                                                                disabled={pdfSubmitting}
+                                                            />
+                                                        </div>
+                                                        {pdfFormErrors.captcha && <span className={styles.errorMessage}>{pdfFormErrors.captcha}</span>}
                                                     </div>
                                                     {pdfSubmitStatus === 'error' && (
                                                         <p className={styles.errorMessage}>{t('errorMessage')}</p>
@@ -370,7 +387,7 @@ const CoursesPage = ({ initialCoursesData }) => {
                                                             </>
                                                         ) : (
                                                             <>
-                                                                <Mail size={18} /> {t('submit')}
+                                                                {t('submit')}
                                                             </>
                                                         )}
                                                     </button>
