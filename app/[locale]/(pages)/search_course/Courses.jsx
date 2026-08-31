@@ -1,83 +1,21 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { ArrowRight, ArrowLeft, Calendar, Clock } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import Header from "./Header";
 import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
+import CourseListItem from "@/components/ui/CourseListItem";
 import styleContainer from "@/sass/components/common/container.module.scss";
 import styles from "@/sass/pages/search-course/search-course.module.scss";
+import listStyles from "@/sass/components/ui/course-list-item.module.scss";
 import MotionWrapper from "@/components/common/MotionWrapper";
 import { getCourses } from "@/action/courses";
 import Skeleton from "@/components/ui/Skeleton";
 import FilterPanel from "./FilterPanel";
 import ViewToggle from "@/components/common/ViewToggle";
 import ExportPdfButton from "@/components/common/ExportPdfButton";
-import Image from "next/image";
 import NoData from "@/components/common/NoData";
 import { useTranslations, useLocale } from "next-intl";
-
-const DEFAULT_COURSE_IMAGE = "/asstes/default-2.webp";
-
-function resolveCourseImage(image) {
-  if (typeof image !== "string") return DEFAULT_COURSE_IMAGE;
-  const normalizedImage = image.trim();
-  if (!normalizedImage || normalizedImage === "null" || normalizedImage === "undefined") {
-    return DEFAULT_COURSE_IMAGE;
-  }
-  return normalizedImage;
-}
-
-const CourseListItem = ({ course, locale, filterLanguage, t }) => {
-  const imageSrc = resolveCourseImage(course?.image);
-  const registerParams = new URLSearchParams();
-  if (course?.id) registerParams.set("course_id", course.id);
-  const lang = course?.language || filterLanguage;
-  if (lang) registerParams.set("language", lang);
-  const registerUrl = `/${locale}/registerCourse?${registerParams.toString()}`;
-  const detailUrl = `/${locale}/course_details/${course?.id}/${encodeURIComponent(course?.slug ?? "")}`;
-
-  return (
-    <div className={styles.listItem}>
-      <div className={styles.listItemImageWrapper}>
-        <Image
-          src={imageSrc}
-          alt={course?.name || course?.title || 'Course thumbnail'}
-          width={180}
-          height={100}
-          sizes="(max-width: 640px) 100vw, 180px"
-          loading="lazy"
-        />
-        {course.category && (
-          <span className={styles.listItemCategoryTag} title={course.category?.name}>
-            {course.category?.name}
-          </span>
-        )}
-        {course.price && <span className={styles.listItemPriceTag}>£{course.price}</span>}
-      </div>
-      <div className={styles.listItemContent}>
-        <p className={styles.listItemDescription}>{course.name}</p>
-        <div className={styles.listItemMeta}>
-          <div className={styles.listItemDate}>
-            <Calendar color="#1E2749" size={14} />
-            <span>{course?.created_at?.split("T")[0]}</span>
-          </div>
-          <div className={styles.listItemDuration}>
-            <Clock color="#1E2749" size={14} />
-            <span>1-2 {t('weeks')}</span>
-          </div>
-        </div>
-        <div className={styles.listItemBtns}>
-          <a href={registerUrl} className={styles.listItemBtnRegister}>
-            {t('register')}
-          </a>
-          <a href={detailUrl} className={styles.listItemBtnDetails}>
-            {t('details')}
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const CoursesPage = ({ initialCoursesData }) => {
     const t = useTranslations('SearchCourse');
@@ -215,7 +153,7 @@ const CoursesPage = ({ initialCoursesData }) => {
                                                 }
                                             </div>
                                         ) : (
-                                            <div className={styles.coursesList}>
+                                            <div className={listStyles.coursesList}>
                                                 {
                                                     data?.courses?.length === 0 ? (
                                                        <div className={styles.noDataFound}>
@@ -223,7 +161,7 @@ const CoursesPage = ({ initialCoursesData }) => {
                                                         </div>
                                                     ) : (
                                                         data?.courses?.slice(0, visibleCount)?.map((course, index) => (
-                                                            <CourseListItem key={index} course={course} locale={locale} filterLanguage={searchParams.get('lang')} t={t} />
+                                                            <CourseListItem key={index} course={course} locale={locale} filterLanguage={searchParams.get('lang')} />
                                                         ))
                                                     )
                                                 }

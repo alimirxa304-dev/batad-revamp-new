@@ -162,17 +162,15 @@
             }
         }
 
-        // ─── Specialisation page course grid (no sidebar filter) ────────
+        // ─── Specialisation page course grid — now sits inside .mainCol
+        // beside the filter sidebar (like /search_course), so 3-across is
+        // the default instead of 4 since the sidebar already claims ~25%. ──
         .coursesOnly {
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 22px;
 
-            @media (max-width: 1440px) {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-
-            @media (max-width: 1024px) {
+            @media (max-width: 1200px) {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 18px;
             }
