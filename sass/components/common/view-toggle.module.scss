@@ -1,0 +1,40 @@
+// ─── Grid/List view toggle — shared by any listing page that offers both. ──
+.viewToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #F3F4F6;
+    border-radius: 10px;
+    padding: 4px;
+    flex-shrink: 0;
+}
+
+.viewBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: #6B7280;
+    cursor: pointer;
+    transition: $transition-base;
+
+    &:hover {
+        color: $blue-900;
+        background: $white;
+    }
+
+    &.active {
+        background: $white;
+        color: $blue-900;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    svg {
+        width: 18px;
+        height: 18px;
+    }
+}

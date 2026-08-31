@@ -17,6 +17,9 @@
     "subSpecializationsTitleSpan": "التخصصات",
     "subSpecializationsSubtitle": "اختر تخصصًا لعرض الدورات المتاحة فيه",
     "viewCourses": "عرض الدورات",
-    "coursesCount": "دورة"
+    "coursesCount": "دورة",
+    "searchSpecializations": "ابحث عن التخصصات...",
+    "noSpecializationsFound": "لا توجد تخصصات مطابقة لبحثك",
+    "resultsFound": "{count} نتيجة"
   }
 }
