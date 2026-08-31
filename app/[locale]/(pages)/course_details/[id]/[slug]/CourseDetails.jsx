@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -8,6 +8,7 @@ import {
   Banknote,
   BookOpen,
   ChevronDown,
+  ChevronLeft,
   ChevronRight,
   Clock,
   Languages,
@@ -38,7 +39,18 @@ const CourseDetails = ({ initialCourse }) => {
   const [selectedCity, setSelectedCity] = useState("");
   const { cities, handleGetCities } = useCitiesStore();
   const { id, locale } = useParams();
+  const isRtl = locale === "ar";
   const course = initialCourse;
+  // Tabs.jsx (shared component) renders its own scrollable div and doesn't
+  // forward a ref, so this wraps it and reaches that div via firstElementChild
+  // instead of modifying the shared component just for this page.
+  const tabsWrapperRef = useRef(null);
+  const tabsBarRef = useRef(null);
+  // Which end of the (possibly overflowing) tabs row is currently reachable —
+  // drives hiding the prev/next arrow once there's nothing left that way.
+  const [tabsEdges, setTabsEdges] = useState({ atStart: true, atEnd: false });
+  const PrevIcon = isRtl ? ChevronRight : ChevronLeft;
+  const NextIcon = isRtl ? ChevronLeft : ChevronRight;
   const registerUrl = useMemo(() => {
     const params = new URLSearchParams();
     params.set("course_id", id);
@@ -99,9 +111,57 @@ const CourseDetails = ({ initialCourse }) => {
   useEffect(() => {
     handleGetCities();
   }, []);
-  const courseTabs = course?.tabs;
-  const activeTab =
-    courseTabs?.find((tab) => tab.id === activeTabId) || courseTabs?.[0];
+
+  const getTabsTrackEl = () => tabsWrapperRef.current?.firstElementChild || null;
+
+  // Scrolls the tabs row one "page"; direction is flipped in RTL so the
+  // visual arrows always move content the way they point.
+  const scrollTabs = (dir) => {
+    const el = getTabsTrackEl();
+    if (!el) return;
+    el.scrollBy({ left: dir * (isRtl ? -1 : 1) * el.clientWidth * 0.7, behavior: "smooth" });
+  };
+
+  // Whether the first/last tab is currently visible within the row's own
+  // viewport — i.e. whether there's anything left to scroll to on that side.
+  // Compares bounding boxes rather than scrollLeft since scrollLeft's sign
+  // convention in RTL differs across browsers and is easy to get wrong.
+  const measureTabsEdges = () => {
+    const el = getTabsTrackEl();
+    if (!el || !el.children.length) return { atStart: true, atEnd: true };
+    const trackRect = el.getBoundingClientRect();
+    const first = el.children[0].getBoundingClientRect();
+    const last = el.children[el.children.length - 1].getBoundingClientRect();
+    return isRtl
+      ? { atStart: first.right <= trackRect.right + 1, atEnd: last.left >= trackRect.left - 1 }
+      : { atStart: first.left >= trackRect.left - 1, atEnd: last.right <= trackRect.right + 1 };
+  };
+
+  useEffect(() => {
+    const el = getTabsTrackEl();
+    const onScroll = () => setTabsEdges(measureTabsEdges());
+    onScroll();
+    el?.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      el?.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [course?.tabs]);
+
+  // Tabs no longer swap the displayed content — every section renders
+  // stacked on the page, and clicking a tab just scrolls to its section
+  // (offset by the sticky tabs bar's own current height, whatever that is
+  // at the current breakpoint) instead of hiding the others.
+  const scrollToSection = (tabId) => {
+    setActiveTabId(tabId);
+    const target = document.getElementById(`course-tab-section-${tabId}`);
+    if (!target) return;
+    const barBottom = tabsBarRef.current?.getBoundingClientRect().bottom || 0;
+    const top = window.scrollY + target.getBoundingClientRect().top - barBottom - 16;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
+
   return (
     <section>
       <Header courseName={course?.name} />
@@ -141,20 +201,6 @@ const CourseDetails = ({ initialCourse }) => {
         </div>
       </div>
 
-      {/* ── Sticky tabs bar (stays pinned below the site header) ── */}
-      <div className={styles.stickyTabsBar}>
-        <div className={stylesContainer.container}>
-          <Tabs
-            tabs={course?.tabs}
-            activeTabId={activeTabId}
-            onTabChange={setActiveTabId}
-            className={styles.courseTabs}
-            tabClassName={styles.courseTabItem}
-            activeTabClassName={styles.active}
-          />
-        </div>
-      </div>
-
       <div className={stylesContainer.container}>
         <div className={styles.mainContent}>
           <div className={styles.content}>
@@ -162,6 +208,49 @@ const CourseDetails = ({ initialCourse }) => {
               <div className={styles.contentCourse}>
                 <div className={styles.info}>
                   <div className={styles.infoMain}>
+                  {/* ── Sticky tabs bar — scoped to this column's width only,
+                      so it doesn't sit above the sidebar and can start at
+                      the same level as the instructor card next to it ── */}
+                  <div className={styles.stickyTabsBar} ref={tabsBarRef}>
+                    <div className={styles.tabsRow}>
+                      {/* Pinned CTA on mobile — sits outside the scrollable
+                          track so it never slides away with the other tabs. */}
+                      <Link href={registerUrl} className={styles.tabsRegisterBtn}>
+                        {t('registerNow')}
+                      </Link>
+                      {!tabsEdges.atStart && (
+                        <button
+                          type="button"
+                          className={styles.tabsChevron}
+                          aria-label="previous"
+                          onClick={() => scrollTabs(-1)}
+                        >
+                          <PrevIcon size={16} aria-hidden="true" />
+                        </button>
+                      )}
+                      <div ref={tabsWrapperRef} className={styles.tabsTrack}>
+                        <Tabs
+                          tabs={course?.tabs}
+                          activeTabId={activeTabId}
+                          onTabChange={scrollToSection}
+                          className={styles.courseTabs}
+                          tabClassName={styles.courseTabItem}
+                          activeTabClassName={styles.active}
+                        />
+                      </div>
+                      {!tabsEdges.atEnd && (
+                        <button
+                          type="button"
+                          className={styles.tabsChevron}
+                          aria-label="next"
+                          onClick={() => scrollTabs(1)}
+                        >
+                          <NextIcon size={16} aria-hidden="true" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
                   <div className={styles.summaryContent}>
                     <div className={styles.left}>
                       <div className={styles.top}>
@@ -243,14 +332,18 @@ const CourseDetails = ({ initialCourse }) => {
 
                   </div>
 
-                  <div className={styles.tabContainer}>
-                    <div className={styles.tabContent}>
-                      <h3>{activeTab?.title}</h3>
-                      <div
-                        dangerouslySetInnerHTML={{ __html: activeTab?.content }}
-                      />
+                  {course?.tabs?.map((tab) => (
+                    <div
+                      key={tab.id}
+                      id={`course-tab-section-${tab.id}`}
+                      className={styles.tabContainer}
+                    >
+                      <div className={styles.tabContent}>
+                        <h3>{tab.title}</h3>
+                        <div dangerouslySetInnerHTML={{ __html: tab.content }} />
+                      </div>
                     </div>
-                  </div>
+                  ))}
 
                   <div className={styles.similarCourses}>
                     <div className={styles.top}>

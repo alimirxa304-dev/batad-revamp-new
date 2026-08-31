@@ -6,6 +6,14 @@
     padding: 16px 0px;
     position: relative;
 
+    // min-height was sized for the desktop row (18-20px icons/text). Nothing
+    // vertically centers .wrapper inside it, so on mobile — where the row is
+    // much shorter (14px icons, 12px text) — that leftover height just sits
+    // as blank space below the row, before the hero band starts.
+    @media (max-width: 576px) {
+        min-height: 0;
+    }
+
     .progressBar {
         position: absolute;
         bottom: -1px;
@@ -90,28 +98,28 @@
                 font-weight: 500;
                 overflow: hidden;
                 text-overflow: ellipsis;
-
-                @media (max-width: 576px) {
-                    max-width: 100px;
-                }
             }
         }
 
         // Explicit class (in addition to the nth-child(7) rule above) so the
         // course-name crumb keeps truncating even if the breadcrumb markup
-        // ever changes — and widened to desktop, since real course titles
-        // run much longer than "Course Details" ever did.
+        // ever changes. Fills whatever room is actually left in the row
+        // instead of a fixed max-width — a small fixed cap truncated the
+        // title far earlier than the row had space for, leaving a visible
+        // gap of unused space after it on narrow screens.
         .current {
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 320px;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
 
-            @media (max-width: 768px) {
-                max-width: 200px;
-            }
-
+        // Hides the redundant "| 🏠 → Courses" hop on phone, giving the
+        // course-name crumb the room it needs instead of squeezing it next
+        // to clutter "Back to Courses" already makes clear.
+        .middleCrumb {
             @media (max-width: 576px) {
-                max-width: 100px;
+                display: none;
             }
         }
 

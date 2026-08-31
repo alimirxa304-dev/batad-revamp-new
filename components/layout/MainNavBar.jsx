@@ -32,8 +32,6 @@ const MainNavBar = () => {
 
   const NAV_ITEMS = [
     { label: t('programs.trainingCourses'), href: '/search_course?type=1' },
-    { label: t('programs.diploma'), href: '/search_course?type=3' },
-    { label: t('programs.master'), href: '/search_course?type=2' },
     { label: t('cities'), href: '/show_cities' },
     { label: t('consulting'), href: '/consulting' },
     { label: t('teamWork'), href: '/page/Team-work' },
@@ -64,7 +62,7 @@ const MainNavBar = () => {
             alt="British Academy for Training & Development"
             width={106}
             height={83}
-            style={{ objectFit: 'cover', height: 'auto' }}
+            style={{ objectFit: 'cover', width: 'auto', height: 'auto' }}
             priority
           />
         </Link>

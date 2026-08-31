@@ -881,11 +881,82 @@
     border-bottom: 1px solid $gray-100;
     box-shadow: 0px 4px 10px -6px rgba(0, 0, 0, 0.08);
     padding-block: 14px;
-    margin-bottom: 32px;
+    // No margin-bottom here — this now lives inside .infoMain's own flex
+    // `gap`, which already spaces it from the next section consistently
+    // with the spacing between every other sibling.
 
     @media (max-width: 576px) {
         padding-block: 10px;
-        margin-bottom: 20px;
+    }
+}
+
+// Wraps .courseTabs with prev/next arrows on narrow screens where the tabs
+// overflow and need a horizontal-scroll affordance.
+.tabsRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tabsTrack {
+    flex: 1;
+    min-width: 0;
+}
+
+.tabsChevron {
+    flex-shrink: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid $gray-300;
+    background: $white;
+    color: $blue-900;
+    cursor: pointer;
+    transition: $transition-base;
+
+    &:hover {
+        background: $blue-900;
+        color: $white;
+        border-color: $blue-900;
+    }
+
+    @media (max-width: 768px) {
+        display: flex;
+    }
+}
+
+// Pinned "Register Now" tab, mobile-only — sits outside .tabsTrack so it
+// never scrolls away with Overview/Objectives/etc. while they slide past it.
+.tabsRegisterBtn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    height: 40px;
+    padding-inline: 16px;
+    border-radius: 10px;
+    background: $red;
+    color: $white;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: $transition-base;
+
+    &:hover {
+        background: darken($red, 8%);
+    }
+
+    @media (max-width: 768px) {
+        display: inline-flex;
+    }
+
+    @media (max-width: 576px) {
+        height: 36px;
+        padding-inline: 12px;
+        font-size: 12px;
     }
 }
 
@@ -1079,6 +1150,16 @@
     &:hover {
         background: lighten($blue-900, 8%);
     }
+
+    // On mobile Register Now is the primary tab of the card by default, so
+    // it stands out in red right away instead of waiting on a date pick.
+    @media (max-width: 576px) {
+        background: $red;
+
+        &:hover {
+            background: darken($red, 8%);
+        }
+    }
 }
 
 .instructorOutlineBtn {
@@ -1119,9 +1200,12 @@
     gap: 20px;
     align-self: start;
     position: sticky;
-    // Header height + the sticky tabs bar's own height, so this card settles
-    // just below the tabs instead of scrolling underneath them.
-    top: calc(clamp(60px, 10vw, 83px) + 74px);
+    // The tabs bar now lives inside .infoMain (this card's sibling column),
+    // scoped to that column's own width instead of spanning the full row —
+    // so it no longer sits above this card, and both can share the exact
+    // same sticky top offset and start level together from the first pixel
+    // of scrolling, with no separate "clear the tabs bar" offset needed.
+    top: clamp(60px, 10vw, 83px);
     z-index: 10;
     box-shadow: 0px 8px 10px -6px #0000001A, 0px 20px 25px -5px #0000001A;
     border: 1px solid #F3F4F6;
@@ -1131,6 +1215,9 @@
 
     @media (max-width: 991px) {
         position: static;
+        // Show right after the hero band on mobile instead of trailing behind
+        // all of the tab content and similar-courses list further down.
+        order: -1;
     }
 }
 
@@ -1251,6 +1338,10 @@
     position: relative;
     flex-shrink: 0;
     width: clamp(220px, 26vw, 380px);
+    // .pageHeroInner stretches this to the row's full height (align-items:
+    // stretch) — this margin is deliberate breathing room above/below the
+    // image instead of it bleeding edge-to-edge with the hero band.
+    margin-block: clamp(14px, 2vw, 28px);
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0px 16px 32px -12px rgba(16, 24, 40, 0.25);
@@ -1265,6 +1356,10 @@
     @media (max-width: 900px) {
         width: min(100%, 380px);
         aspect-ratio: 4 / 3;
+        // No top margin here — .pageHeroText already zeroes its own
+        // padding-bottom so the stacked image sits right after the text,
+        // not with an extra gap re-added above it.
+        margin-top: 0;
         margin-bottom: clamp(28px, 4vw, 56px);
     }
 }
