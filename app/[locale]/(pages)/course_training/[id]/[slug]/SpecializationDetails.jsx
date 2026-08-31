@@ -2,9 +2,14 @@
 
 import Skeleton from "@/components/ui/Skeleton";
 import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
+import CourseListItem from "@/components/ui/CourseListItem";
 import NoData from "@/components/common/NoData";
+import ViewToggle from "@/components/common/ViewToggle";
+import ExportPdfButton from "@/components/common/ExportPdfButton";
+import FilterPanel from "@/app/[locale]/(pages)/search_course/FilterPanel";
 import stylesContainer from "@/sass/components/common/container.module.scss";
 import styles from "@/sass/pages/category-details/category-details.module.scss";
+import listStyles from "@/sass/components/ui/course-list-item.module.scss";
 import { getCourses } from "@/action/courses";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -19,6 +24,7 @@ const SpecializationDetails = ({ initialSpecialization, initialCoursesData, spec
   const [data, setData] = useState(initialCoursesData);
   const [isLoading, setIsLoading] = useState(false);
   const [visibleCount, setVisibleCount] = useState(8);
+  const [viewMode, setViewMode] = useState('grid');
   const searchParams = useSearchParams();
   const isInitialMount = useRef(true);
 
@@ -91,27 +97,48 @@ const SpecializationDetails = ({ initialSpecialization, initialCoursesData, spec
               </div>
             )}
 
-            <div className={styles.coursesOnly}>
-              {isLoading ? (
-                Array.from({ length: 8 }).map((_, i) => (
-                  <Skeleton key={i} type="card" height="400px" />
-                ))
-              ) : data?.courses?.length > 0 ? (
-                data.courses.slice(0, visibleCount).map((course, index) => (
-                  <UpcomingCouresCard key={index} course={course} locale={locale} index={index} />
-                ))
-              ) : (
-                <div className={styles.noCourses}>
-                  <NoData message={t('noCoursesFound')} />
-                </div>
-              )}
-            </div>
+            <div className={styles.wrapper}>
+              <aside className={styles.sidebarCol}>
+                <FilterPanel cities={data?.cities} />
+              </aside>
 
-            {(visibleCount < (data?.courses?.length || 0) || data?.has_more) && (
-              <button className={styles.showMoreBtn} onClick={handleViewMore}>
-                {t('showMore')} {locale === 'ar' ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
-              </button>
-            )}
+              <div className={styles.mainCol}>
+                <div className={styles.toolbar}>
+                  <ViewToggle viewMode={viewMode} setViewMode={setViewMode} />
+                  <ExportPdfButton />
+                </div>
+
+                {isLoading ? (
+                  <div className={styles.coursesOnly}>
+                    {Array.from({ length: 6 }).map((_, i) => (
+                      <Skeleton key={i} type="card" height="400px" />
+                    ))}
+                  </div>
+                ) : data?.courses?.length === 0 ? (
+                  <div className={styles.noCourses}>
+                    <NoData message={t('noCoursesFound')} />
+                  </div>
+                ) : viewMode === 'grid' ? (
+                  <div className={styles.coursesOnly}>
+                    {data.courses.slice(0, visibleCount).map((course, index) => (
+                      <UpcomingCouresCard key={index} course={course} locale={locale} index={index} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className={listStyles.coursesList}>
+                    {data.courses.slice(0, visibleCount).map((course, index) => (
+                      <CourseListItem key={index} course={course} locale={locale} />
+                    ))}
+                  </div>
+                )}
+
+                {(visibleCount < (data?.courses?.length || 0) || data?.has_more) && (
+                  <button className={styles.showMoreBtn} onClick={handleViewMore}>
+                    {t('showMore')} {locale === 'ar' ? <ArrowLeft size={18} /> : <ArrowRight size={18} />}
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
