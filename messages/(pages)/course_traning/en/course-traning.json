@@ -20,6 +20,14 @@
     "coursesCount": "courses",
     "searchSpecializations": "Search specialisations...",
     "noSpecializationsFound": "No specialisations match your search",
-    "resultsFound": "{count} results"
+    "resultsFound": "{count} results",
+    "sortBy": "Sort By",
+    "sortAZ": "Name (A-Z)",
+    "sortZA": "Name (Z-A)",
+    "sortMostCourses": "Most Courses",
+    "sortFewestCourses": "Fewest Courses",
+    "minCourses": "Minimum Courses",
+    "minCoursesValue": "{count}+ courses",
+    "resetFiltersLabel": "Reset Filters"
   }
 }

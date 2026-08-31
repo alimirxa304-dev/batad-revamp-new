@@ -20,6 +20,14 @@
     "coursesCount": "دورة",
     "searchSpecializations": "ابحث عن التخصصات...",
     "noSpecializationsFound": "لا توجد تخصصات مطابقة لبحثك",
-    "resultsFound": "{count} نتيجة"
+    "resultsFound": "{count} نتيجة",
+    "sortBy": "الترتيب حسب",
+    "sortAZ": "الاسم (أ-ي)",
+    "sortZA": "الاسم (ي-أ)",
+    "sortMostCourses": "الأكثر دورات",
+    "sortFewestCourses": "الأقل دورات",
+    "minCourses": "الحد الأدنى للدورات",
+    "minCoursesValue": "{count}+ دورة",
+    "resetFiltersLabel": "إعادة تعيين الفلاتر"
   }
 }
