@@ -118,9 +118,9 @@ export default async function Footer() {
             <Image
               src={footerLogo}
               alt="British Academy for Training & Development"
-              width={150}
-              height={107}
-              style={{ width: "auto", maxHeight: "120px", height: "auto" }}
+              width={220}
+              height={157}
+              style={{ width: "auto", maxHeight: "180px", height: "auto" }}
             />
           </Link>
         </div>
