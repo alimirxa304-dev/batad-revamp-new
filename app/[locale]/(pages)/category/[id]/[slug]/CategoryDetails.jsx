@@ -46,19 +46,36 @@ const CategoryDetails = ({ initialCategory }) => {
     const locale = useLocale();
     const [viewMode, setViewMode] = useState('grid');
     const [query, setQuery] = useState('');
+    const [sortBy, setSortBy] = useState('');
+    const [minCourses, setMinCourses] = useState('');
 
     const categoryName = initialCategory?.name;
     const categoryDescription = cleanMeta(initialCategory?.meta?.description || initialCategory?.description);
     const specializations = initialCategory?.specializations || [];
 
-    // Frontend-only name search — there's no backend endpoint for filtering
-    // a category's own specialisation list, so this just narrows the array
-    // already fetched with the page.
+    // Frontend-only search/sort/minimum-courses — there's no backend endpoint
+    // for filtering a category's own specialisation list, so this just
+    // narrows and reorders the array already fetched with the page.
     const filteredSpecializations = useMemo(() => {
+        let list = specializations;
+
         const q = query.trim().toLowerCase();
-        if (!q) return specializations;
-        return specializations.filter((item) => item.name?.toLowerCase().includes(q));
-    }, [specializations, query]);
+        if (q) list = list.filter((item) => item.name?.toLowerCase().includes(q));
+
+        if (minCourses) list = list.filter((item) => (item.courses_count || 0) >= Number(minCourses));
+
+        if (sortBy) {
+            list = [...list].sort((a, b) => {
+                if (sortBy === 'az') return (a.name || '').localeCompare(b.name || '');
+                if (sortBy === 'za') return (b.name || '').localeCompare(a.name || '');
+                if (sortBy === 'most') return (b.courses_count || 0) - (a.courses_count || 0);
+                if (sortBy === 'fewest') return (a.courses_count || 0) - (b.courses_count || 0);
+                return 0;
+            });
+        }
+
+        return list;
+    }, [specializations, query, sortBy, minCourses]);
 
     return (
         <div className={styles.categoryDetails}>
@@ -93,6 +110,10 @@ const CategoryDetails = ({ initialCategory }) => {
                                         <SpecializationFilterPanel
                                             query={query}
                                             onQueryChange={setQuery}
+                                            sortBy={sortBy}
+                                            onSortChange={setSortBy}
+                                            minCourses={minCourses}
+                                            onMinCoursesChange={setMinCourses}
                                             resultCount={filteredSpecializations.length}
                                         />
                                     </aside>
