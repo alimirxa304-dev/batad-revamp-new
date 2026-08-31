@@ -1,0 +1,50 @@
+// ─── Specialisation search sidebar — this page lists specialisations
+// themselves (not courses), so the only filter dimension that actually
+// applies is searching them by name; the Format/Venue/Duration-style
+// filters from /search_course don't mean anything here. ──────────────
+.panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 46px;
+    padding-inline: 14px;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 10px;
+    background: $white;
+
+    svg {
+        color: $gray-400;
+        flex-shrink: 0;
+    }
+
+    input {
+        flex: 1;
+        min-width: 0;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 14px;
+        color: #101828;
+
+        &::placeholder {
+            color: #9CA3AF;
+        }
+    }
+
+    &:focus-within {
+        border-color: $blue-900;
+        box-shadow: 0 0 0 3px rgba(22, 37, 84, 0.1);
+    }
+}
+
+.resultCount {
+    font-size: 13px;
+    color: $text-gray;
+    padding-inline: 2px;
+}

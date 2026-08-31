@@ -1,11 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "./Header";
+import SpecializationFilterPanel from "./SpecializationFilterPanel";
 import Title from "@/components/common/Title";
 import NoData from "@/components/common/NoData";
+import ViewToggle from "@/components/common/ViewToggle";
+import ExportPdfButton from "@/components/common/ExportPdfButton";
 import stylesContainer from "@/sass/components/common/container.module.scss";
 import styles from "@/sass/pages/category-details/category-details.module.scss";
 import specStyles from "@/sass/pages/home/course-by-special.module.scss";
@@ -41,10 +44,21 @@ const SpecIcon = ({ item }) => {
 const CategoryDetails = ({ initialCategory }) => {
     const t = useTranslations('CourseTraning');
     const locale = useLocale();
+    const [viewMode, setViewMode] = useState('grid');
+    const [query, setQuery] = useState('');
 
     const categoryName = initialCategory?.name;
     const categoryDescription = cleanMeta(initialCategory?.meta?.description || initialCategory?.description);
     const specializations = initialCategory?.specializations || [];
+
+    // Frontend-only name search — there's no backend endpoint for filtering
+    // a category's own specialisation list, so this just narrows the array
+    // already fetched with the page.
+    const filteredSpecializations = useMemo(() => {
+        const q = query.trim().toLowerCase();
+        if (!q) return specializations;
+        return specializations.filter((item) => item.name?.toLowerCase().includes(q));
+    }, [specializations, query]);
 
     return (
         <div className={styles.categoryDetails}>
@@ -74,20 +88,61 @@ const CategoryDetails = ({ initialCategory }) => {
                                     <NoData message={t('noCategoriesFound')} />
                                 </div>
                             ) : (
-                                <div className={specStyles.specsGrid}>
-                                    {specializations.map((item) => (
-                                        <div key={item.id} className={specStyles.specCard}>
-                                            <SpecIcon item={item} />
-                                            <h3 className={specStyles.specName} title={item.name}>{item.name}</h3>
-                                            <p className={specStyles.specCount}>{item.courses_count} {t('coursesCount')}</p>
-                                            <Link
-                                                href={`/${locale}/course_training/${item.id}/${encodeURIComponent(item.slug)}`}
-                                                className={specStyles.specBtn}
-                                            >
-                                                {t('viewCourses')}
-                                            </Link>
+                                <div className={styles.wrapper}>
+                                    <aside className={styles.sidebarCol}>
+                                        <SpecializationFilterPanel
+                                            query={query}
+                                            onQueryChange={setQuery}
+                                            resultCount={filteredSpecializations.length}
+                                        />
+                                    </aside>
+
+                                    <div className={styles.mainCol}>
+                                        <div className={styles.toolbar}>
+                                            <ViewToggle viewMode={viewMode} setViewMode={setViewMode} />
+                                            <ExportPdfButton />
                                         </div>
-                                    ))}
+
+                                        {filteredSpecializations.length === 0 ? (
+                                            <div className={styles.noCourses}>
+                                                <NoData message={t('noSpecializationsFound')} />
+                                            </div>
+                                        ) : viewMode === 'grid' ? (
+                                            <div className={specStyles.specsGrid}>
+                                                {filteredSpecializations.map((item) => (
+                                                    <div key={item.id} className={specStyles.specCard}>
+                                                        <SpecIcon item={item} />
+                                                        <h3 className={specStyles.specName} title={item.name}>{item.name}</h3>
+                                                        <p className={specStyles.specCount}>{item.courses_count} {t('coursesCount')}</p>
+                                                        <Link
+                                                            href={`/${locale}/course_training/${item.id}/${encodeURIComponent(item.slug)}`}
+                                                            className={specStyles.specBtn}
+                                                        >
+                                                            {t('viewCourses')}
+                                                        </Link>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <div className={styles.specList}>
+                                                {filteredSpecializations.map((item) => (
+                                                    <div key={item.id} className={styles.specListItem}>
+                                                        <SpecIcon item={item} />
+                                                        <div className={styles.specListInfo}>
+                                                            <h3 title={item.name}>{item.name}</h3>
+                                                            <p>{item.courses_count} {t('coursesCount')}</p>
+                                                        </div>
+                                                        <Link
+                                                            href={`/${locale}/course_training/${item.id}/${encodeURIComponent(item.slug)}`}
+                                                            className={styles.specListBtn}
+                                                        >
+                                                            {t('viewCourses')}
+                                                        </Link>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             )}
                         </div>

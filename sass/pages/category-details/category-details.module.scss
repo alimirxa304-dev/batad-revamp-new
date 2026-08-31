@@ -52,6 +52,116 @@
             }
         }
 
+        // ─── Specialisations grid: persistent search sidebar (25%) + toolbar
+        // (view toggle / PDF export) + 3-across cards, matching /search_course. ──
+        .wrapper {
+            display: grid;
+            grid-template-columns: minmax(240px, 25%) minmax(0, 1fr);
+            align-items: start;
+            gap: 24px;
+            margin-top: 24px;
+
+            @media (max-width: 1024px) {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .sidebarCol {
+            position: sticky;
+            top: 100px;
+
+            @media (max-width: 1024px) {
+                position: static;
+            }
+        }
+
+        .mainCol {
+            min-width: 0;
+        }
+
+        .toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-bottom: 16px;
+
+            @media (max-width: 480px) {
+                justify-content: center;
+            }
+        }
+
+        // ─── Specialisations list view ───────────────────────────────────
+        .specList {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .specListItem {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 18px 22px;
+            background: $white;
+            border: 1px solid $gray-100;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+
+            &:hover {
+                border-color: $blue-900;
+                box-shadow: 0 0 0 1px $blue-900, 0 8px 20px rgba(22, 37, 84, 0.1);
+            }
+
+            @media (max-width: 576px) {
+                flex-wrap: wrap;
+                padding: 16px;
+            }
+        }
+
+        .specListInfo {
+            flex: 1;
+            min-width: 0;
+
+            h3 {
+                font-size: 16px;
+                font-weight: 600;
+                color: #101828;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            p {
+                font-size: 13px;
+                color: $text-gray;
+                margin-top: 2px;
+            }
+        }
+
+        .specListBtn {
+            flex-shrink: 0;
+            border: 1px solid $blue-900;
+            color: $blue-900;
+            border-radius: 10px;
+            padding: 9px 22px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: $transition-base;
+
+            &:hover {
+                background: $blue-900;
+                color: $white;
+            }
+
+            @media (max-width: 576px) {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
         // ─── Specialisation page course grid (no sidebar filter) ────────
         .coursesOnly {
             display: grid;
