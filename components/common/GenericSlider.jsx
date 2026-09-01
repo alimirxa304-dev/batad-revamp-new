@@ -93,7 +93,7 @@ const swiperRef = externalRef ?? internalRef;
         </div>
 
             {showViewAll && (
-                <div className={styles.viewAll}>
+                <div className={styles.viewAll} data-viewall={navId}>
                     <Link href={`/${locale}/search_course`}>
                         {t('viewAllCourses')} <ArrowRight color='#1E2749' size={14} />
                     </Link>
