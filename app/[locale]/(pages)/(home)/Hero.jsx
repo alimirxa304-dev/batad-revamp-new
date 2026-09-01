@@ -164,7 +164,6 @@ export default function Hero() {
         // its stats strip.
         <div>
             <section className={`${styles.hero} ${plusJakarta.variable}`}>
-                <div className={styles.heroOverlay} aria-hidden="true" />
                 <div className={styles.bgPattern} aria-hidden="true" />
                 <div className={stylesConteiner.container}>
                     <motion.div

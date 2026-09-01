@@ -1,4 +1,4 @@
-// ─── Hero (real photo background + overlay, "Love Mondays" layout) ────
+// ─── Hero (real photo background, "Love Mondays" layout) ──────────
 .hero {
     position: relative;
     overflow: hidden;
@@ -8,31 +8,6 @@
     background-size: cover;
     background-position: center;
     isolation: isolate;
-}
-
-// Dark navy tint over the photo so the white/red headline text stays
-// legible — darker on the text side (left, or right in RTL), fading out
-// toward the other edge so the photo itself still reads through.
-.heroOverlay {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    background: linear-gradient(
-        90deg,
-        rgba($blue-900, 0.93) 0%,
-        rgba($blue-900, 0.8) 45%,
-        rgba($blue-900, 0.55) 100%
-    );
-
-    [dir='rtl'] & {
-        background: linear-gradient(
-            270deg,
-            rgba($blue-900, 0.93) 0%,
-            rgba($blue-900, 0.8) 45%,
-            rgba($blue-900, 0.55) 100%
-        );
-    }
 }
 
 .bgPattern {
