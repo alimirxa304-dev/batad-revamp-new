@@ -175,15 +175,17 @@ export default function Hero() {
                         {/* ── LEFT ── */}
                         <div className={styles.left}>
                             <motion.h1 className={styles.title} variants={itemVariants}>
-                                {t.rich('headline', {
-                                    highlight: (chunks) => <span>{chunks}</span>,
-                                })}
+                                <span className={styles.brandText}>{t('headlineBrand')}</span>
+                                {t('headlineFor') && (
+                                    <> <span className={styles.forWord}>{t('headlineFor')}</span></>
+                                )}
+                                <br />
+                                <span>{t('headlineHighlight')}</span>
                             </motion.h1>
 
                             <motion.p className={styles.tagline} variants={itemVariants}>
-                                {t.rich('tagline', {
-                                    highlight: (chunks) => <span>{chunks}</span>,
-                                })}
+                                <span className={styles.leadText}>{t('taglineLead')}</span>{' '}
+                                <span>{t('taglineHighlight')}</span>
                             </motion.p>
 
                             <motion.div className={styles.searchPanel} variants={itemVariants}>
