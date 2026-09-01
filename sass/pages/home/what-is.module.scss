@@ -165,26 +165,17 @@
     border: 1px solid rgba($white, 0.1);
     border-radius: 16px;
     padding: clamp(16px, 1.8vw, 22px);
-    transition: background 0.25s ease-out, border-color 0.25s ease-out, transform 0.25s ease-out;
-
-    &:hover {
-        background: rgba($white, 0.09);
-        border-color: rgba($white, 0.22);
-        transform: translateY(-3px);
-    }
 }
 
 .featureIcon {
-    width: 52px;
-    height: 52px;
+    width: 76px;
+    height: 76px;
     flex-shrink: 0;
-    border-radius: 14px;
-    background: $white;
     @include flex-center;
 
     img {
-        width: 30px;
-        height: 30px;
+        width: 52px;
+        height: 52px;
         object-fit: contain;
     }
 }
