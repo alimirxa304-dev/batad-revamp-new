@@ -91,21 +91,29 @@ const CoursesBySpecial = () => {
                                             </span>
                                         </button>
                                         {isOpen && (
-                                            <div className={styles.accordionSubs}>
-                                                {cat.specializations.map((item) => (
-                                                    <Link
-                                                        key={item.id}
-                                                        href={`/course_training/${item.id}/${encodeURIComponent(item.slug)}`}
-                                                        className={styles.accordionSub}
-                                                    >
-                                                        <SpecIcon item={item} />
-                                                        <span className={styles.accordionSubName} title={item.name}>{item.name}</span>
-                                                        <span className={styles.accordionSubCount}>
-                                                            {item.courses_count} {t('coursesCount')}
-                                                        </span>
-                                                    </Link>
-                                                ))}
-                                            </div>
+                                            <>
+                                                <div className={styles.accordionSubs}>
+                                                    {cat.specializations.map((item) => (
+                                                        <Link
+                                                            key={item.id}
+                                                            href={`/course_training/${item.id}/${encodeURIComponent(item.slug)}`}
+                                                            className={styles.accordionSub}
+                                                        >
+                                                            <SpecIcon item={item} />
+                                                            <span className={styles.accordionSubName} title={item.name}>{item.name}</span>
+                                                            <span className={styles.accordionSubCount}>
+                                                                {item.courses_count} {t('coursesCount')}
+                                                            </span>
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                                <Link
+                                                    href={`/category/${cat.id}/${encodeURIComponent(cat.slug)}`}
+                                                    className={styles.viewAll}
+                                                >
+                                                    {t('viewAll')} <ViewAllArrow size={16} aria-hidden="true" />
+                                                </Link>
+                                            </>
                                         )}
                                     </div>
                                 );
