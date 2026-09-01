@@ -52,5 +52,12 @@
             right: calc(50% - 49px);
             left: auto;
         }
+
+        // The repositioned arrows above land right around the shared
+        // .viewAll link's default 60px margin-top (that link only hides
+        // <=768px, so it's still showing here) — push it down clear of them.
+        :global([data-viewall="courses"]) {
+            margin-top: 100px;
+        }
     }
 }

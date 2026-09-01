@@ -13,9 +13,7 @@ import {
 } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Plus_Jakarta_Sans } from 'next/font/google';
-import Image from 'next/image';
 import Link from 'next/link';
-import heroImage from "@/public/asstes/heroup.jpeg"
 import { useRouter } from 'next/navigation';
 import useSearchAutocomplete from '@/hooks/useSearchAutocomplete';
 import { useEffect, useRef, useState } from 'react';
@@ -166,6 +164,7 @@ export default function Hero() {
         // its stats strip.
         <div>
             <section className={`${styles.hero} ${plusJakarta.variable}`}>
+                <div className={styles.heroOverlay} aria-hidden="true" />
                 <div className={styles.bgPattern} aria-hidden="true" />
                 <div className={stylesConteiner.container}>
                     <motion.div
@@ -246,25 +245,6 @@ export default function Hero() {
                                 </div>
                             </motion.div>
                         </div>
-
-                        {/* ── RIGHT — person visual ── */}
-                        <motion.div
-                            className={styles.right}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.4, ease: 'easeOut' }}
-                        >
-                            <div className={styles.personWrap}>
-                                <Image
-                                    src={heroImage}
-                                    alt={t('statsBar.alumni.title')}
-                                    fill
-                                    priority
-                                    sizes="(max-width: 768px) 200px, 420px"
-                                    className={styles.personImage}
-                                />
-                            </div>
-                        </motion.div>
                     </motion.div>
                 </div>
             </section>
