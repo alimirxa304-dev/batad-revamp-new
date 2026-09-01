@@ -176,10 +176,10 @@ export default function Hero() {
                         <div className={styles.left}>
                             <motion.h1 className={styles.title} variants={itemVariants}>
                                 <span className={styles.brandText}>{t('headlineBrand')}</span>
-                                {t('headlineFor') && (
-                                    <> <span className={styles.forWord}>{t('headlineFor')}</span></>
-                                )}
                                 <br />
+                                {t('headlineFor') && (
+                                    <><span className={styles.forWord}>{t('headlineFor')}</span> </>
+                                )}
                                 <span>{t('headlineHighlight')}</span>
                             </motion.h1>
 
