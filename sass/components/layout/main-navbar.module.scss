@@ -451,17 +451,19 @@ display: flex;
     @media (max-width: 1024px) {
         display: flex;
         align-items: center;
+        justify-content: center;
         white-space: nowrap;
+        height: 28px;
         background: $red;
         color: $white;
         font-size: 12px;
         font-weight: 600;
-        padding: 8px 12px;
+        padding: 0 12px;
         border-radius: 6px;
     }
 
     @media (max-width: 360px) {
         font-size: 11px;
-        padding: 7px 10px;
+        padding: 0 10px;
     }
 }
