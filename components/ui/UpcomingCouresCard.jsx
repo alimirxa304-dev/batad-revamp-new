@@ -161,17 +161,16 @@ const UpcomingCouresCard = ({
         <div className={styles.brandBand} aria-hidden="true">
           <Image src={brandLogo} alt="" className={styles.brandBandLogo} sizes="140px" />
         </div>
-        {/* Category pill sits at the bottom of the photo, mirroring the price
-            pill on the opposite corner. */}
+        {course.price && <span className={styles.priceTag}>£{course.price}</span>}
+      </div>
+      <div className={styles.content}>
+        <p className={styles.description}>{course.name}</p>
+        {/* Category pill directly under the course title. */}
         {course.category && (
           <span className={styles.categoryTag} title={course.category?.name}>
             {course.category?.name}
           </span>
         )}
-        {course.price && <span className={styles.priceTag}>£{course.price}</span>}
-      </div>
-      <div className={styles.content}>
-        <p className={styles.description}>{course.name}</p>
         <div className={styles.meta}>
           <div className={styles.date}>
             <Calendar color="#1E2749" size={14} />
