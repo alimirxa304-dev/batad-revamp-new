@@ -55,6 +55,15 @@ const CoursesBySpecial = () => {
         }
     }, [categories, activeTabId])
 
+    // Mobile: open the first category's accordion by default instead of
+    // landing on an all-collapsed list.
+    useEffect(() => {
+        if (categories?.length > 0 && !expandedId) {
+            const first = categories.find((cat) => cat?.specializations?.length > 0);
+            if (first) setExpandedId(first.id);
+        }
+    }, [categories, expandedId])
+
     const withSpecs = categories?.filter((cat) => cat?.specializations?.length > 0) || [];
     const activeCategory = withSpecs.find((cat) => cat.id === activeTabId) || withSpecs[0];
     const specs = activeCategory?.specializations?.slice(0, 6) || [];
