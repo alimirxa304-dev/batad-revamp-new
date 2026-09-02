@@ -134,7 +134,7 @@
   border: 1px solid $gray-100;
   border-radius: 12px;
   padding: 16px 10px;
-  box-shadow: 6px 6px 0 0 rgba($blue-600, 0.25);
+  box-shadow: 6px 6px 0 0 $blue-900; // dark navy offset shadow
   transition: $transition-base;
 
   // Compact version of the shared spec icon, centered in the box.
@@ -323,13 +323,13 @@
   border: 1px solid $gray-100;
   border-radius: 16px;
   padding: clamp(18px, 2vw, 26px) 18px;
-  box-shadow: 6px 6px 0 0 rgba($blue-600, 0.25);
+  box-shadow: 6px 6px 0 0 $blue-900; // dark navy offset shadow
   transition: box-shadow 0.25s ease-out, border-color 0.25s ease-out, transform 0.25s ease-out;
 
   &:hover {
     transform: translateY(-4px);
     border-color: $blue-900;
-    box-shadow: 6px 6px 0 0 rgba($blue-900, 0.35);
+    box-shadow: 8px 8px 0 0 $blue-900;
   }
 }
 
