@@ -69,14 +69,16 @@
 // Shows the category's sub-category count as a number badge instead of its
 // (often generic/placeholder) icon — more informative at a glance.
 .accordionBarIcon {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   flex-shrink: 0;
   border-radius: 50%;
   background: $white;
   color: $blue-900;
-  font-size: 16px;
+  font-family: var(--font-heading), inherit;
+  font-size: 18px;
   font-weight: 800;
+  line-height: 1;
   @include flex-center;
 }
 
