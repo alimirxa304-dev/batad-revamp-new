@@ -10,7 +10,7 @@ import { ArrowLeft, ArrowRight, BookOpen, ChevronDown } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Same "no image" detection used everywhere else (isPlaceholderImage): the API
 // returns a blank-image.svg CMS placeholder for specializations with no icon.
@@ -44,6 +44,11 @@ const CoursesBySpecial = () => {
     const [activeTabId, setActiveTabId] = useState(null);
     // Mobile accordion: which category bar is expanded.
     const [expandedId, setExpandedId] = useState(null);
+    // Guards the default-open effect below so it only runs once — without
+    // this, closing the auto-opened category set expandedId back to null,
+    // which the effect would immediately treat as "not opened yet" and
+    // force back open, making that one bar impossible to collapse.
+    const hasAutoOpened = useRef(false);
 
     useEffect(() => {
         handleGetCategories();
@@ -58,11 +63,14 @@ const CoursesBySpecial = () => {
     // Mobile: open the first category's accordion by default instead of
     // landing on an all-collapsed list.
     useEffect(() => {
-        if (categories?.length > 0 && !expandedId) {
+        if (categories?.length > 0 && !hasAutoOpened.current) {
             const first = categories.find((cat) => cat?.specializations?.length > 0);
-            if (first) setExpandedId(first.id);
+            if (first) {
+                hasAutoOpened.current = true;
+                setExpandedId(first.id);
+            }
         }
-    }, [categories, expandedId])
+    }, [categories])
 
     const withSpecs = categories?.filter((cat) => cat?.specializations?.length > 0) || [];
     const activeCategory = withSpecs.find((cat) => cat.id === activeTabId) || withSpecs[0];
