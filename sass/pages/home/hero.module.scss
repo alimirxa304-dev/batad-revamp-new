@@ -43,10 +43,11 @@
         padding: 36px 0 44px;
     }
 
-    // Slightly taller hero on phones: a little extra room below the search
-    // panel so some of the skyline shows beneath it (was 44px).
+    // Phones: the search panel is pushed down (see .searchPanel) so the
+    // landmarks show in the clear band between the tagline and the panel;
+    // only a small margin below the panel itself.
     @media (max-width: $tablet) {
-        padding-bottom: clamp(84px, 12vh, 104px);
+        padding-bottom: 40px;
     }
 }
 
@@ -114,6 +115,11 @@
 // ─── Search panel (darker navy card) ─────────────────────────────
 .searchPanel {
     position: relative;
+    // Phones: sit low in the hero, over the water, leaving the skyline
+    // (Big Ben, the column, the lions) visible between tagline and panel.
+    @media (max-width: $tablet) {
+        margin-top: clamp(150px, 24vh, 210px);
+    }
     background: rgba(darken($blue-900, 7%), 0.85);
     border: 1px solid rgba($white, 0.06);
     border-radius: $radius-lg;
