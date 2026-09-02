@@ -20,7 +20,8 @@
       0 16px 32px rgba(22, 37, 84, 0.12),
       0 4px 8px rgba(0, 0, 0, 0.04);
 
-    .imageWrapper img {
+    // Zoom the photo only — not the crest in the brand band.
+    .imageWrapper img:not(.brandBandLogo) {
       transform: scale(1.05);
     }
   }
@@ -33,7 +34,10 @@
     border-top-left-radius: 14.92px;
     border-top-right-radius: 14.92px;
 
-    img {
+    // Photo only — the brand band's crest is excluded, otherwise this
+    // height:100% / object-fit:cover would outrank .brandBandLogo and crop
+    // the crest to the band's height (it showed as "ISH ACAD").
+    img:not(.brandBandLogo) {
       display: block;
       width: 100%;
       height: 100%;
@@ -56,16 +60,37 @@
     pointer-events: none;
   }
 
-  .imageLabels {
+  // Red brand band down the start edge of the photo, crest centred in its
+  // upper part (the category pill overlays its bottom corner).
+  .brandBand {
     position: absolute;
-    top: 12px;
-    inset-inline: 12px;
+    inset-block: 0;
+    inset-inline-start: 0;
+    width: 34%;
+    background: rgba($red, 0.94);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    padding: 14px 14px 52px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .brandBandLogo {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    // The source SVG is navy; brightness(0) makes it black, invert(1) makes
+    // it white — transparency is preserved, so no white raster is needed.
+    filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.18));
   }
 
   .categoryTag {
+    position: absolute;
+    bottom: 12px;
+    inset-inline-start: 12px;
+    z-index: 2;
     background: rgba($white, 0.95);
     color: #c41e3a;
     padding: 5px 13px;
@@ -74,9 +99,10 @@
     font-weight: 600;
     text-transform: capitalize;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-    // Clamp the visual pill so a long category name can't span the image;
-    // title="" on the element carries the full name on hover/AT.
-    max-width: 70%;
+    // Clamp the visual pill so a long category name can't run into the
+    // price pill on the opposite corner; title="" on the element carries
+    // the full name on hover/AT.
+    max-width: 58%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

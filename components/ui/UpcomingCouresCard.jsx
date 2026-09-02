@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Clock, MapPin, Star } from "lucide-react";
+// Navy crest, flipped to white by CSS (filter) for the red brand band.
+import brandLogo from "@/public/asstes/batd-logo.svg";
 import DatePopUp from "./DatePopUp";
 import styles from "@/sass/components/ui/Upcoming-Coures-Card.module.scss";
 import { isPlaceholderImage } from "@/lib/seoMeta";
@@ -153,13 +155,19 @@ const UpcomingCouresCard = ({
         />
 
         <div className={styles.overlay} />
-        <div className={styles.imageLabels}>
-          {course.category && (
-            <span className={styles.categoryTag} title={course.category?.name}>
-              {course.category?.name}
-            </span>
-          )}
+        {/* Red brand band down the start edge of the photo (reference card
+            design), with the crest in white. Decorative — the card's text
+            already identifies the academy. */}
+        <div className={styles.brandBand} aria-hidden="true">
+          <Image src={brandLogo} alt="" className={styles.brandBandLogo} sizes="140px" />
         </div>
+        {/* Category pill sits at the bottom of the photo, mirroring the price
+            pill on the opposite corner. */}
+        {course.category && (
+          <span className={styles.categoryTag} title={course.category?.name}>
+            {course.category?.name}
+          </span>
+        )}
         {course.price && <span className={styles.priceTag}>£{course.price}</span>}
       </div>
       <div className={styles.content}>
