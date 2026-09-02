@@ -102,7 +102,17 @@ const CoursesBySpecial = () => {
                                             aria-expanded={isOpen}
                                             onClick={() => setExpandedId(isOpen ? null : cat.id)}
                                         >
-                                            <span>{cat.name}</span>
+                                            <div className={styles.accordionBarLeft}>
+                                                <div className={styles.accordionBarIcon}>
+                                                    <SpecIcon item={cat} />
+                                                </div>
+                                                <span className={styles.accordionBarText}>
+                                                    <span className={styles.accordionBarName}>{cat.name}</span>
+                                                    <span className={styles.accordionBarCount}>
+                                                        {cat.specializations.length} {t('subCategoriesCount')}
+                                                    </span>
+                                                </span>
+                                            </div>
                                             <span className={`${styles.accordionChevron} ${isOpen ? styles.accordionChevronOpen : ''}`}>
                                                 <ChevronDown size={16} aria-hidden="true" />
                                             </span>
