@@ -25,6 +25,11 @@
     overflow: hidden;
     box-shadow: $shadow-md;
     border: 1px solid $gray-100;
+    // The frame now holds the transparent crest SVG rather than a photo:
+    // a white backdrop so it reads as a card on any section background,
+    // and padding so the artwork doesn't touch the border / red stripe.
+    background: $white;
+    padding: clamp(24px, 4vw, 48px);
 
     &::before {
         content: '';
@@ -41,32 +46,6 @@
     width: 100%;
     height: auto;
     display: block;
-}
-
-.badge {
-    position: absolute;
-    bottom: -18px;
-    inset-inline-end: clamp(12px, 3vw, 32px);
-    background: $blue-900;
-    color: $white;
-    border-radius: 14px;
-    padding: 14px 22px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 16px 32px rgba(22, 37, 84, 0.28);
-
-    strong {
-        font-size: 26px;
-        font-weight: 800;
-        line-height: 1.1;
-    }
-
-    span {
-        font-size: 12px;
-        color: rgba($white, 0.75);
-        white-space: nowrap;
-    }
 }
 
 // ─── Text side ───────────────────────────────────────────────────
