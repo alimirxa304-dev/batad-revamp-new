@@ -104,7 +104,7 @@ const CoursesBySpecial = () => {
                                         >
                                             <div className={styles.accordionBarLeft}>
                                                 <div className={styles.accordionBarIcon}>
-                                                    <SpecIcon item={cat} />
+                                                    {cat.specializations.length}
                                                 </div>
                                                 <span className={styles.accordionBarText}>
                                                     <span className={styles.accordionBarName}>{cat.name}</span>
