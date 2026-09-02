@@ -92,7 +92,7 @@ const CoursesBySpecial = () => {
                         <>
                         {/* ── Mobile accordion (category bars → sub-specialisations) ── */}
                         <div className={styles.accordion}>
-                            {withSpecs.map((cat) => {
+                            {withSpecs.map((cat, index) => {
                                 const isOpen = expandedId === cat.id;
                                 return (
                                     <div key={cat.id} className={styles.accordionItem}>
@@ -104,7 +104,7 @@ const CoursesBySpecial = () => {
                                         >
                                             <div className={styles.accordionBarLeft}>
                                                 <div className={styles.accordionBarIcon}>
-                                                    {cat.specializations.length}
+                                                    {index + 1}
                                                 </div>
                                                 <span className={styles.accordionBarText}>
                                                     <span className={styles.accordionBarName}>{cat.name}</span>
