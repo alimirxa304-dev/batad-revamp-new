@@ -8,6 +8,12 @@
     background-size: cover;
     background-position: center;
     isolation: isolate;
+
+    // The landmarks sit on the right of the photo; a centred crop cuts them
+    // off on narrow screens, so anchor to the right edge there.
+    @media (max-width: $tablet) {
+        background-position: right center;
+    }
 }
 
 .bgPattern {
@@ -35,6 +41,13 @@
     @media (max-width: 1024px) {
         min-height: auto;
         padding: 36px 0 44px;
+    }
+
+    // Taller hero on phones: extra room below the search panel so the
+    // skyline in the photo is actually visible, not hidden behind the text.
+    @media (max-width: $tablet) {
+        min-height: 82vh;
+        padding-bottom: clamp(150px, 30vh, 260px);
     }
 }
 
