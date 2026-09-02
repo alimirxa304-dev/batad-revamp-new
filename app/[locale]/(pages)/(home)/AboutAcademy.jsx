@@ -3,7 +3,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { CheckCircle2, ArrowRight, ArrowLeft } from "lucide-react";
-import aboutImage from "@/public/asstes/whatis.webp";
+// Full-colour crest + wordmark (transparent SVG), copied to a clean filename
+// from "BATD For Training & Development Retraced with shades Logo.svg".
+import aboutImage from "@/public/asstes/batd-logo-color.svg";
 import containerStyle from '@/sass/components/common/container.module.scss';
 import styles from '@/sass/pages/home/about-academy.module.scss';
 import { useLocale, useTranslations } from "next-intl";
@@ -41,10 +43,6 @@ const AboutAcademy = () => {
                                 className={styles.image}
                                 sizes="(max-width: 1024px) 100vw, 560px"
                             />
-                        </div>
-                        <div className={styles.badge}>
-                            <strong>{t('badgeValue')}</strong>
-                            <span>{t('badgeLabel')}</span>
                         </div>
                     </motion.div>
 
