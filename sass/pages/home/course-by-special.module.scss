@@ -90,22 +90,22 @@
   border: 1px solid $gray-100;
   border-radius: 12px;
   padding: 16px 10px;
-  box-shadow: 0 8px 24px rgba($blue-900, 0.12);
+  box-shadow: 6px 6px 0 0 rgba($blue-600, 0.25);
   transition: $transition-base;
 
   // Compact version of the shared spec icon, centered in the box.
   .specIcon {
-    width: 40px;
-    height: 40px;
+    width: 56px;
+    height: 56px;
 
     svg {
-      width: 20px;
-      height: 20px;
+      width: 32px;
+      height: 32px;
     }
 
     img {
-      width: 22px;
-      height: 22px;
+      width: 34px;
+      height: 34px;
     }
   }
 
@@ -238,15 +238,13 @@
   border: 1px solid $gray-100;
   border-radius: 16px;
   padding: clamp(18px, 2vw, 26px) 18px;
-  box-shadow: 0 8px 24px rgba($blue-900, 0.12);
+  box-shadow: 6px 6px 0 0 rgba($blue-600, 0.25);
   transition: box-shadow 0.25s ease-out, border-color 0.25s ease-out, transform 0.25s ease-out;
 
   &:hover {
     transform: translateY(-4px);
     border-color: $blue-900;
-    box-shadow:
-      0 0 0 1px $blue-900,
-      0 12px 24px rgba(22, 37, 84, 0.1);
+    box-shadow: 6px 6px 0 0 rgba($blue-900, 0.35);
   }
 }
 
