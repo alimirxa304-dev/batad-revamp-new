@@ -46,14 +46,14 @@
     align-self: flex-start;
 
     img {
-        width: clamp(96px, 15vw, 138px);
+        width: clamp(88px, 13.5vw, 122px);
         height: auto;
         margin-top: 6px;
 
         // Narrow phones (~320-360px): the top bar's own buttons plus a
         // bigger logo don't fit side by side without overflowing.
         @media (max-width: 380px) {
-            width: 84px;
+            width: 74px;
         }
     }
 }
