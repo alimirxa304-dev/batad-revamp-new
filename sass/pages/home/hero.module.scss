@@ -9,10 +9,19 @@
     background-position: center;
     isolation: isolate;
 
-    // The landmarks sit on the right of the photo; a centred crop cuts them
-    // off on narrow screens, so anchor to the right edge there.
+    // Phones: the landmarks sit on the right of the photo, and the box is
+    // portrait while the photo is 2.5:1, so "cover" zooms right in. Zoom out
+    // by sizing the photo to 90% of the hero height, anchored bottom-right,
+    // and fill the strip above it with the photo's own top-edge sky colour
+    // (sampled: #b4a9a0) so it reads as one image.
     @media (max-width: $tablet) {
-        background-position: right center;
+        background-color: #b1a69d;
+        background-image:
+            linear-gradient(180deg, #a89f99 0%, #b4a9a0 100%),
+            url('/asstes/hero-bg.webp');
+        background-size: 100% 11%, auto 90%;
+        background-position: top center, right bottom;
+        background-repeat: no-repeat;
     }
 }
 
