@@ -60,21 +60,22 @@
     pointer-events: none;
   }
 
-  // Red brand panel on the start side of the photo — inset, not full-bleed:
-  // 12px in from the edge (aligned with the category pill's own inset) and
-  // ending 12px above the pill (pill is 28px tall, 12px from the bottom).
+  // Red brand panel on the start side of the photo, matching the reference
+  // card: flush to the top edge, inset from the side with a strip of photo
+  // showing beside it, semi-transparent so the photo reads through, square
+  // corners, crest filling it. Ends 12px above the category pill (pill is
+  // 28px tall, 12px from the bottom) rather than running underneath it.
   .brandBand {
     position: absolute;
-    top: 12px;
+    top: 0;
     bottom: 52px;
-    inset-inline-start: 12px;
-    width: 34%;
-    background: rgba($red, 0.94);
-    border-radius: 10px;
+    inset-inline-start: 8%;
+    width: 30%;
+    background: rgba($red, 0.88);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 12px;
+    padding: 8px;
     z-index: 1;
     pointer-events: none;
   }
