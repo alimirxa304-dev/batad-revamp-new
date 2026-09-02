@@ -37,24 +37,14 @@
     gap: 10px;
     text-decoration: none;
     flex-shrink: 0;
-    // Oversized logo without a taller bar: .inner has a fixed height, so
-    // the logo anchors to the bar's top edge and its extra height hangs
-    // below the bar into the hero (transparent SVG, so it reads as
-    // intentional). Hanging downward, not centered — upward overhang would
-    // sit over the navy top strip on desktop (navy-on-navy) and get clipped
-    // at the viewport edge on mobile.
-    align-self: flex-start;
-
     img {
-        width: clamp(88px, 13.5vw, 122px);
-        height: auto;
-        margin-top: 6px;
-
-        // Narrow phones (~320-360px): the top bar's own buttons plus a
-        // bigger logo don't fit side by side without overflowing.
-        @media (max-width: 380px) {
-            width: 74px;
-        }
+        // Sized by HEIGHT to the bar itself: .inner's fixed height (same
+        // clamp as there) minus a little breathing room, width following the
+        // SVG's own ratio — so the logo is as big as the bar allows but can
+        // never hang past it on any screen (the earlier width-driven sizing
+        // overflowed the bar on desktop and mobile alike).
+        height: calc(clamp(60px, 10vw, 83px) - 8px);
+        width: auto;
     }
 }
 
