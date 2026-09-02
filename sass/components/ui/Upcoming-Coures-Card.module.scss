@@ -149,12 +149,14 @@
       font-weight: 600;
       line-height: 22.38px;
       color: #101828;
-      margin-bottom: 8px; // category pill sits directly under the title
+      margin-bottom: 6px; // category pill sits directly under the title
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      min-height: 44px; // 2 lines * 22px
+      // No reserved 2-line min-height: a one-line title would otherwise leave
+      // an empty line's worth of gap above the category pill. Card bottoms
+      // still align via .btns { margin-top: auto }.
     }
 
     .meta {
