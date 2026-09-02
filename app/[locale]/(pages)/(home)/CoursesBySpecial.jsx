@@ -150,7 +150,7 @@ const CoursesBySpecial = () => {
                         <div className={styles.layout}>
                             {/* ── Main specializations (left) ── */}
                             <div className={styles.categoryList} role="tablist" aria-label={t('titleSpan')}>
-                                {withSpecs.map((cat) => (
+                                {withSpecs.map((cat, index) => (
                                     <button
                                         key={cat.id}
                                         type="button"
@@ -160,7 +160,13 @@ const CoursesBySpecial = () => {
                                         onClick={() => setActiveTabId(cat.id)}
                                         title={cat.name}
                                     >
-                                        {cat.name}
+                                        <span className={styles.categoryBtnIcon}>{index + 1}</span>
+                                        <span className={styles.categoryBtnText}>
+                                            <span className={styles.categoryBtnName}>{cat.name}</span>
+                                            <span className={styles.categoryBtnCount}>
+                                                {cat.specializations.length} {t('subCategoriesCount')}
+                                            </span>
+                                        </span>
                                     </button>
                                 ))}
                             </div>

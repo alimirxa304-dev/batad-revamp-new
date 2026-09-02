@@ -139,17 +139,17 @@
 
   // Compact version of the shared spec icon, centered in the box.
   .specIcon {
-    width: 56px;
-    height: 56px;
+    width: 76px;
+    height: 76px;
 
     svg {
-      width: 32px;
-      height: 32px;
+      width: 44px;
+      height: 44px;
     }
 
     img {
-      width: 34px;
-      height: 34px;
+      width: 48px;
+      height: 48px;
     }
   }
 
@@ -214,42 +214,83 @@
   }
 }
 
+// Same shape as the mobile accordion bar: numbered badge + name +
+// sub-category count, so the desktop tab list and mobile accordion read as
+// the same design.
 .categoryBtn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   background: $white;
   border: 1px solid $gray-300;
   border-radius: 10px;
-  padding: 14px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #101828;
-  text-align: center;
+  padding: 10px 14px;
+  text-align: start;
   cursor: pointer;
   transition: $transition-base;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   flex-shrink: 0;
 
   &:hover {
     border-color: $blue-900;
-    color: $blue-900;
   }
 
   @media (max-width: 1024px) {
-    padding: 11px 18px;
-    border-radius: 999px;
+    border-radius: 12px;
   }
+}
+
+.categoryBtnIcon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba($blue-900, 0.06);
+  color: $blue-900;
+  font-family: var(--font-heading), inherit;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
+  @include flex-center;
+}
+
+.categoryBtnText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.categoryBtnName {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #101828;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.categoryBtnCount {
+  font-size: 12px;
+  font-weight: 500;
+  color: $text-gray;
 }
 
 .categoryBtnActive {
   background: $blue-900;
   border-color: $blue-900;
-  color: $white;
-  font-weight: 600;
   box-shadow: 0px 8px 16px rgba(22, 37, 84, 0.2);
 
-  &:hover {
+  .categoryBtnIcon {
+    background: rgba($white, 0.15);
     color: $white;
+  }
+
+  .categoryBtnName {
+    color: $white;
+  }
+
+  .categoryBtnCount {
+    color: rgba($white, 0.75);
   }
 }
 
