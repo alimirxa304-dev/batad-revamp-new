@@ -105,13 +105,14 @@
 }
 
 .accordionBarName {
+  font-size: 16.5px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .accordionBarCount {
-  font-size: 12px;
+  font-size: 13.5px;
   font-weight: 500;
   color: rgba($white, 0.7);
 }
