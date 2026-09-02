@@ -75,13 +75,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
+    // Top-heavy padding nudges the centred crest ~10px lower in the panel.
+    padding: 30px 10px 8px;
     z-index: 1;
     pointer-events: none;
   }
 
   .brandBandLogo {
-    width: 100%;
+    width: 78%;
     height: auto;
     max-height: 100%;
     object-fit: contain;
