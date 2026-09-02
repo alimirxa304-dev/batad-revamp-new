@@ -151,12 +151,12 @@
       color: #101828;
       margin-bottom: 6px; // category pill sits directly under the title
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3; // up to 3 lines, then "…"
       -webkit-box-orient: vertical;
       overflow: hidden;
-      // No reserved 2-line min-height: a one-line title would otherwise leave
-      // an empty line's worth of gap above the category pill. Card bottoms
-      // still align via .btns { margin-top: auto }.
+      // Always reserve the full 3 lines (3 × 22.38px) so every card is the
+      // same height whether its title runs 1, 2 or 3 lines.
+      min-height: 67px;
     }
 
     .meta {
