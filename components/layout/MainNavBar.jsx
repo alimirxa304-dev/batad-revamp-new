@@ -7,7 +7,7 @@ import { ChevronDown, Menu, X, Search, User } from 'lucide-react';
 import styles from '@/sass/components/layout/main-navbar.module.scss';
 import { useTranslations } from 'next-intl';
 import { useLanguageSwitcher } from '@/hooks/useLanguageSwitcher';
-import logo from '@/public/asstes/batdacademy-logo.png';
+import logo from '@/public/asstes/batd-logo.svg';
 import useAuthStore from '@/store/useAuthStore';
 import useLanguageStore from '@/store/useLanguageStore';
 
@@ -57,12 +57,14 @@ const MainNavBar = () => {
       <div className={styles.inner}>
 
         <Link href="/" className={styles.logo}>
+          {/* Transparent navy SVG — sized by .logo img in the stylesheet (width
+              clamp + height:auto), so no inline overrides; the width/height
+              attrs just match the SVG's own 5000x3812 aspect ratio. */}
           <Image
             src={logo}
             alt="British Academy for Training & Development"
             width={106}
-            height={83}
-            style={{ objectFit: 'cover', height: 'auto' }}
+            height={81}
             priority
           />
         </Link>
