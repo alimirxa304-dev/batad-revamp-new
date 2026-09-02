@@ -41,6 +41,12 @@
     img {
         width: clamp(80px, 12vw, 106px);
         height: auto;
+
+        // The 80px clamp floor plus the top bar's own buttons don't fit
+        // narrow phones (~320-360px) without overflowing horizontally.
+        @media (max-width: 380px) {
+            width: 60px;
+        }
     }
 }
 
@@ -199,7 +205,9 @@
 display: flex;
     }
 
-   
+    @media (max-width: 380px) {
+        gap: 8px;
+    }
 }
 
 .searchIconMobile {
@@ -465,5 +473,10 @@ display: flex;
     @media (max-width: 360px) {
         font-size: 11px;
         padding: 0 10px;
+    }
+
+    @media (max-width: 340px) {
+        font-size: 10px;
+        padding: 0 8px;
     }
 }
