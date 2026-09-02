@@ -19,27 +19,10 @@
     position: relative;
 }
 
+// Bare transparent crest — no card frame (white ground, border, shadow, red
+// stripe) around it; the artwork sits directly on the section background.
 .imageFrame {
     position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: $shadow-md;
-    border: 1px solid $gray-100;
-    // The frame now holds the transparent crest SVG rather than a photo:
-    // a white backdrop so it reads as a card on any section background,
-    // and padding so the artwork doesn't touch the border / red stripe.
-    background: $white;
-    padding: clamp(24px, 4vw, 48px);
-
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        inset-inline: 0;
-        height: 5px;
-        background: $red;
-        z-index: 2;
-    }
 }
 
 .image {
