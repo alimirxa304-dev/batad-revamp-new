@@ -43,11 +43,10 @@
         padding: 36px 0 44px;
     }
 
-    // Taller hero on phones: extra room below the search panel so the
-    // skyline in the photo is actually visible, not hidden behind the text.
+    // Slightly taller hero on phones: a little extra room below the search
+    // panel so some of the skyline shows beneath it (was 44px).
     @media (max-width: $tablet) {
-        min-height: 82vh;
-        padding-bottom: clamp(150px, 30vh, 260px);
+        padding-bottom: clamp(84px, 12vh, 104px);
     }
 }
 
