@@ -64,6 +64,23 @@
             border-start-end-radius: 16px;
         }
 
+        // SVG landmark icon instead of a photo: contained on a light ground,
+        // clear of the name/country text at the foot, with a navy fade there
+        // so the white text stays readable.
+        &.iconMode {
+            background: $gray-50;
+
+            img {
+                object-fit: contain;
+                padding: 16px 24px 72px;
+            }
+
+            &::after {
+                // Kept low so it sits under the text, not over the landmark.
+                background: linear-gradient(0deg, rgba($blue-900, 0.92) 0%, rgba($blue-900, 0.6) 25%, rgba($blue-900, 0) 45%);
+            }
+        }
+
         .location {
             display: flex;
             gap: 4px;

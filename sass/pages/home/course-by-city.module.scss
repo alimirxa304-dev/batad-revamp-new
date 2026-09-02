@@ -41,23 +41,16 @@
 .cityIcon {
   width: 100%;
   height: 150px;
-  // The source icon files carry a lot of built-in transparent padding around
-  // the actual artwork, so simply growing this box scaled the empty margin
-  // right along with it. Clipping + scaling the <img> crops that padding
-  // away so the artwork itself reads as noticeably bigger.
-  // NOTE: the source PNGs are only 150x96px natively — scaling much further
-  // than this starts visibly pixelating them, so this is close to the
-  // practical ceiling without the source art itself being replaced.
-  overflow: hidden;
   @include flex-center;
 
+  // Client SVG landmarks are tightly cropped (no built-in padding), so they
+  // fill the box height as-is — no crop/scale trick needed (the old PNGs
+  // carried transparent margins and were scaled 1.85x to hide them).
   img {
     max-width: 100%;
-    max-height: 150px;
+    height: 150px;
     width: auto;
-    height: auto;
     object-fit: contain;
-    transform: scale(1.85);
   }
 
   svg {
