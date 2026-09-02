@@ -26,10 +26,14 @@ const CityCard = ({ city }) => {
     const [imgError, setImgError] = useState(false);
 
     const showImage = isValidImage(city.image) && !imgError;
+    // Landmark icons (SVG) get contained on a light ground instead of the
+    // photo treatment (object-fit: cover + dark gradient), which would stretch
+    // and dim them.
+    const isIcon = showImage && /\.svg(\?|#|$)/i.test(city.image);
 
     return (
         <div className={styles.card}>
-            <div className={styles.imageContainer}>
+            <div className={`${styles.imageContainer} ${isIcon ? styles.iconMode : ""}`}>
                 {showImage ? (
                     <Image src={city.image} alt={city.name} width={302} height={224} onError={() => setImgError(true)} />
                 ) : (
