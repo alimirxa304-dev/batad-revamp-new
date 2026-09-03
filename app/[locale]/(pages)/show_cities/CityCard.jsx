@@ -19,6 +19,8 @@ const isValidImage = (src) =>
 const CityCard = ({ city }) => {
     const { locale } = useParams();
     const t = useTranslations('ShowCities');
+    // Button label shared with the homepage city cards ("View Courses").
+    const tCity = useTranslations('CourseByCity');
     const [imgError, setImgError] = useState(false);
 
     const iconSrc = city.icon || city.image;
@@ -41,7 +43,7 @@ const CityCard = ({ city }) => {
             </p>
 
             <Link href={`/${locale}/city/${city.id}/${encodeURIComponent(city.slug)}`} className={styles.link}>
-                {t('exploreCourses')} <ChevronRight aria-hidden="true" />
+                {tCity('viewCourses')} <ChevronRight aria-hidden="true" />
             </Link>
         </div>
     );
