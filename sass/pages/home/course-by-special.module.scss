@@ -308,8 +308,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  // Two per row on phones (client request), not one.
   @media (max-width: 540px) {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
   }
 }
 
@@ -323,6 +325,11 @@
   border: 1px solid $gray-100;
   border-radius: 16px;
   padding: clamp(18px, 2vw, 26px) 18px;
+
+  // Two-up on phones: tighter side padding so the title has room.
+  @media (max-width: 540px) {
+    padding: 16px 10px;
+  }
   box-shadow: 6px 6px 0 0 $blue-900; // dark navy offset shadow
   transition: box-shadow 0.25s ease-out, border-color 0.25s ease-out, transform 0.25s ease-out;
 
