@@ -36,7 +36,8 @@
 .main {
   padding: 44px 80px;
   display: grid;
-  grid-template-columns: 2.2fr 1fr 1fr 1fr auto;
+  // about | who | cities | resources | quick links | logo
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
   gap: clamp(24px, 3vw, 48px);
   align-items: start;
 
@@ -53,8 +54,10 @@
   }
 
   @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-    gap: 26px;
+    // Phones: the four link columns form a 2x2 block (Who we are | Cities,
+    // Resources | Quick links); the about text and logo span both columns.
+    grid-template-columns: 1fr 1fr;
+    gap: 26px 16px;
   }
 }
 

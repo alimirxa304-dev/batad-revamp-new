@@ -53,6 +53,9 @@ export default async function Footer() {
   const t = await getTranslations('Footer');
   const copyrightYear = new Date().getFullYear();
 
+  // Four link columns — on phones/tablets they fall into a 2x2 block:
+  //   Who we are      | Training Cities
+  //   Resources       | Quick links (Consulting, Jobs, FAQs, ...)
   const NAV_COLUMNS = [
     {
       title: t('columns.who.title'),
@@ -70,15 +73,27 @@ export default async function Footer() {
         { label: t('columns.cities.barcelona'), href: "/city/45/Training-Course-in-Barcelona" },
         { label: t('columns.cities.dubai'), href: "/city/61/Training-Course-in-Dubai" },
         { label: t('columns.cities.istanbul'), href: "/city/71/Training-Course-in-Istanbul" },
+        { label: t('columns.cities.all'), href: "/show_cities" },
       ],
     },
     {
-      title: t('columns.info.title'),
+      title: t('columns.resources.title'),
       links: [
+        { label: t('columns.resources.blog'), href: "/blog" },
+        { label: t('columns.resources.news'), href: "/blog" },
+        { label: t('columns.resources.calendar'), href: "/calendar" },
+        { label: t('columns.resources.yearPlan'), href: "/year_plan" },
+      ],
+    },
+    {
+      title: t('columns.quick.title'),
+      links: [
+        { label: t('columns.quick.consulting'), href: "/consulting" },
+        { label: t('columns.quick.jobs'), href: "/jobs" },
+        { label: t('columns.quick.faqs'), href: "/page/FAQ" },
+        { label: t('columns.quick.contact'), href: "/contact_us" },
         { label: t('columns.info.privacy'), href: "/privacy" },
         { label: t('columns.info.terms'), href: "/page/manual" },
-        { label: t('columns.info.customers'), href: "/page/our-services" },
-        { label: t('columns.info.corporate'), href: `/page/${encodeURIComponent('خدمة-الشركات')}` },
       ],
     },
   ];

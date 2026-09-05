@@ -11,11 +11,26 @@
         "consulting": "Consulting & Solutions"
       },
       "cities": {
-        "title": "Cities",
+        "title": "Training Cities",
         "london": "London",
         "barcelona": "Barcelona",
         "dubai": "Dubai",
-        "istanbul": "Istanbul"
+        "istanbul": "Istanbul",
+        "all": "All Cities"
+      },
+      "resources": {
+        "title": "Resources",
+        "blog": "Blog",
+        "news": "News",
+        "calendar": "Training Calendar",
+        "yearPlan": "Annual Training Plan"
+      },
+      "quick": {
+        "title": "Quick Links",
+        "consulting": "Consulting",
+        "jobs": "Jobs",
+        "faqs": "FAQs",
+        "contact": "Contact us"
       },
       "info": {
         "title": "Info.",
