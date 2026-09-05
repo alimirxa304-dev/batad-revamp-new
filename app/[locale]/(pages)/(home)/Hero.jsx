@@ -27,6 +27,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export default function Hero() {
     const t = useTranslations('Hero');
+    const tNav = useTranslations('Navbar'); // "2026-2027 Training" label, shared with the navbar
     const locale = useLocale();
     const isRtl = locale === 'ar';
     const router = useRouter();
@@ -251,6 +252,13 @@ export default function Hero() {
             </section>
 
             {/* ── STATS STRIP ── */}
+            {/* Phones/tablets: the 2026-2027 Training link lives here, below the
+                hero, instead of in the cramped top bar (hidden on desktop, where
+                the main nav carries it). */}
+            <Link href="/calendar" className={styles.calendarBar}>
+                {tNav('trainingCalendar')}
+            </Link>
+
             <section className={styles.statsStrip}>
                 <div className={stylesConteiner.container}>
                     <div className={styles.statsInner}>

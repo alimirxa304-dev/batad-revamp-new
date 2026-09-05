@@ -391,3 +391,26 @@
         justify-content: center;
     }
 }
+
+// ─── 2026-2027 Training bar (phones/tablets only) ───────────────
+// Replaces the compact pill in the top bar at these widths.
+.calendarBar {
+    display: none;
+
+    @media (max-width: 1024px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        background: $red;
+        color: $white;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 13px 16px;
+        transition: $transition-base;
+
+        &:hover {
+            background: darken($red, 8%);
+        }
+    }
+}

@@ -455,7 +455,9 @@ display: flex;
     display: none;
 
     @media (max-width: 1024px) {
-        display: flex;
+        // Hidden: on phones/tablets the link now sits below the homepage
+        // hero (Hero.jsx .calendarBar) and in the drawer menu, not up here.
+        display: none;
         align-items: center;
         justify-content: center;
         white-space: nowrap;
