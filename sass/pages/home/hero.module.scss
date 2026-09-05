@@ -23,6 +23,17 @@
         background-position: top center, right bottom;
         background-repeat: no-repeat;
     }
+
+    // Phones: dedicated portrait photo (1080x1440, 3:4) composed for this
+    // box — plain sky up top for the headline, landmarks mid-frame, calm
+    // foreground for the search panel — so a normal edge-to-edge fit works
+    // and the zoom-out / sky-strip treatment above is not needed here.
+    @media (max-width: $mobile) {
+        background-color: $blue-900;
+        background-image: url("/asstes/hero-bg-mobile.webp");
+        background-size: cover;
+        background-position: center top;
+    }
 }
 
 .bgPattern {

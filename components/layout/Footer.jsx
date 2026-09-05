@@ -1,6 +1,7 @@
 import styles from "@/sass/components/layout/footer.module.scss";
 import Image from "next/image";
-import footerLogo from "@/public/asstes/footerlogo.webp";
+// White print-file logo (client-supplied SVG) for the dark footer.
+import footerLogo from "@/public/asstes/batd-logo-white.svg";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 
@@ -119,8 +120,10 @@ export default async function Footer() {
               src={footerLogo}
               alt="British Academy for Training & Development"
               width={220}
-              height={157}
-              style={{ width: "auto", maxHeight: "180px", height: "auto" }}
+              height={165}
+              // Explicit height: the SVG has only a viewBox (no intrinsic size),
+              // so height:auto would collapse it to 0x0.
+              style={{ width: "auto", height: "165px" }}
             />
           </Link>
         </div>
