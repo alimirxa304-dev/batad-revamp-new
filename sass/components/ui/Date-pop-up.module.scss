@@ -42,7 +42,7 @@
 
 // ── Header ──────────────────────────────────────────
 .header {
-  background: linear-gradient(135deg, #2c3e8c, #3b5bdb);
+  background: $blue-900; // theme navy (was a lighter blue gradient)
   padding: 20px;
   display: flex;
   align-items: center;
@@ -198,7 +198,7 @@
   height: 36px;
   border-radius: 8px;
   background: #eef0f8;
-  color: #3b5bdb;
+  color: $blue-900;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -241,8 +241,8 @@
 .selectBtn {
   padding: 8px 18px;
   border-radius: 8px;
-  border: 1.5px solid #3b5bdb;
-  background: #3b5bdb;
+  border: 1.5px solid $blue-900;
+  background: $blue-900;
   color: #fff;
   font-size: 14px;
   font-weight: 500;

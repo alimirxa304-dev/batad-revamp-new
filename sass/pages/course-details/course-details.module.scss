@@ -776,7 +776,7 @@
                             color: $white;
                             cursor: pointer;
                             border-radius: 16.91px;
-                            background: linear-gradient(180deg, #2F327D 0%, #3B5AC7 100%);
+                            background: $blue-900; // theme navy (was a blue gradient)
                             transition: $transition-base;
 
                             @media (max-width: 576px) {

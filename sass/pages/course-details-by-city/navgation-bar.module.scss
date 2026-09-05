@@ -37,7 +37,7 @@
 
             span,
             a {
-                color: #2F327D;
+                color: $blue-900;
                 font-weight: 500;
                 font-size: 18px;
                 white-space: nowrap;
@@ -72,7 +72,7 @@
             // }
 
             &:nth-child(7) {
-                color: #2F327D;
+                color: $blue-900;
                 font-weight: 500;
                 overflow: hidden;
                 text-overflow: ellipsis;

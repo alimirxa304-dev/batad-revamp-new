@@ -83,7 +83,7 @@
   align-items: flex-start;
   justify-content: space-between;
   padding: 32px;
- background: linear-gradient(135deg, #1E2749 0%, #1F3A98 100%);
+ background: $blue-900; // theme navy (was a blue gradient)
   flex-shrink: 0;
 }
 

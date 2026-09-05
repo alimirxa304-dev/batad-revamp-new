@@ -641,7 +641,7 @@
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, $blue-900, $blue-600);
+        background: $blue-900;
         opacity: 0;
         transition: opacity 0.3s ease;
     }

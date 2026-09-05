@@ -7,7 +7,7 @@
     .top {
         border-radius: 14px 14px 0 0;
         padding: 20px 24px;
-        background: linear-gradient(180deg, #2B3A68 0%, #3B4A7D 100%);
+        background: $blue-900; // theme navy (was a blue gradient)
         display: flex;
         flex-direction: column;
         gap: 7px;

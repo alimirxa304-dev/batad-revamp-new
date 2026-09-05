@@ -483,7 +483,7 @@
     height: 100%;
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #374168 0%, #2d3a6a 100%);
+    background: $blue-900;
     @include flex-center;
 
     svg {
@@ -750,7 +750,7 @@
 .certImageArea {
     position: relative;
     height: 165px;
-    background: linear-gradient(135deg, #374168 0%, #2d3a6a 100%);
+    background: $blue-900;
     overflow: hidden;
 
     img {
@@ -1171,7 +1171,7 @@
 .modalImageArea {
     position: relative;
     height: 200px;
-    background: linear-gradient(135deg, #374168 0%, #2d3a6a 100%);
+    background: $blue-900;
     overflow: hidden;
     flex-shrink: 0;
 

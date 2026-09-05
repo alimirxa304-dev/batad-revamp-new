@@ -92,7 +92,7 @@
     cursor: pointer;
     transition: $transition-base;
     &:hover{
-        background-color: $blue-600;
+        background-color: lighten($blue-900, 8%);
     }
     @media (max-width :992px) {
        width: 100%;

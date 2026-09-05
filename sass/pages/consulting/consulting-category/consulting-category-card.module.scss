@@ -59,7 +59,7 @@
             border-radius: 33554400px;
             font-size: 14px;
             font-weight: 400;
-            color: #3B4A7D;
+            color: $blue-900;
             background-color: #FFFFFFE5;
             z-index: 1;
 
@@ -137,7 +137,7 @@
             margin-top: auto;
             font-size: 18px;
             font-weight: 400;
-            color: #3B4A7D;
+            color: $blue-900;
 
             @media (max-width: 768px) {
                 font-size: 14px;

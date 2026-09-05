@@ -1,5 +1,5 @@
 .item {
-    border: 2.6px solid #2F327D1A;
+    border: 2.6px solid rgba($blue-900, 0.1);
     background-color: $white;
     border-radius: 14.4px;
     padding: 22.63px;
@@ -14,7 +14,7 @@
   }
 
     &[data-state="open"] {
-        border: 1px solid #2F327D;
+        border: 1px solid $blue-900;
     
     }
 
@@ -54,7 +54,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: linear-gradient(180deg, #2F327D 0%, #3B5AC7 100%);
+                background: $blue-900; // theme navy (was a blue gradient)
 
                 box-shadow: 0px 2.06px 4.12px -2.06px #0000001A;
 

@@ -84,7 +84,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #3b82f6;
+  background: $blue-900;
   margin-left: auto;
   flex-shrink: 0;
 }
@@ -100,8 +100,8 @@
   justify-content: center;
 
   &.checked {
-    background: #3b82f6;
-    border-color: #3b82f6;
+    background: $blue-900;
+    border-color: $blue-900;
 
     &::after {
       content: '';
