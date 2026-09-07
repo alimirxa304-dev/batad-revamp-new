@@ -18,6 +18,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import useCoursesStore from "@/store/useCoursesStore";
 import usePostsStore from "@/store/usePostsStore";
+import { getPosts } from "@/action/posts";
 import useConsultingStore from "@/store/useConsultingStore";
 import defaultImage from "/public/asstes/default-1.jpeg";
 import videoThumbnail from "/public/asstes/logo.png";
@@ -76,15 +77,8 @@ const Videos = ({ watchNow }) => {
     )
 }
 
-// ─── Blogs Tab ──────────────────────────────────────────────
-const Blogs = ({ t, locale }) => {
-    const cards = ['card1', 'card2', 'card3'];
-    const images = ['/asstes/default-1.jpeg', '/asstes/course1.jpg', '/asstes/default-2.webp'];
-    const categoryColors = ['#C62839', '#162554', '#3b82f6'];
-    const { handleGetPosts, posts, isLoading } = usePostsStore();
-    useEffect(() => {
-        handleGetPosts();
-    }, [])
+// ─── Posts grid (shared by the Blog and Academy News tabs) ───────
+const PostsGrid = ({ posts, isLoading, t, locale }) => {
 
     if (isLoading) {
         return (
@@ -96,9 +90,11 @@ const Blogs = ({ t, locale }) => {
         );
     }
 
+    if (!posts?.length) return <p className={styles.emptyNote}>{t('noItems')}</p>;
+
     return (
         <div className={styles.blogsGrid}>
-            {posts?.posts?.slice(0, 3)?.map((post, i) => {
+            {posts.slice(0, 3).map((post, i) => {
                 const { id, name, description, date, publish_date, image } = post;
                 return (
                     <motion.div
@@ -152,6 +148,27 @@ const Blogs = ({ t, locale }) => {
             })}
         </div>
     );
+};
+
+// Blog: the shared posts store (also used elsewhere).
+const Blogs = ({ t, locale }) => {
+    const { handleGetPosts, posts, isLoading } = usePostsStore();
+    useEffect(() => { handleGetPosts(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    return <PostsGrid posts={posts?.posts} isLoading={isLoading} t={t} locale={locale} />;
+};
+
+// Academy News: its own fetch (type=news) so it never overwrites the Blog
+// tab's posts in the shared store. Falls back to an empty state.
+const News = ({ t, locale }) => {
+    const [items, setItems] = useState(null);
+    useEffect(() => {
+        let on = true;
+        getPosts(locale, "?type=news")
+            .then((r) => { if (on) setItems(r?.data?.posts || []); })
+            .catch(() => { if (on) setItems([]); });
+        return () => { on = false; };
+    }, [locale]);
+    return <PostsGrid posts={items || []} isLoading={items === null} t={t} locale={locale} />;
 };
 
 // ─── Courses Tab ────────────────────────────────────────────
@@ -359,17 +376,43 @@ const WorkWithUs = ({ t, locale }) => {
 
 
 // ─── Main Component ─────────────────────────────────────────
-// Blogs only — the Videos/Courses/Consultancy/WorkWithUs tabs above are kept
-// in this file in case they're brought back later.
+// Tabs mirror the live batdacademy.com "Latest publications" section:
+// Blog | Academy News | Advertisement | Careers | Video.
 const LastestPublication = () => {
     const t = useTranslations('LatestPublication');
     const { locale } = useParams();
+    const [activeTab, setActiveTab] = useState('blogs');
+    const tabs = [
+        { id: 'blogs', title: t('tabs.blogs') },
+        { id: 'news', title: t('tabs.news') },
+        { id: 'advertisement', title: t('tabs.advertisement') },
+        { id: 'careers', title: t('tabs.careers') },
+        { id: 'videos', title: t('tabs.videos') },
+    ];
+    const panels = {
+        blogs: <Blogs t={t} locale={locale} />,
+        news: <News t={t} locale={locale} />,
+        advertisement: <Courses t={t} locale={locale} />,
+        careers: <WorkWithUs t={t} locale={locale} />,
+        videos: <Videos watchNow={t('watchNow')} />,
+    };
 
     return (
         <section>
             <div className={styleContainer.container}>
                 <Title title={t('title')} span={t('titleSpan')} />
-                <Blogs t={t} locale={locale} />
+                <Tabs tabs={tabs} activeTabId={activeTab} onTabChange={setActiveTab} />
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeTab}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.25 }}
+                    >
+                        {panels[activeTab]}
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </section>
     );

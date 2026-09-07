@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 
 const Tab = ({ tab, isActive, onClick, className, activeClassName }) => {
-    console.log(tab,'tab from tab')
     return (
         <div className={`${styles.tab} ${className || ''} ${isActive ? `${styles.active} ${activeClassName || ''}` : ''}`}
             onClick={onClick}>

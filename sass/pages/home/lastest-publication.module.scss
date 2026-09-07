@@ -914,3 +914,10 @@
         opacity: 0.4;
     }
 }
+// Empty state for a tab with nothing published (e.g. Academy News).
+.emptyNote {
+    text-align: center;
+    color: $gray-600;
+    font-size: 15px;
+    padding: 28px 0;
+}

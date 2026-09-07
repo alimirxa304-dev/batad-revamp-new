@@ -85,7 +85,10 @@
       "courses": "Courses",
       "blogs": "Blogs",
       "consultancy": "Consultancy",
-      "workWithUs": "Work With Us"
+      "workWithUs": "Work With Us",
+      "news": "Academy News",
+      "advertisement": "Advertisement",
+      "careers": "Careers"
     },
     "watchNow": "Watch Now",
     "readArticle": "Read Article",
@@ -195,7 +198,8 @@
         "type": "Remote",
         "location": "Remote"
       }
-    }
+    },
+    "noItems": "Nothing published here yet."
   },
   "RequestCourse": {
     "title": "Request a",
