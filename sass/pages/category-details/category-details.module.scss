@@ -223,3 +223,12 @@
         }
     }
 }
+
+// Specialisation page: the accordion sidebar is desktop-only — on phones and
+// tablets the same filters live in the drawer behind the funnel button beside
+// the search bar. (The category page keeps its sort sidebar at all widths.)
+.sidebarColDesktopOnly {
+    @media (max-width: 1024px) {
+        display: none;
+    }
+}

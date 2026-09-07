@@ -98,7 +98,7 @@ const SpecializationDetails = ({ initialSpecialization, initialCoursesData, spec
             )}
 
             <div className={styles.wrapper}>
-              <aside className={styles.sidebarCol}>
+              <aside className={`${styles.sidebarCol} ${styles.sidebarColDesktopOnly}`}>
                 <FilterPanel cities={data?.cities} categories={data?.categories} specializations={data?.specializations} />
               </aside>
 

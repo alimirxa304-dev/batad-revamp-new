@@ -44,6 +44,9 @@
 
         @media (max-width: 1024px) {
             position: static;
+            // Desktop only: on phones/tablets the same filters live in the
+            // drawer behind the funnel button next to the search bar.
+            display: none;
         }
     }
 

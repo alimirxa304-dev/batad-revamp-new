@@ -18,7 +18,7 @@ const SearchCourse = ({ className, updateFilter, onOpenFilters, categories, spec
   useEffect(() => {
     const handler = setTimeout(() => {
       if (searchValue !== (searchParams.get("search") || "")) {
-        updateFilter("search", searchValue);
+        updateFilter?.("search", searchValue);
       }
     }, 500);
     return () => clearTimeout(handler);
@@ -30,7 +30,7 @@ const SearchCourse = ({ className, updateFilter, onOpenFilters, categories, spec
         <div className={styles.searchContent__left}>
           <div
             className={styles.searchContent__left__icon}
-            onClick={() => updateFilter("search", searchValue)}
+            onClick={() => updateFilter?.("search", searchValue)}
           >
             <Search size={13} color="#99A1AF" />
           </div>
