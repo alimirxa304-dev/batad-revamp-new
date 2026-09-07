@@ -43,7 +43,7 @@ const Header = ({ updateFilter ,categories,specializations,cities}) => {
                         </div>
 
                         <div className={styles.search}>
-                            <SearchCourse updateFilter={updateFilter} />
+                            <SearchCourse updateFilter={updateFilter} categories={categories} specializations={specializations} cities={cities} />
                             <Filters
                                 updateFilter={updateFilter}
                                 categories={categories}

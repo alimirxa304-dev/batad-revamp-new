@@ -9,6 +9,7 @@ import UpcomingCouresCard from "@/components/ui/UpcomingCouresCard";
 import { getCourses } from "@/action/courses";
 import Skeleton from "@/components/ui/Skeleton";
 import SidebarFilter from "@/components/common/SidebarFilter";
+import FilterPanel from "@/app/[locale]/(pages)/search_course/FilterPanel";
 import NoData from "@/components/common/NoData";
 import stylesContainer from "@/sass/components/common/container.module.scss";
 import styles from "@/sass/pages/course-details-by-city/course-details-by-city.module.scss";
@@ -125,7 +126,9 @@ const CourseByCityDetails = ({ initialCity, initialCityDescription, initialCours
                                         </Dialog.Close>
                                     </div>
 
-                                    <SidebarFilter updateFilter={updateFilter} data={data} className='mobileFilter' />
+                                    {/* Same full filter set as the search page sidebar (keywords,
+                                        category, specialisation, price, discount, dates, ...). */}
+                                    <FilterPanel categories={data?.categories} specializations={data?.specializations} />
                                 </Dialog.Content>
                             </Dialog.Portal>
                         )}

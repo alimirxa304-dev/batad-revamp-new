@@ -1,14 +1,13 @@
 "use client";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ChevronRight, Filter, Search, X } from "lucide-react";
+import { Filter, Search, X } from "lucide-react";
 import styles from "@/sass/pages/search-course/search.module.scss";
-import CategoriesBox from "@/components/common/CategoriesBox";
-import Range from "@/components/ui/Range";
+import FilterPanel from "./FilterPanel";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
-const SearchCourse = ({ className, updateFilter, onOpenFilters }) => {
+const SearchCourse = ({ className, updateFilter, onOpenFilters, categories, specializations, cities }) => {
   const searchParams = useSearchParams();
   const t = useTranslations('SearchCourse');
   const tCommon = useTranslations();
@@ -80,54 +79,11 @@ const SearchCourse = ({ className, updateFilter, onOpenFilters }) => {
                   </Dialog.Close>
                 </div>
 
+                {/* Phone drawer: the same full filter set as the desktop sidebar
+                    (keywords, category, specialisation, city, price, discount,
+                    dates, language, ...) — every field drives the course query. */}
                 <div className={styles.filter}>
-                  <CategoriesBox
-                    title={t('allCategories')}
-                    icon={<Filter size={18} />}
-                  >
-                    <div className={styles.sidebarFilterContent}>
-                      <div className={styles.range}>
-                        <h4 className={styles.filterGroupTitle}>{t('priceRange')}</h4>
-                        <Range min={0} max={2000} step={10} />
-                      </div>
-
-                      <h4 className={styles.filterGroupTitle}>{t('courseType')}</h4>
-                      <div className={styles.checkboxGroup}>
-                        <label className={styles.checkboxLabel}>
-                          <input type="checkbox" /> {t('featuredCourses')}
-                        </label>
-                        <label className={styles.checkboxLabel}>
-                          <input type="checkbox" /> {t('approvedCourses')}
-                        </label>
-                        <label className={styles.checkboxLabel}>
-                          <input type="checkbox" /> {t('discountedCourses')}
-                        </label>
-                      </div>
-                    </div>
-                  </CategoriesBox>
-
-                  <CategoriesBox title={t('allCategory')}>
-                    <ul className={styles.sidebarCategoryList}>
-                      {["Business", "Technical", "Power", "Management", "Development"].map((item) => (
-                        <li key={item}>
-                          <span>{item}</span>
-                          <div className={styles.badgeWrapper}>
-                            <ChevronRight size={12} />
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </CategoriesBox>
-
-                  <CategoriesBox title={t('allTags')}>
-                    <div className={styles.sidebarTagsContainer}>
-                      {["Business", "Graphic Design", "Technology", "Business Idea",
-                        "App Development", "Website Design", "Marketing",
-                        "Leadership", "Finance", "Project Management"].map((tag) => (
-                        <span key={tag} className={styles.tagPill}>{tag}</span>
-                      ))}
-                    </div>
-                  </CategoriesBox>
+                  <FilterPanel cities={cities} categories={categories} specializations={specializations} />
                 </div>
               </Dialog.Content>
             </Dialog.Portal>
