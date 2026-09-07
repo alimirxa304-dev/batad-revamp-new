@@ -401,7 +401,7 @@ const LastestPublication = () => {
         <section>
             <div className={styleContainer.container}>
                 <Title title={t('title')} span={t('titleSpan')} />
-                <Tabs tabs={tabs} activeTabId={activeTab} onTabChange={setActiveTab} />
+                <Tabs tabs={tabs} activeTabId={activeTab} onTabChange={setActiveTab} scrollArrows />
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeTab}

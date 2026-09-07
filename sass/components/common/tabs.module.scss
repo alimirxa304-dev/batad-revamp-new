@@ -20,3 +20,49 @@
     }
 }
 
+
+// ─── Optional scroll arrows (Tabs `scrollArrows` prop) ─────────────
+// Phones only: the row overflows sideways, so chevrons on either side
+// scroll it; each hides at its own edge. Desktop keeps the centred row.
+.tabsRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 43px;
+
+    .tabs {
+        flex: 1;
+        min-width: 0;
+        margin-bottom: 0;
+    }
+}
+
+.tabsChevron {
+    flex-shrink: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid $gray-300;
+    background: $white;
+    color: $blue-900;
+    cursor: pointer;
+    transition: $transition-base;
+
+    &:hover {
+        background: $blue-900;
+        color: $white;
+        border-color: $blue-900;
+    }
+
+    @media (max-width: 768px) {
+        display: flex;
+    }
+}
+
+// Flip the chevron glyphs in RTL so "back" still points toward the start edge.
+[dir="rtl"] .tabsRow {
+    --tabs-chevron-flip: scaleX(-1);
+}
