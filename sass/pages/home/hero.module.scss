@@ -41,16 +41,17 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
+    // Bluish navy shadow over the photo at every width — light across the sky
+    // and landmarks, deeper at the foot so the search panel and the white
+    // quick links sit on a calmer ground.
     background-image:
-        radial-gradient(ellipse 55% 60% at 82% 18%, rgba($blue-600, 0.22), transparent 65%),
-        radial-gradient(ellipse 45% 50% at 8% 95%, rgba($red, 0.14), transparent 60%);
+        linear-gradient(180deg, rgba($blue-900, 0.20) 0%, rgba($blue-900, 0.08) 40%, rgba($blue-900, 0.50) 100%),
+        radial-gradient(ellipse 55% 60% at 82% 18%, rgba($blue-600, 0.22), transparent 65%);
 
-    // Phones/tablets: a bluish shadow over the photo — light across the sky and
-    // landmarks, deeper at the foot so the white quick links and the search
-    // panel sit on a calmer ground.
+    // Phones/tablets: stronger.
     @media (max-width: 1024px) {
         background-image:
-            linear-gradient(180deg, rgba($blue-900, 0.22) 0%, rgba($blue-900, 0.10) 40%, rgba($blue-900, 0.55) 100%),
+            linear-gradient(180deg, rgba($blue-900, 0.34) 0%, rgba($blue-900, 0.18) 40%, rgba($blue-900, 0.66) 100%),
             radial-gradient(ellipse 55% 60% at 82% 18%, rgba($blue-600, 0.22), transparent 65%);
     }
 }
