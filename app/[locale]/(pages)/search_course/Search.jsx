@@ -2,7 +2,7 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { Filter, Search, X } from "lucide-react";
 import styles from "@/sass/pages/search-course/search.module.scss";
-import FilterPanel from "./FilterPanel";
+import SidebarFilter from "@/components/common/SidebarFilter";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -79,11 +79,11 @@ const SearchCourse = ({ className, updateFilter, onOpenFilters, categories, spec
                   </Dialog.Close>
                 </div>
 
-                {/* Phone drawer: the same full filter set as the desktop sidebar
-                    (keywords, category, specialisation, city, price, discount,
-                    dates, language, ...) — every field drives the course query. */}
+                {/* Phone drawer: the original boxed design (price slider, course-type
+                    checkboxes, category list, tags) extended with the full filter set —
+                    every field drives the course query. */}
                 <div className={styles.filter}>
-                  <FilterPanel cities={cities} categories={categories} specializations={specializations} />
+                  <SidebarFilter className="mobileFilter" data={{ categories, specializations, cities }} />
                 </div>
               </Dialog.Content>
             </Dialog.Portal>
