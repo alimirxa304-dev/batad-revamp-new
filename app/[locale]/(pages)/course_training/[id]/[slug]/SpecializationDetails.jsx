@@ -99,7 +99,7 @@ const SpecializationDetails = ({ initialSpecialization, initialCoursesData, spec
 
             <div className={styles.wrapper}>
               <aside className={styles.sidebarCol}>
-                <FilterPanel cities={data?.cities} />
+                <FilterPanel cities={data?.cities} categories={data?.categories} specializations={data?.specializations} />
               </aside>
 
               <div className={styles.mainCol}>

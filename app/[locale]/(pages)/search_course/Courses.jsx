@@ -119,7 +119,7 @@ const CoursesPage = ({ initialCoursesData }) => {
                         <div className={styles.wrapper}>
                             {/* ── Persistent filter sidebar (25%) ── */}
                             <aside className={styles.sidebarCol}>
-                                <FilterPanel cities={data?.cities} />
+                                <FilterPanel cities={data?.cities} categories={data?.categories} specializations={data?.specializations} />
                             </aside>
 
                             <div className={styles.mainCol}>

@@ -48,6 +48,13 @@
     "successMessage": "Your download link has been sent to your email!",
     "errorMessage": "Something went wrong. Please try again.",
     "searchTitlePlaceholder": "Search Title by keywords...",
+    "discountOnly": "Discounted courses only",
+    "priceOptions": {
+      "under1000": "Under £1,000",
+      "p1000": "£1,000 – £1,500",
+      "p1500": "£1,500 – £2,000",
+      "over2000": "Over £2,000"
+    },
     "format": "Format",
     "venues": "Venues",
     "certificate": "Certificate",
