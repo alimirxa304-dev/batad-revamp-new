@@ -21,7 +21,6 @@ const AboutAcademy = () => {
         t('points.accredited'),
         t('points.hq'),
         t('points.trainers'),
-        t('points.support'),
     ];
 
     return (
@@ -58,7 +57,6 @@ const AboutAcademy = () => {
                             {t('title')} <span>{t('titleSpan')}</span>
                         </h2>
                         <p className={styles.paragraph}>{t('p1')}</p>
-                        <p className={styles.paragraph}>{t('p2')}</p>
 
                         <ul className={styles.points}>
                             {points.map((point, i) => (
