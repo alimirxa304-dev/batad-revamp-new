@@ -5,8 +5,9 @@ import { motion } from "framer-motion"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import whatis from '@/public/asstes/whatis.webp'
 import { useParams } from "next/navigation"
-import gameDevelopment from '@/public/asstes/icons/game-development.svg';
-import uxInterface from '@/public/asstes/icons/ux-interface.svg';
+// Client-supplied white line icons for the feature cards (dark ground).
+import accreditedIcon from '@/public/asstes/icons/accredited-courses.svg';
+import specialisationIcon from '@/public/asstes/icons/courses-by-specialisation.svg';
 import containerStyle from '@/sass/components/common/container.module.scss'
 import styles from '@/sass/pages/home/what-is.module.scss'
 import { useTranslations } from "next-intl"
@@ -29,13 +30,13 @@ const WhatIs = () => {
     const items = [
         {
             params: { query: { has_approval: 1 } },
-            img: gameDevelopment,
+            img: accreditedIcon,
             title: t('items.approved.title'),
             desc: t('items.approved.desc'),
         },
         {
             params: { query: { specialization_id: 22 } },
-            img: uxInterface,
+            img: specialisationIcon,
             title: t('items.specialization.title'),
             desc: t('items.specialization.desc'),
         },
